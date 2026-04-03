@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="National Disaster Management System - India's official emergency alert and disaster response platform">
+    <meta name="keywords" content="disaster management, emergency alerts, NDMA, India, safety, evacuation">
+    <meta name="author" content="National Disaster Management Authority, Government of India">
+    <title data-i18n="landing.page_title">National Disaster Management System</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Baloo+Bhai+2:wght@400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Noto+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gov-primary': '#FF9933',
+                        'gov-secondary': '#138808', 
+                        'gov-accent': '#000080',
+                        'gov-alert': '#DC143C',
+                        'gov-warning': '#F39C12',
+                        'gov-safe': '#27AE60',
+                        'gov-neutral': '#F5F5DC',
+                        'gov-gray': '#B2BEB5',
+                        'gov-dark': '#333333',
+                        'gov-white': '#FFFFFF',
+                        'gov-yellow': '#FFD700',
+                        'gov-peacock': '#1A4E8A',
+                        'gov-cream': '#FFF8DC',
+                    },
+                    fontFamily: {
+                        'hindi': ['Tiro Devanagari Hindi', 'serif'],
+                        'telugu': ['Noto Telugu', 'serif'],
+                        'display': ['Baloo Bhai 2', 'cursive'],
+                        'heading': ['Rajdhani', 'sans-serif'],
+                        'body': ['Merriweather', 'serif'],
+                    },
+                    animation: {
+                        'pulse-gold': 'pulseGold 3s ease-in-out infinite',
+                        'float': 'float 20s ease-in-out infinite',
+                        'slide-right': 'slideInRight 0.8s ease-out',
+                        'emergency-pulse': 'emergencyPulse 2s ease-in-out infinite',
+                        'rotate-chakra': 'rotateChakra 60s linear infinite',
+                    },
+                    keyframes: {
+                        pulseGold: {
+                            '0%, 100%': { transform: 'scale(1)', boxShadow: '0 6px 20px rgba(255, 215, 0, 0.4)' },
+                            '50%': { transform: 'scale(1.05)', boxShadow: '0 8px 30px rgba(255, 215, 0, 0.6)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                            '50%': { transform: 'translate(-50px, 50px) rotate(180deg)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        emergencyPulse: {
+                            '0%, 100%': { boxShadow: '0 10px 40px rgba(220, 20, 60, 0.5)' },
+                            '50%': { boxShadow: '0 15px 60px rgba(220, 20, 60, 0.8)' },
+                        },
+                        rotateChakra: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        /* Custom CSS for complex animations and gradients */
+        :root {
+            --saffron: #FF9933;
+            --green: #138808;
+            --navy: #000080;
+            --alert: #DC143C;
+            --warning: #F39C12;
+            --safe: #27AE60;
+            --neutral: #F5F5DC;
+            --gray: #B2BEB5;
+            --gold: #FFD700;
+            --peacock: #1A4E8A;
+            --cream: #FFF8DC;
+        }
+
+        body {
+            font-family: 'Rajdhani', 'Baloo Bhai 2', sans-serif;
+            background: linear-gradient(135deg, var(--neutral) 0%, var(--cream) 50%, var(--neutral) 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body.lang-hi {
+            font-family: 'Tiro Devanagari Hindi', 'Rajdhani', sans-serif;
+        }
+
+        body.lang-te {
+            font-family: 'Noto Telugu', 'Rajdhani', sans-serif;
+        }
+
+        .lang-switch {
+            position: static;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--gold);
+            border-radius: 14px;
+            padding: 6px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .lang-btn {
+            appearance: none;
+            border: 0;
+            background: transparent;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--navy);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-1px);
+            background: rgba(0, 0, 0, 0.06);
+        }
+
+        .lang-btn.active {
+            background: var(--navy);
+            color: white;
+        }
+
+        .gov-header-strip {
+             background: linear-gradient(180deg, var(--saffron) 0%, var(--saffron) 33.33%, #ffffff 33.33%, #ffffff 66.66%, var(--green) 66.66%, var(--green) 100%);
+             height: 8px;
+             width: 100%;
+             position: fixed;
+             top: 0;
+             left: 0;
+             z-index: 1000;
+             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+         }
+    </style>
+</head>
+<body class="bg-gov-neutral text-gov-dark">
+    <!-- Government Header Strip -->
+    <div class="gov-header-strip"></div>
+    
+    <!-- Main Header -->
+    <header class="bg-gradient-to-r from-gov-accent to-gov-peacock pt-4 pb-4 mt-2 fixed w-full z-50 shadow-gov-header border-b-4 border-gov-yellow">
+        <div class="max-w-gov-container mx-auto px-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-6">
+                    <!-- Emblem -->
+                    <div class="w-16 h-16 bg-gradient-to-br from-gov-yellow to-yellow-400 rounded-full flex items-center justify-center text-3xl border-4 border-gov-white shadow-gov-gold animate-pulse-gold">
+                        🇮🇳
+                    </div>
+                    
+                    <!-- Title Section -->
+                    <div>
+                        <h1 class="font-hindi text-3xl font-bold text-gov-white tracking-wide" data-i18n="landing.title_hi">राष्ट्रीय आपदा प्रबंधन प्रणाली</h1>
+                        <h2 class="font-body text-xl font-bold text-gov-yellow uppercase tracking-wider mt-1">
+                            <span data-i18n="landing.title_en">National Disaster Management System</span>
+                        </h2>
+                        <p class="text-gov-cream text-sm mt-1 italic tracking-wide" data-i18n="landing.tagline">सतर्कता | प्रतिक्रिया | सुरक्षा • Vigilance | Response | Safety</p>
+                    </div>
+                </div>
+                
+                <!-- Emergency Contact -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <select id="langSelectHome" class="bg-white/20 text-white border border-white/30 rounded-lg px-3 py-1 text-sm font-bold cursor-pointer" onchange="changeLanguage(this.value)">
+                        <option value="en" class="text-black">English</option>
+                        <option value="hi" class="text-black">हिन्दी</option>
+                        <option value="te" class="text-black">తెలుగు</option>
+                        <option value="mr" class="text-black">मराठी</option>
+                        <option value="ta" class="text-black">தமிழ்</option>
+                        <option value="pa" class="text-black">ਪੰਜਾਬੀ</option>
+                        <option value="as" class="text-black">অসমীয়া</option>
+                    </select>
+                    <button class="bg-gov-alert text-gov-white px-6 py-3 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-gov-emergency animate-emergency-pulse focus-visible" data-i18n="common.emergency">
+                        🚨 Emergency: 112
+                    </button>
+                </div>
+            </div>
+            <div class="mt-3 flex justify-center lg:hidden">
+                <select id="langSelectHomeMobile" class="bg-white/20 text-white border border-white/30 rounded-lg px-3 py-1 text-sm font-bold cursor-pointer" onchange="changeLanguage(this.value)">
+                    <option value="en" class="text-black">English</option>
+                    <option value="hi" class="text-black">हिन्दी</option>
+                    <option value="te" class="text-black">తెలుగు</option>
+                    <option value="mr" class="text-black">मराठी</option>
+                    <option value="ta" class="text-black">தமிழ்</option>
+                    <option value="pa" class="text-black">ਪੰਜਾਬੀ</option>
+                    <option value="as" class="text-black">অসমীয়া</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6 relative overflow-hidden">
+        <div class="hero-float"></div>
+        
+        <div class="max-w-gov-container mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Text -->
+                <div class="hero-text">
+                    <h1 class="font-display text-5xl lg:text-7xl font-bold text-gov-accent leading-tight mb-6">
+                        <span data-i18n="landing.hero_line1">Protecting Lives</span>
+                        <span class="block gradient-text-primary" data-i18n="landing.hero_line2">Saving Futures</span>
+                    </h1>
+                    <p class="font-body text-xl text-gov-dark leading-relaxed mb-8 font-medium" data-i18n="landing.hero_desc">
+                        India's most advanced real-time disaster alert system. Get instant notifications, 
+                        personalized safety instructions, and emergency assistance when disasters strike.
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap gap-4">
+                        <button id="btnRegister" class="btn-ripple bg-gradient-to-r from-gov-primary to-gov-warning text-gov-white px-8 py-4 rounded-full font-bold text-xl uppercase tracking-wide shadow-gov-button hover:scale-105 transition-all focus-visible" data-i18n="common.register_now">
+                            🚨 Register Now
+                        </button>
+                        <button id="btnHelpline" class="btn-ripple bg-gradient-to-r from-gov-secondary to-gov-safe text-gov-white px-8 py-4 rounded-full font-bold text-xl uppercase tracking-wide shadow-gov-button hover:scale-105 transition-all focus-visible" data-i18n="common.emergency_helpline">
+                            📞 Emergency Helpline
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Alert Preview Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Low Risk Alert -->
+                    <div class="alert-card-1 bg-gov-white p-6 rounded-2xl shadow-gov-card border-l-8 border-gov-safe hover:scale-105 transition-transform">
+                        <div class="text-4xl mb-3">🟢</div>
+                        <h3 class="text-xl font-bold text-gov-safe uppercase tracking-wide mb-2" data-i18n="landing.low_risk">Low Risk</h3>
+                        <p class="text-gray-600" data-i18n="landing.low_desc">Silent notification with safety guidelines</p>
+                    </div>
+
+                    <!-- Medium Risk Alert -->
+                    <div class="alert-card-2 bg-gov-white p-6 rounded-2xl shadow-gov-card border-l-8 border-gov-warning hover:scale-105 transition-transform">
+                        <div class="text-4xl mb-3">🟡</div>
+                        <h3 class="text-xl font-bold text-gov-warning uppercase tracking-wide mb-2" data-i18n="landing.med_risk">Medium Risk</h3>
+                        <p class="text-gray-600" data-i18n="landing.med_desc">SMS + Vibration + Evacuation routes</p>
+                    </div>
+
+                    <!-- High Risk Alert -->
+                    <div class="alert-card-3 bg-gov-white p-6 rounded-2xl shadow-gov-card border-l-8 border-gov-alert hover:scale-105 transition-transform">
+                        <div class="text-4xl mb-3">🔴</div>
+                        <h3 class="text-xl font-bold text-gov-alert uppercase tracking-wide mb-2" data-i18n="landing.high_risk">High Risk</h3>
+                        <p class="text-gray-600" data-i18n="landing.high_desc">Loud siren + Repeat alerts + Emergency services</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-6 bg-gradient-to-br from-gov-accent to-gov-peacock relative">
+        <!-- Top Border Accent -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gov-primary via-gov-yellow to-gov-secondary"></div>
+        
+        <div class="max-w-gov-container mx-auto">
+            <h2 class="font-display text-4xl lg:text-5xl font-bold text-gov-yellow text-center mb-16">
+                🛡️ <span data-i18n="landing.features_title">Revolutionary Features</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card p-8 rounded-2xl hover:scale-105 hover:border-gov-yellow transition-all">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold text-gov-yellow uppercase tracking-wide mb-4" data-i18n="landing.f1">Street-Level Alerts</h3>
+                    <p class="text-gov-cream leading-relaxed" data-i18n="landing.f1d">Radius-based notifications within 1-2 km of affected areas. No panic for distant users.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card p-8 rounded-2xl hover:scale-105 hover:border-gov-yellow transition-all">
+                    <div class="text-5xl mb-4">📈</div>
+                    <h3 class="text-2xl font-bold text-gov-yellow uppercase tracking-wide mb-4" data-i18n="landing.f2">Progressive Risk Levels</h3>
+                    <p class="text-gov-cream leading-relaxed" data-i18n="landing.f2d">Real-time disaster escalation from Low → Medium → High with increasing alert intensity.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card p-8 rounded-2xl hover:scale-105 hover:border-gov-yellow transition-all">
+                    <div class="text-5xl mb-4">🗺️</div>
+                    <h3 class="text-2xl font-bold text-gov-yellow uppercase tracking-wide mb-4" data-i18n="landing.f3">Safe Route Suggestion</h3>
+                    <p class="text-gov-cream leading-relaxed" data-i18n="landing.f3d">Traffic-aware evacuation routes avoiding flooded roads and danger zones.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="glass-card p-8 rounded-2xl hover:scale-105 hover:border-gov-yellow transition-all">
+                    <div class="text-5xl mb-4">🚑</div>
+                    <h3 class="text-2xl font-bold text-gov-yellow uppercase tracking-wide mb-4" data-i18n="landing.f4">Multi-Service Integration</h3>
+                    <p class="text-gov-cream leading-relaxed" data-i18n="landing.f4d">One-tap access to ambulance, fire services, hospital availability, and food delivery.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="glass-card p-8 rounded-2xl hover:scale-105 hover:border-gov-yellow transition-all">
+                    <div class="text-5xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold text-gov-yellow uppercase tracking-wide mb-4" data-i18n="landing.f5">Offline Disaster Mode</h3>
+                    <p class="text-gov-cream leading-relaxed" data-i18n="landing.f5d">Works without internet using cached maps and preloaded safety instructions.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="glass-card p-8 rounded-2xl hover:scale-105 hover:border-gov-yellow transition-all">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h3 class="text-2xl font-bold text-gov-yellow uppercase tracking-wide mb-4" data-i18n="landing.f6">Community Help Network</h3>
+                    <p class="text-gov-cream leading-relaxed" data-i18n="landing.f6d">Alert nearby volunteers and coordinate local assistance during emergencies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-20 px-6 bg-gradient-to-r from-gov-primary to-gov-alert">
+        <div class="max-w-gov-container mx-auto">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Stat 1 -->
+                <div class="text-center text-gov-white p-6 glass-card rounded-2xl hover:scale-105 transition-transform">
+                    <div class="text-5xl lg:text-6xl font-display font-bold mb-2">24/7</div>
+                    <div class="text-lg font-bold uppercase tracking-wide" data-i18n="landing.stat1">Active Monitoring</div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="text-center text-gov-white p-6 glass-card rounded-2xl hover:scale-105 transition-transform">
+                    <div class="text-5xl lg:text-6xl font-display font-bold mb-2">&lt;30s</div>
+                    <div class="text-lg font-bold uppercase tracking-wide" data-i18n="landing.stat2">Alert Speed</div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="text-center text-gov-white p-6 glass-card rounded-2xl hover:scale-105 transition-transform">
+                    <div class="text-5xl lg:text-6xl font-display font-bold mb-2">100%</div>
+                    <div class="text-lg font-bold uppercase tracking-wide" data-i18n="landing.stat3">Coverage</div>
+                </div>
+
+                <!-- Stat 4 -->
+                <div class="text-center text-gov-white p-6 glass-card rounded-2xl hover:scale-105 transition-transform">
+                    <div class="text-5xl lg:text-6xl font-display font-bold mb-2">9+</div>
+                    <div class="text-lg font-bold uppercase tracking-wide" data-i18n="landing.stat4">Disaster Types</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-900 to-gray-800 text-gov-white py-12 px-6 border-t-4 border-gov-yellow">
+        <div class="max-w-gov-container mx-auto text-center">
+            <!-- Emblem -->
+            <div class="text-5xl mb-6">🇮🇳</div>
+            
+            <!-- Title -->
+            <h3 class="text-2xl font-bold mb-2" data-i18n="landing.title_en">National Disaster Management System</h3>
+            <p class="text-gray-400 mb-6" data-i18n="common.ministry">Ministry of Home Affairs, Government of India</p>
+            
+            <!-- Links -->
+            <div class="flex flex-wrap justify-center gap-6 mb-8 pt-6 border-t border-gray-700">
+                <a href="#" class="text-gov-yellow hover:text-gov-primary font-semibold transition-colors focus-visible" data-i18n="common.privacy">Privacy Policy</a>
+                <a href="#" class="text-gov-yellow hover:text-gov-primary font-semibold transition-colors focus-visible" data-i18n="common.terms">Terms of Service</a>
+                <a href="#" class="text-gov-yellow hover:text-gov-primary font-semibold transition-colors focus-visible" data-i18n="common.contact">Contact Us</a>
+                <a href="#" class="text-gov-yellow hover:text-gov-primary font-semibold transition-colors focus-visible" data-i18n="common.help">Help Center</a>
+            </div>
+            
+            <!-- Copyright -->
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 National Disaster Management System. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+    </main>
+
+    <!-- Emergency Banner (Fixed) -->
+    <div id="emergencyBanner" class="fixed bottom-6 right-6 bg-gradient-to-r from-gov-alert to-red-800 text-gov-white p-5 rounded-2xl shadow-gov-emergency z-40 font-bold text-lg animate-emergency-pulse hover:scale-105 transition-transform cursor-pointer focus-visible lg:max-w-xs" data-i18n="common.emergency">
+        🚨 Emergency: 112
+    </div>
+
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gov-accent text-gov-white px-4 py-2 rounded">
+        Skip to main content
+    </a>
+
+    <!-- JavaScript -->
+    <script src="./translations.js"></script>
+    <script src="./i18n.js"></script>
+    <script>
+        // Emergency Banner Click Handler
+        document.querySelectorAll('.animate-emergency-pulse').forEach(banner => {
+            banner.addEventListener('click', () => {
+                const lang = window.I18N?.getLang ? window.I18N.getLang() : 'en';
+                const msg = `National Emergency Number: 112\n${window.TRANSLATIONS?.[lang]?.common?.helpline || 'NDMA Helpline: 1077'}\n\nStay calm, follow instructions, and move to safe zones.`;
+                alert(msg);
+            });
+        });
+
+        document.getElementById('btnRegister')?.addEventListener('click', () => {
+            const isRegistered = localStorage.getItem('isRegistered') === 'true';
+            window.location.href = isRegistered ? 'dashboard.html' : 'login.html';
+        });
+
+        document.getElementById('btnHelpline')?.addEventListener('click', () => {
+            const lang = window.I18N?.getLang ? window.I18N.getLang() : 'en';
+            const msg = `Emergency: 1077\n${window.TRANSLATIONS?.[lang]?.common?.helpline || 'NDMA Helpline: 1077'}`;
+            alert(msg);
+        });
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe feature cards and alert cards
+        document.querySelectorAll('.glass-card, .alert-card-1, .alert-card-2, .alert-card-3').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Keyboard Navigation Support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Close any modals or return focus to main content
+                document.getElementById('main-content')?.focus();
+            }
+        });
+
+        // Live Region for Screen Readers (for dynamic alerts)
+        const liveRegion = document.createElement('div');
+        liveRegion.setAttribute('aria-live', 'polite');
+        liveRegion.setAttribute('aria-atomic', 'true');
+        liveRegion.className = 'sr-only';
+        document.body.appendChild(liveRegion);
+
+        // Example: Announce important changes to screen readers
+        function announceToScreenReader(message) {
+            liveRegion.textContent = message;
+            setTimeout(() => {
+                liveRegion.textContent = '';
+            }, 1000);
+        }
+
+        // Performance optimization: Lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Service Worker Registration (for offline support)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

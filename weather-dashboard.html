@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f2f5;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --sub: #6b7280;
+    --accent: #f97316;
+    --blue: #3b82f6;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --border: rgba(0,0,0,0.07);
+    --shadow: 0 2px 16px rgba(0,0,0,0.07);
+    --radius: 18px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text);
+  }
+
+  .dashboard {
+    display: grid;
+    grid-template-columns: 1fr 280px 280px 220px;
+    gap: 14px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MAIN CARD ── */
+  .main-card { grid-row: span 2; display: flex; flex-direction: column; gap: 16px; }
+
+  .location-row { display: flex; justify-content: space-between; align-items: flex-start; }
+  .location-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; }
+  .location-time { font-size: .85rem; color: var(--sub); margin-top: 2px; }
+  .unit-toggle { display: flex; gap: 4px; }
+  .unit-btn {
+    padding: 4px 10px; border-radius: 8px; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 600;
+    background: var(--bg); color: var(--sub); transition: all .2s;
+  }
+  .unit-btn.active { background: var(--text); color: #fff; }
+
+  .temp-row { display: flex; align-items: center; gap: 16px; }
+  .weather-icon { font-size: 4rem; animation: bob 3s ease-in-out infinite; }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .temp-val { font-family: 'Space Grotesk', sans-serif; font-size: 4.5rem; font-weight: 700; line-height: 1; }
+  .temp-info .cond { font-size: 1.4rem; font-weight: 600; }
+  .temp-info .hl   { color: var(--sub); font-size: .95rem; margin-top: 4px; }
+
+  .updated { font-size: .78rem; color: var(--sub); }
+
+  /* Forecast strip */
+  .forecast-strip {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+  .fc-day {
+    background: var(--bg); border-radius: 12px; padding: 10px 6px;
+    text-align: center; transition: background .2s;
+  }
+  .fc-day:hover { background: #e5e7eb; }
+  .fc-day.today { background: var(--text); color: #fff; }
+  .fc-label { font-size: .75rem; font-weight: 600; margin-bottom: 6px; }
+  .fc-icon  { font-size: 1.4rem; margin-bottom: 4px; }
+  .fc-temps { font-size: .78rem; }
+  .fc-temps span:first-child { font-weight: 700; }
+  .fc-temps span:last-child  { opacity: .6; }
+
+  /* Hourly chart */
+  .chart-wrap { position: relative; height: 90px; }
+  canvas#hourlyChart { width: 100% !important; }
+
+  /* ── STAT CARDS (right columns) ── */
+  .stat-label { font-size: .78rem; color: var(--sub); font-weight: 500; margin-bottom: 4px; }
+  .stat-val   { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; }
+  .stat-sub   { font-size: .8rem; color: var(--sub); margin-top: 2px; }
+
+  /* Visibility */
+  .vis-bars { display: flex; gap: 3px; align-items: flex-end; margin: 10px 0 4px; }
+  .vis-bar  {
+    width: 14px; border-radius: 4px 4px 0 0;
+    transition: height .5s ease, background .5s;
+  }
+
+  /* Pressure gauge */
+  .gauge-wrap { position: relative; width: 80px; height: 40px; margin: 8px auto 4px; }
+
+  /* AQI ring */
+  .aqi-ring-wrap { position: relative; width: 80px; height: 80px; margin: 8px auto 4px; }
+  .aqi-ring-wrap svg { width: 80px; height: 80px; }
+
+  /* UV meter */
+  .uv-arc-wrap { position: relative; width: 90px; height: 46px; margin: 8px auto 4px; }
+  .uv-arc-wrap svg { overflow: visible; }
+
+  /* ── WIND CARD ── */
+  .wind-compass { position: relative; width: 110px; height: 110px; margin: 10px auto; }
+  .compass-ring {
+    width: 110px; height: 110px; border-radius: 50%;
+    border: 2px solid #e5e7eb;
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .compass-dir {
+    position: absolute; font-size: .65rem; font-weight: 700; color: var(--sub);
+  }
+  .compass-dir.N { top: 4px;  left: 50%; transform: translateX(-50%); color: var(--red); }
+  .compass-dir.S { bottom: 4px; left: 50%; transform: translateX(-50%); }
+  .compass-dir.E { right: 6px; top: 50%; transform: translateY(-50%); }
+  .compass-dir.W { left: 6px;  top: 50%; transform: translateY(-50%); }
+  .compass-needle {
+    position: absolute; width: 0; height: 0; top: 50%; left: 50%;
+    transform-origin: center;
+    transition: transform 1s cubic-bezier(.34,1.56,.64,1);
+  }
+  .needle-shape {
+    width: 28px; height: 10px;
+    background: var(--blue);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+    position: absolute;
+    top: -5px; left: -14px;
+    transform-origin: right center;
+  }
+  .wind-stats { display: flex; justify-content: space-between; margin-top: 8px; }
+  .wind-stat { text-align: center; }
+  .wind-stat .ws-val { font-size: 1.1rem; font-weight: 700; }
+  .wind-stat .ws-lbl { font-size: .7rem; color: var(--sub); }
+
+  /* ── HUMIDITY ── */
+  .humidity-bars { display: flex; align-items: flex-end; gap: 4px; height: 60px; margin: 10px 0 6px; }
+  .hum-bar {
+    flex: 1; border-radius: 4px 4px 0 0;
+    background: linear-gradient(to top, var(--blue), #93c5fd);
+    transition: height 1s ease;
+    min-height: 4px;
+  }
+  .hum-row { display: flex; justify-content: space-between; align-items: center; }
+
+  /* ── MOON CARD ── */
+  .moon-arc-wrap { position: relative; height: 80px; margin: 8px 0; }
+  .moon-arc-wrap svg { width: 100%; overflow: visible; }
+  .moon-times { display: flex; justify-content: space-between; font-size: .78rem; }
+  .moon-times div span { display: block; font-size: .68rem; color: var(--sub); }
+  .moon-times div strong { font-size: .95rem; }
+
+  /* ── MAP CARD ── */
+  .map-card { overflow: hidden; padding: 0; }
+  #map { width: 100%; height: 100%; min-height: 160px; border-radius: var(--radius); }
+
+  /* Shared helpers */
+  .row-between { display: flex; justify-content: space-between; align-items: center; }
+  .chevron { color: var(--sub); font-size: .8rem; }
+
+  /* Pulse dot */
+  .pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+    display: inline-block; margin-right: 6px; position: relative;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}
+    50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}
+  }
+
+  @media (max-width: 1100px) {
+    .dashboard { grid-template-columns: 1fr 1fr; }
+    .main-card { grid-row: span 1; }
+  }
+  @media (max-width: 640px) {
+    .dashboard { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- ── MAIN CARD ── -->
+  <div class="card main-card" style="animation-delay:.0s">
+    <div class="location-row">
+      <div>
+        <div class="location-name" id="locName">Nagpur, Maharashtra</div>
+        <div class="location-time" id="locTime">—</div>
+      </div>
+      <div class="unit-toggle">
+        <button class="unit-btn" id="btnF" onclick="setUnit('F')">°F</button>
+        <button class="unit-btn active" id="btnC" onclick="setUnit('C')">°C</button>
+      </div>
+    </div>
+
+    <div class="temp-row">
+      <div class="weather-icon" id="mainIcon">🌙</div>
+      <div>
+        <div class="temp-val" id="mainTemp">26°</div>
+      </div>
+      <div class="temp-info" style="margin-left:8px">
+        <div class="cond" id="mainCond">Clear</div>
+        <div class="hl">H <span id="tempH">36</span>° &nbsp; L <span id="tempL">21</span>°</div>
+      </div>
+    </div>
+
+    <div class="updated"><span class="pulse-dot"></span>Updated just now</div>
+
+    <!-- Forecast -->
+    <div class="forecast-strip" id="forecastStrip"></div>
+
+    <!-- Hourly chart -->
+    <div class="chart-wrap">
+      <canvas id="hourlyChart" height="90"></canvas>
+    </div>
+  </div>
+
+  <!-- ── VISIBILITY ── -->
+  <div class="card" style="animation-delay:.05s">
+    <div class="stat-label">Visibility</div>
+    <div class="stat-val" id="visVal">5 km</div>
+    <div class="vis-bars" id="visBars"></div>
+    <div class="stat-sub" id="visQual">Good</div>
+  </div>
+
+  <!-- ── WIND ── -->
+  <div class="card" style="animation-delay:.1s; grid-row: span 2;">
+    <div class="row-between">
+      <span style="font-weight:600">Wind</span>
+      <span class="chevron">›</span>
+    </div>
+    <div class="wind-compass">
+      <div class="compass-ring">
+        <span class="compass-dir N">N</span>
+        <span class="compass-dir S">S</span>
+        <span class="compass-dir E">E</span>
+        <span class="compass-dir W">W</span>
+        <div class="compass-needle" id="compassNeedle">
+          <div class="needle-shape"></div>
+        </div>
+      </div>
+    </div>
+    <div class="wind-stats">
+      <div class="wind-stat">
+        <div class="ws-val" id="windSpeed">2</div>
+        <div class="ws-lbl">km/h Speed</div>
+      </div>
+      <div class="wind-stat">
+        <div class="ws-val" id="windGust">12</div>
+        <div class="ws-lbl">km/h Gust</div>
+      </div>
+    </div>
+    <div style="margin-top:10px; font-size:.82rem; color:var(--sub); text-align:center" id="windForce">Force: 1 (Light Air)</div>
+  </div>
+
+  <!-- ── MAP ── -->
+  <div class="card map-card" style="animation-delay:.12s; grid-row: span 2; padding:0;">
+    <div id="map"></div>
+  </div>
+
+  <!-- ── PRESSURE ── -->
+  <div class="card" style="animation-delay:.07s">
+    <div class="stat-label">Pressure</div>
+    <div class="stat-val" id="pressVal">1011 mb</div>
+    <div style="margin:10px 0 4px">
+      <div style="background:var(--bg); border-radius:20px; height:6px; overflow:hidden">
+        <div id="pressBar" style="height:100%; border-radius:20px; background:linear-gradient(90deg,#a78bfa,#7c3aed); transition:width 1s ease; width:55%"></div>
+      </div>
+    </div>
+    <div class="stat-sub" id="pressTrend">Rising ↑</div>
+  </div>
+
+  <!-- ── AQI ── -->
+  <div class="card" style="animation-delay:.09s">
+    <div class="stat-label">AQI</div>
+    <div class="row-between">
+      <div>
+        <div class="stat-val" id="aqiVal">94</div>
+        <div class="stat-sub" id="aqiQual">Moderate</div>
+      </div>
+      <div class="aqi-ring-wrap">
+        <svg viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+          <circle id="aqiArc" cx="40" cy="40" r="30" fill="none" stroke="#eab308" stroke-width="8"
+            stroke-dasharray="188" stroke-dashoffset="100"
+            stroke-linecap="round" transform="rotate(-90 40 40)"
+            style="transition: stroke-dashoffset 1.5s ease, stroke 1s ease"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HUMIDITY ── -->
+  <div class="card" style="animation-delay:.11s">
+    <div class="row-between">
+      <span style="font-weight:600">Humidity</span>
+      <span class="chevron">›</span>
+    </div>
+    <div class="humidity-bars" id="humBars"></div>
+    <div class="hum-row">
+      <div>
+        <div class="stat-val" id="humVal">48%</div>
+        <div class="stat-sub" id="humQual">Humid</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:1.1rem; font-weight:700" id="dewVal">15°</div>
+        <div class="stat-sub">Dew point</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── UV ── -->
+  <div class="card" style="animation-delay:.06s">
+    <div class="stat-label">UV Index</div>
+    <div class="row-between">
+      <div>
+        <div class="stat-val" id="uvVal">8</div>
+        <div class="stat-sub" id="uvQual">Very High</div>
+      </div>
+      <div class="uv-arc-wrap">
+        <svg width="90" height="46" viewBox="0 0 90 46">
+          <path d="M5,45 A40,40 0 0,1 85,45" fill="none" stroke="url(#uvGrad)" stroke-width="8" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="uvGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#22c55e"/>
+              <stop offset="30%"  stop-color="#eab308"/>
+              <stop offset="60%"  stop-color="#f97316"/>
+              <stop offset="100%" stop-color="#ef4444"/>
+            </linearGradient>
+          </defs>
+          <circle id="uvDot" cx="5" cy="45" r="5" fill="#ef4444"
+            style="transition: cx 1.5s cubic-bezier(.34,1.56,.64,1), cy 1.5s cubic-bezier(.34,1.56,.64,1)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MOON ── -->
+  <div class="card" style="animation-delay:.13s">
+    <div style="font-weight:600; margin-bottom:4px">Moon hours</div>
+    <div class="moon-arc-wrap">
+      <svg id="moonSvg" viewBox="0 0 200 90" preserveAspectRatio="xMidYMid meet">
+        <!-- arc path -->
+        <path d="M10,80 Q100,-30 190,80" fill="none" stroke="#e5e7eb" stroke-width="2.5" stroke-dasharray="5,4"/>
+        <!-- progress arc -->
+        <path id="moonProgress" d="M10,80 Q100,-30 190,80" fill="none" stroke="url(#moonGrad)" stroke-width="3"
+          stroke-dasharray="230" stroke-dashoffset="230" style="transition: stroke-dashoffset 2s ease"/>
+        <defs>
+          <linearGradient id="moonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#f97316"/>
+          </linearGradient>
+        </defs>
+        <!-- moon dot -->
+        <circle id="moonDot" cx="10" cy="80" r="7" fill="#f59e0b"
+          style="transition: cx 2s ease, cy 2s ease; filter:drop-shadow(0 0 4px #f59e0b88)"/>
+        <text x="10" y="80" dy="-14" text-anchor="middle" font-size="12">🌙</text>
+      </svg>
+    </div>
+    <div class="moon-times">
+      <div>
+        <span>Moonrise</span>
+        <strong id="moonrise">09:05 AM</strong>
+      </div>
+      <div style="font-size:.82rem; color:var(--sub); align-self:center" id="moonHrs">13hrs 57mins</div>
+      <div style="text-align:right">
+        <span>Moonset</span>
+        <strong id="moonset">11:02 PM</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Leaflet for map -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<script>
+// ═══════════════════════════════════════════
+//  CONFIG — swap in your OpenWeatherMap key
+// ═══════════════════════════════════════════
+const API_KEY = 'DEMO';          // put real key here for live data
+const LAT = 21.1458, LON = 79.0882; // Nagpur
+
+// ─── unit helpers ───────────────────────────
+let unit = 'C';
+function setUnit(u) {
+  unit = u;
+  document.getElementById('btnC').classList.toggle('active', u==='C');
+  document.getElementById('btnF').classList.toggle('active', u==='F');
+  if (lastWeather) renderWeather(lastWeather);
+  if (lastForecast) renderForecast(lastForecast);
+}
+function toDisplay(c) { return unit==='C' ? Math.round(c) : Math.round(c*9/5+32); }
+
+// ─── time ────────────────────────────────────
+function tickClock() {
+  const now = new Date();
+  document.getElementById('locTime').textContent =
+    now.toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit', second:'2-digit'}) +
+    '  ·  ' + now.toLocaleDateString('en-IN', {weekday:'short', day:'numeric', month:'short'});
+}
+setInterval(tickClock, 1000); tickClock();
+
+// ─── weather condition → emoji ───────────────
+function condIcon(id, isDay=true) {
+  if (id >= 200 && id < 300) return '⛈️';
+  if (id >= 300 && id < 400) return '🌦️';
+  if (id >= 500 && id < 600) return '🌧️';
+  if (id >= 600 && id < 700) return '❄️';
+  if (id >= 700 && id < 800) return '🌫️';
+  if (id === 800) return isDay ? '☀️' : '🌙';
+  if (id === 801) return isDay ? '🌤️' : '🌙';
+  if (id >= 802) return '⛅';
+  return '🌡️';
+}
+
+// ─── map ────────────────────────────────────
+const map = L.map('map', {zoomControl:false, attributionControl:false})
+  .setView([LAT, LON], 10);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+const marker = L.circleMarker([LAT,LON], {radius:8, color:'#f97316', fillColor:'#f97316', fillOpacity:.8}).addTo(map);
+
+// ─── visibility bars ─────────────────────────
+function renderVisBars(km) {
+  const wrap = document.getElementById('visBars');
+  wrap.innerHTML = '';
+  const levels = [2,4,6,8,10,12,16];
+  const colors = ['#ef4444','#f97316','#eab308','#84cc16','#22c55e','#22c55e','#22c55e'];
+  levels.forEach((lvl, i) => {
+    const h = 12 + i*6;
+    const active = km >= lvl;
+    const div = document.createElement('div');
+    div.className = 'vis-bar';
+    div.style.height = h + 'px';
+    div.style.background = active ? colors[i] : '#e5e7eb';
+    wrap.appendChild(div);
+  });
+  document.getElementById('visQual').textContent =
+    km < 1 ? 'Very Poor' : km < 4 ? 'Poor' : km < 7 ? 'Moderate' : km < 10 ? 'Good' : 'Excellent';
+}
+
+// ─── humidity bars ───────────────────────────
+function renderHumBars(pct) {
+  const wrap = document.getElementById('humBars');
+  wrap.innerHTML = '';
+  const hours = Array.from({length:8}, (_,i) => Math.max(10, Math.round(pct + (Math.sin(i*.7)*8))));
+  const mx = Math.max(...hours);
+  hours.forEach(v => {
+    const div = document.createElement('div');
+    div.className = 'hum-bar';
+    div.style.height = (v/mx*100) + '%';
+    wrap.appendChild(div);
+  });
+}
+
+// ─── AQI arc ────────────────────────────────
+function renderAQI(aqi) {
+  // aqi 0-500, arc circumference ~188
+  const pct = Math.min(aqi / 300, 1);
+  const offset = 188 - pct * 188;
+  const arc = document.getElementById('aqiArc');
+  arc.style.strokeDashoffset = offset;
+  const color = aqi<50?'#22c55e':aqi<100?'#84cc16':aqi<150?'#eab308':aqi<200?'#f97316':'#ef4444';
+  arc.style.stroke = color;
+  document.getElementById('aqiQual').textContent =
+    aqi<50?'Good':aqi<100?'Moderate':aqi<150?'Unhealthy for Sensitive':aqi<200?'Unhealthy':'Very Unhealthy';
+}
+
+// ─── UV arc dot ──────────────────────────────
+function renderUV(uv) {
+  const pct = Math.min(uv / 11, 1);
+  const angle = Math.PI * pct; // 0 → π
+  const r = 40;
+  const cx = 5 + Math.cos(Math.PI - angle) * r * -1 + r;  // parametric on arc
+  // arc: center (47.5, 45) r=40, from 180° to 0°
+  const x = 5 + (80*(pct));
+  const y = 45 - Math.sin(Math.PI*pct)*40;
+  document.getElementById('uvDot').setAttribute('cx', x);
+  document.getElementById('uvDot').setAttribute('cy', y);
+  document.getElementById('uvQual').textContent =
+    uv<3?'Low':uv<6?'Moderate':uv<8?'High':uv<11?'Very High':'Extreme';
+}
+
+// ─── compass ────────────────────────────────
+function renderWind(deg, speed, gust) {
+  document.getElementById('compassNeedle').style.transform = `rotate(${deg}deg)`;
+  document.getElementById('windSpeed').textContent = Math.round(speed);
+  document.getElementById('windGust').textContent = Math.round(gust || speed * 1.5);
+  const bft = speed < 1 ? 0 : speed < 6 ? 1 : speed < 12 ? 2 : speed < 20 ? 3 : speed < 29 ? 4 : 5;
+  const names = ['Calm','Light Air','Light Breeze','Gentle Breeze','Moderate Breeze','Fresh Breeze'];
+  document.getElementById('windForce').textContent = `Force: ${bft} (${names[bft]})`;
+}
+
+// ─── moon arc ────────────────────────────────
+function renderMoon() {
+  const now = new Date();
+  // approximate: rise 09:05, set 23:02
+  const rise = new Date(now); rise.setHours(9,5,0);
+  const set_  = new Date(now); set_.setHours(23,2,0);
+  const total = set_ - rise;
+  const elapsed = Math.max(0, Math.min(now - rise, total));
+  const pct = elapsed / total;
+  document.getElementById('moonProgress').style.strokeDashoffset = 230 - pct * 230;
+  // dot position along quadratic bezier
+  const t = pct;
+  const mx = 10 + (190-10)*t, my = 80 + 2*t*(1-t)*(-110) + t*t*0;
+  document.getElementById('moonDot').setAttribute('cx', mx);
+  document.getElementById('moonDot').setAttribute('cy', my);
+}
+
+// ─── hourly chart ────────────────────────────
+let chartInst;
+function renderHourlyChart(temps, labels) {
+  const ctx = document.getElementById('hourlyChart').getContext('2d');
+  if (chartInst) chartInst.destroy();
+  chartInst = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data: temps,
+        borderColor: '#f97316',
+        backgroundColor: 'rgba(249,115,22,.12)',
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3,
+        pointBackgroundColor: '#f97316'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: { label: ctx => `${ctx.parsed.y}°` }
+      }},
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#6b7280' } },
+        y: { display: false }
+      }
+    }
+  });
+}
+
+// ─── forecast strip ──────────────────────────
+let lastForecast = null;
+function renderForecast(days) {
+  lastForecast = days;
+  const strip = document.getElementById('forecastStrip');
+  strip.innerHTML = '';
+  days.slice(0,6).forEach((d, i) => {
+    const div = document.createElement('div');
+    div.className = 'fc-day' + (i===0?' today':'');
+    const label = i===0 ? 'Today' : new Date(d.date).toLocaleDateString('en-IN', {weekday:'short', day:'numeric'});
+    div.innerHTML = `
+      <div class="fc-label">${label}</div>
+      <div class="fc-icon">${condIcon(d.id)}</div>
+      <div class="fc-temps">
+        <span>${toDisplay(d.max)}°</span> <span>${toDisplay(d.min)}°</span>
+      </div>`;
+    strip.appendChild(div);
+  });
+}
+
+// ─── main weather render ─────────────────────
+let lastWeather = null;
+function renderWeather(w) {
+  lastWeather = w;
+  document.getElementById('mainIcon').textContent = condIcon(w.id, w.isDay);
+  document.getElementById('mainTemp').textContent = toDisplay(w.temp) + '°';
+  document.getElementById('mainCond').textContent = w.cond;
+  document.getElementById('tempH').textContent = toDisplay(w.max);
+  document.getElementById('tempL').textContent = toDisplay(w.min);
+  document.getElementById('visVal').textContent = (w.vis/1000).toFixed(1) + ' km';
+  renderVisBars(w.vis/1000);
+  document.getElementById('pressVal').textContent = Math.round(w.pressure) + ' mb';
+  const pPct = ((w.pressure - 950) / 100) * 100;
+  document.getElementById('pressBar').style.width = Math.min(100, Math.max(0, pPct)) + '%';
+  document.getElementById('pressTrend').textContent = 'Rising ↑';
+  document.getElementById('aqiVal').textContent = w.aqi || 94;
+  renderAQI(w.aqi || 94);
+  document.getElementById('uvVal').textContent = Math.round(w.uvi || 8);
+  renderUV(w.uvi || 8);
+  document.getElementById('humVal').textContent = w.humidity + '%';
+  document.getElementById('humQual').textContent = w.humidity < 30 ? 'Dry' : w.humidity < 60 ? 'Comfortable' : 'Humid';
+  renderHumBars(w.humidity);
+  document.getElementById('dewVal').textContent = toDisplay(w.dew || (w.temp - (100-w.humidity)/5)) + '°';
+  renderWind(w.windDeg, w.windSpeed, w.windGust);
+}
+
+// ─── DEMO DATA (used when no real API key) ───
+function loadDemoData() {
+  const w = {
+    temp: 26, max: 36, min: 21, cond: 'Clear', id: 800,
+    vis: 5000, pressure: 1011, humidity: 48, dew: 15,
+    windDeg: 90, windSpeed: 2, windGust: 12, uvi: 8, aqi: 94,
+    isDay: false
+  };
+  renderWeather(w);
+
+  const forecast = [
+    {date:'2025-03-23', max:36, min:21, id:800},
+    {date:'2025-03-24', max:37, min:23, id:801},
+    {date:'2025-03-25', max:37, min:24, id:800},
+    {date:'2025-03-26', max:38, min:24, id:802},
+    {date:'2025-03-27', max:38, min:23, id:801},
+    {date:'2025-03-28', max:38, min:24, id:800},
+  ];
+  renderForecast(forecast);
+
+  const hourTemps = [25,24,22,27,34,37,35,29];
+  const hourLabels = ['11PM','2AM','5AM','8AM','11AM','2PM','5PM','8PM'];
+  renderHourlyChart(hourTemps, hourLabels);
+  renderMoon();
+}
+
+// ─── LIVE fetch (needs real API key) ─────────
+async function fetchLive() {
+  try {
+    const [cur, fore, air, one] = await Promise.all([
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${API_KEY}&units=metric`).then(r=>r.json()),
+      fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${LAT}&lon=${LON}&appid=${API_KEY}&units=metric`).then(r=>r.json()),
+      fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${LAT}&lon=${LON}&appid=${API_KEY}`).then(r=>r.json()),
+      fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&appid=${API_KEY}&units=metric&exclude=minutely`).then(r=>r.json()),
+    ]);
+
+    const aqi = air.list[0].main.aqi * 25; // rough map 1-5 → 25-125
+    const w = {
+      temp: cur.main.temp, max: cur.main.temp_max, min: cur.main.temp_min,
+      cond: cur.weather[0].main, id: cur.weather[0].id,
+      vis: cur.visibility, pressure: cur.main.pressure,
+      humidity: cur.main.humidity, dew: one.current?.dew_point,
+      windDeg: cur.wind.deg, windSpeed: cur.wind.speed * 3.6,
+      windGust: (cur.wind.gust||cur.wind.speed) * 3.6,
+      uvi: one.current?.uvi || 0, aqi,
+      isDay: cur.dt > cur.sys.sunrise && cur.dt < cur.sys.sunset
+    };
+    renderWeather(w);
+
+    // daily forecast from OneCall
+    if (one.daily) {
+      const days = one.daily.map(d=>({
+        date: new Date(d.dt*1000).toISOString().split('T')[0],
+        max: d.temp.max, min: d.temp.min, id: d.weather[0].id
+      }));
+      renderForecast(days);
+    }
+
+    // hourly temps
+    if (one.hourly) {
+      const pts = one.hourly.slice(0,8);
+      renderHourlyChart(
+        pts.map(h=>Math.round(h.temp)),
+        pts.map(h=>new Date(h.dt*1000).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}))
+      );
+    }
+
+    document.getElementById('locName').textContent = `${cur.name}, ${cur.sys.country}`;
+    map.setView([cur.coord.lat, cur.coord.lon], 10);
+    marker.setLatLng([cur.coord.lat, cur.coord.lon]);
+  } catch(e) {
+    console.warn('Live fetch failed, using demo data', e);
+    loadDemoData();
+  }
+}
+
+// ─── Boot ────────────────────────────────────
+if (API_KEY === 'DEMO') {
+  loadDemoData();
+} else {
+  fetchLive();
+  setInterval(fetchLive, 5 * 60 * 1000); // refresh every 5 min
+}
+
+// moon dot animates every minute
+setInterval(renderMoon, 60000);
+
+// wind needle jitter animation for live feel
+setInterval(() => {
+  if (!lastWeather) return;
+  const jitter = lastWeather.windDeg + (Math.random()-0.5)*8;
+  document.getElementById('compassNeedle').style.transform = `rotate(${jitter}deg)`;
+}, 3000);
+</script>
+</body>
+</html>

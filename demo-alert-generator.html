@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NDMS - Demo Workflow Alert Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .workflow-step { animation: fadeInUp 0.5s ease forwards; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pulse-alert { animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .slide-in { animation: slideIn 0.3s ease forwards; }
+    @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 2px solid rgba(255,215,0,0.22); }
+    .demo-timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #FF9933, #DC143C);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-indigo-900 to-slate-900 text-white min-h-screen">
+  <div class="max-w-7xl mx-auto px-6 py-6">
+    
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gov-yellow mb-2">🎬 NDMS Workflow Demo Generator</h1>
+      <p class="text-white/60">Generate fake alerts to demonstrate the complete disaster management workflow to guides</p>
+      <div class="mt-4 flex justify-center gap-4">
+        <a href="dashboard.html" class="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">← Back to Dashboard</a>
+        <button onclick="clearAllLogs()" class="px-4 py-2 bg-red-600 rounded-lg hover:bg-red-700 transition">🗑️ Clear All Logs</button>
+      </div>
+    </div>
+
+    <!-- Alert Generator Panel -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      
+      <!-- Flood Alert Generator -->
+      <div class="glass rounded-2xl p-6 border-l-4 border-blue-500">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="text-3xl">🌊</div>
+          <h2 class="text-xl font-bold text-blue-400">Flood Alert Generator</h2>
+        </div>
+        
+        <div class="space-y-3 mb-4">
+          <select id="floodSeverity" class="w-full p-2 rounded bg-white/10 border border-white/20 text-white">
+            <option value="low">🟢 Low Risk (Safe)</option>
+            <option value="moderate">🟡 Moderate Risk</option>
+            <option value="high">🟠 High Risk</option>
+            <option value="severe" selected>🔴 Severe Flood</option>
+          </select>
+          <input type="text" id="floodLocation" placeholder="Location (e.g., Mumbai, Delhi)" 
+                 class="w-full p-2 rounded bg-white/10 border border-white/20 text-white placeholder-white/50">
+          <input type="number" id="floodRiverLevel" placeholder="River Level (m)" value="8.5"
+                 class="w-full p-2 rounded bg-white/10 border border-white/20 text-white placeholder-white/50">
+        </div>
+        
+        <button onclick="generateFloodAlert()" 
+                class="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold transition flex items-center justify-center gap-2">
+          <span>🚨</span> Generate Flood Alert
+        </button>
+        
+        <div class="mt-3 text-xs text-white/40 text-center">
+          Triggers: Detection → Analysis → Alert → Response
+        </div>
+      </div>
+
+      <!-- Earthquake Alert Generator -->
+      <div class="glass rounded-2xl p-6 border-l-4 border-red-500">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="text-3xl">🌍</div>
+          <h2 class="text-xl font-bold text-red-400">Earthquake Alert Generator</h2>
+        </div>
+        
+        <div class="space-y-3 mb-4">
+          <select id="earthquakeMagnitude" class="w-full p-2 rounded bg-white/10 border border-white/20 text-white">
+            <option value="3.0">🟢 M 3.0 - Minor</option>
+            <option value="4.5">🟡 M 4.5 - Light</option>
+            <option value="5.5" selected>🟠 M 5.5 - Moderate</option>
+            <option value="6.5">🔴 M 6.5 - Strong</option>
+            <option value="8.0">🟣 M 8.0 - Extreme</option>
+          </select>
+          <input type="text" id="earthquakeLocation" placeholder="Epicenter (e.g., Delhi NCR)" 
+                 class="w-full p-2 rounded bg-white/10 border border-white/20 text-white placeholder-white/50">
+          <input type="number" id="earthquakeDepth" placeholder="Depth (km)" value="15"
+                 class="w-full p-2 rounded bg-white/10 border border-white/20 text-white placeholder-white/50">
+        </div>
+        
+        <button onclick="generateEarthquakeAlert()" 
+                class="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg font-bold transition flex items-center justify-center gap-2">
+          <span>🌋</span> Generate Earthquake Alert
+        </button>
+        
+        <div class="mt-3 text-xs text-white/40 text-center">
+          Triggers: Seismic Detection → Magnitude Analysis → Alert Broadcast
+        </div>
+      </div>
+
+      <!-- Weather Alert Generator -->
+      <div class="glass rounded-2xl p-6 border-l-4 border-purple-500">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="text-3xl">⛈️</div>
+          <h2 class="text-xl font-bold text-purple-400">Weather Alert Generator</h2>
+        </div>
+        
+        <div class="space-y-3 mb-4">
+          <select id="weatherType" class="w-full p-2 rounded bg-white/10 border border-white/20 text-white">
+            <option value="thunderstorm">⛈️ Severe Thunderstorm</option>
+            <option value="cyclone" selected>🌀 Cyclone Warning</option>
+            <option value="heatwave">🔥 Heat Wave</option>
+            <option value="heavyrain">🌧️ Heavy Rainfall</option>
+          </select>
+          <input type="text" id="weatherLocation" placeholder="Affected Area" 
+                 class="w-full p-2 rounded bg-white/10 border border-white/20 text-white placeholder-white/50">
+          <input type="number" id="windSpeed" placeholder="Wind Speed (km/h)" value="120"
+                 class="w-full p-2 rounded bg-white/10 border border-white/20 text-white placeholder-white/50">
+        </div>
+        
+        <button onclick="generateWeatherAlert()" 
+                class="w-full py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-bold transition flex items-center justify-center gap-2">
+          <span>⚡</span> Generate Weather Alert
+        </button>
+        
+        <div class="mt-3 text-xs text-white/40 text-center">
+          Triggers: Weather Data → IMD Analysis → Warning Issue
+        </div>
+      </div>
+    </div>
+
+    <!-- Workflow Visualization -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- Live Workflow Log -->
+      <div class="glass rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-bold text-gov-yellow">📋 Live Workflow Log</h3>
+          <span id="activeAlerts" class="px-2 py-1 bg-red-600 rounded text-xs font-bold">0 Active</span>
+        </div>
+        
+        <div id="workflowLog" class="space-y-3 max-h-96 overflow-y-auto">
+          <div class="text-white/40 text-center py-8">
+            No alerts generated yet. Click a generator above to start the workflow demonstration.
+          </div>
+        </div>
+      </div>
+
+      <!-- System Status -->
+      <div class="glass rounded-2xl p-6">
+        <h3 class="text-lg font-bold text-gov-yellow mb-4">🖥️ System Status & Metrics</h3>
+        
+        <div class="space-y-4">
+          <!-- Status Indicators -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-black/30 rounded-lg p-3 text-center">
+              <div class="text-xs text-white/60">Sensors Active</div>
+              <div class="text-2xl font-bold text-green-400">247</div>
+            </div>
+            <div class="bg-black/30 rounded-lg p-3 text-center">
+              <div class="text-xs text-white/60">API Status</div>
+              <div class="text-sm font-bold text-green-400">✅ Online</div>
+            </div>
+            <div class="bg-black/30 rounded-lg p-3 text-center">
+              <div class="text-xs text-white/60">Response Time</div>
+              <div class="text-2xl font-bold text-blue-400">2.4s</div>
+            </div>
+            <div class="bg-black/30 rounded-lg p-3 text-center">
+              <div class="text-xs text-white/60">Alerts Today</div>
+              <div id="totalAlertsToday" class="text-2xl font-bold text-yellow-400">0</div>
+            </div>
+          </div>
+          
+          <!-- Workflow Steps -->
+          <div class="relative pl-8 demo-timeline py-2">
+            <div class="workflow-step mb-3 p-3 bg-white/10 rounded-lg" style="animation-delay: 0s;">
+              <div class="flex items-center gap-2">
+                <span class="text-green-400">✅</span>
+                <span class="text-sm">Detection Layer Active</span>
+              </div>
+            </div>
+            <div class="workflow-step mb-3 p-3 bg-white/10 rounded-lg" style="animation-delay: 0.1s;">
+              <div class="flex items-center gap-2">
+                <span class="text-green-400">✅</span>
+                <span class="text-sm">Analysis Engine Running</span>
+              </div>
+            </div>
+            <div class="workflow-step mb-3 p-3 bg-white/10 rounded-lg" style="animation-delay: 0.2s;">
+              <div class="flex items-center gap-2">
+                <span class="text-green-400">✅</span>
+                <span class="text-sm">Alert Broadcast Ready</span>
+              </div>
+            </div>
+            <div class="workflow-step p-3 bg-white/10 rounded-lg" style="animation-delay: 0.3s;">
+              <div class="flex items-center gap-2">
+                <span class="text-green-400">✅</span>
+                <span class="text-sm">Emergency Services Linked</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Preview Panel -->
+    <div class="mt-6 glass rounded-2xl p-6">
+      <h3 class="text-lg font-bold text-gov-yellow mb-4">📱 Alert Notification Preview (What Users See)</h3>
+      <div id="notificationPreview" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="text-white/40 text-center py-8 md:col-span-3">
+          Generated alerts will appear here showing the exact notifications sent to users
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let alertCount = 0;
+    let activeAlertCount = 0;
+
+    function getTimestamp() {
+      return new Date().toLocaleTimeString('en-IN', { hour12: false });
+    }
+
+    function addLogEntry(type, icon, title, details, severity) {
+      alertCount++;
+      activeAlertCount++;
+      
+      const logContainer = document.getElementById('workflowLog');
+      
+      // Clear initial message if present
+      if (logContainer.children.length === 1 && logContainer.children[0].classList.contains('text-white/40')) {
+        logContainer.innerHTML = '';
+      }
+      
+      const severityColors = {
+        low: 'border-green-500 bg-green-500/10',
+        moderate: 'border-yellow-500 bg-yellow-500/10',
+        high: 'border-orange-500 bg-orange-500/10',
+        severe: 'border-red-500 bg-red-500/10',
+        extreme: 'border-purple-500 bg-purple-500/10'
+      };
+      
+      const entry = document.createElement('div');
+      entry.className = `slide-in border-l-4 ${severityColors[severity] || severityColors.severe} rounded-lg p-3`;
+      entry.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="text-2xl">${icon}</div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white">${title}</span>
+              <span class="text-xs text-white/50">${getTimestamp()}</span>
+            </div>
+            <div class="text-sm text-white/70 mt-1">${details}</div>
+            <div class="flex gap-2 mt-2">
+              <span class="text-xs px-2 py-0.5 rounded bg-white/20">${type}</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-white/20 uppercase">${severity}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      logContainer.insertBefore(entry, logContainer.firstChild);
+      updateMetrics();
+    }
+
+    function generateFloodAlert() {
+      const severity = document.getElementById('floodSeverity').value;
+      const location = document.getElementById('floodLocation').value || 'Mumbai, Maharashtra';
+      const riverLevel = document.getElementById('floodRiverLevel').value || '8.5';
+      
+      // Step 1: Detection
+      setTimeout(() => {
+        addLogEntry('FLOOD', '📡', 'Sensor Detection', 
+          `Water level sensors detected rise at ${location}. River level: ${riverLevel}m (Above normal: ${(riverLevel - 5).toFixed(1)}m)`, 
+          'low');
+      }, 500);
+      
+      // Step 2: Analysis
+      setTimeout(() => {
+        addLogEntry('FLOOD', '🔍', 'Risk Analysis', 
+          `ML model analyzing rainfall patterns, soil saturation, and upstream flow. Predicted risk level: ${severity.toUpperCase()}`, 
+          severity);
+      }, 1500);
+      
+      // Step 3: Alert Generation
+      setTimeout(() => {
+        addLogEntry('FLOOD', '🚨', 'CAP Alert Generated', 
+          `Common Alerting Protocol (CAP) message created. Broadcasting to mobile networks, TV, radio, and social media.`, 
+          severity);
+      }, 2500);
+      
+      // Step 4: Response Activation
+      setTimeout(() => {
+        addLogEntry('FLOOD', '🚁', 'Emergency Response', 
+          `NDRF teams alerted. Evacuation centers activated. District collectors notified via SMS/email.`, 
+          severity);
+      }, 3500);
+      
+      // Add notification preview
+      addNotificationPreview('flood', severity, location, riverLevel);
+    }
+
+    function generateEarthquakeAlert() {
+      const magnitude = document.getElementById('earthquakeMagnitude').value;
+      const location = document.getElementById('earthquakeLocation').value || 'Delhi NCR';
+      const depth = document.getElementById('earthquakeDepth').value || '15';
+      
+      let severity = 'low';
+      if (magnitude >= 7) severity = 'extreme';
+      else if (magnitude >= 6) severity = 'severe';
+      else if (magnitude >= 5) severity = 'high';
+      else if (magnitude >= 4) severity = 'moderate';
+      
+      // Step 1: Seismic Detection
+      setTimeout(() => {
+        addLogEntry('EARTHQUAKE', '🌊', 'Seismic Detection', 
+          `Seismograph network detected P-waves. Magnitude: M${magnitude}, Depth: ${depth}km, Epicenter: ${location}`, 
+          'low');
+      }, 300);
+      
+      // Step 2: Rapid Analysis
+      setTimeout(() => {
+        addLogEntry('EARTHQUAKE', '⚡', 'Rapid Magnitude Assessment', 
+          `Auto-location algorithm pinpointed epicenter. ShakeMap generation in progress. Estimated intensity: MMI ${Math.min(12, Math.floor(magnitude * 1.5))}`, 
+          severity);
+      }, 1000);
+      
+      // Step 3: Alert Broadcast
+      setTimeout(() => {
+        addLogEntry('EARTHQUAKE', '📢', 'S-Alert Broadcast', 
+          `S-wave arrival warning sent to ${location} region. "Drop, Cover, Hold On" message broadcast.`, 
+          severity);
+      }, 1800);
+      
+      // Step 4: Emergency Activation
+      setTimeout(() => {
+        addLogEntry('EARTHQUAKE', '🚑', 'Emergency Protocol', 
+          `NDRF, Army, Air Force on standby. Hospital trauma units activated. Building safety teams deployed.`, 
+          severity);
+      }, 2800);
+      
+      addNotificationPreview('earthquake', severity, location, magnitude, depth);
+    }
+
+    function generateWeatherAlert() {
+      const type = document.getElementById('weatherType').value;
+      const location = document.getElementById('weatherLocation').value || 'Chennai, Tamil Nadu';
+      const windSpeed = document.getElementById('windSpeed').value || '120';
+      
+      const weatherTypes = {
+        thunderstorm: { icon: '⛈️', name: 'Severe Thunderstorm', severity: 'high' },
+        cyclone: { icon: '🌀', name: 'Cyclone Warning', severity: 'severe' },
+        heatwave: { icon: '🔥', name: 'Heat Wave', severity: 'high' },
+        heavyrain: { icon: '🌧️', name: 'Heavy Rainfall', severity: 'moderate' }
+      };
+      
+      const weather = weatherTypes[type];
+      
+      // Step 1: Weather Monitoring
+      setTimeout(() => {
+        addLogEntry('WEATHER', '🛰️', 'Satellite Detection', 
+          `IMD satellites detected ${weather.name.toLowerCase()} formation near ${location}. Wind speed: ${windSpeed} km/h`, 
+          'low');
+      }, 400);
+      
+      // Step 2: Forecast Analysis
+      setTimeout(() => {
+        addLogEntry('WEATHER', '📊', 'Forecast Modeling', 
+          `Numerical weather prediction models showing ${type} intensification. Landfall predicted within 48 hours.`, 
+          weather.severity);
+      }, 1200);
+      
+      // Step 3: Warning Issue
+      setTimeout(() => {
+        addLogEntry('WEATHER', '⚠️', 'Warning Broadcast', 
+          `Color-coded warning (${type === 'cyclone' ? 'ORANGE' : 'YELLOW'}) issued. SMS alerts sent to 2.3M subscribers.`, 
+          weather.severity);
+      }, 2200);
+      
+      // Step 4: Preparedness
+      setTimeout(() => {
+        addLogEntry('WEATHER', '🏠', 'Preparedness Measures', 
+          `Coastal evacuation initiated. Fishermen advised to return. Power/water utilities on standby.`, 
+          weather.severity);
+      }, 3200);
+      
+      addNotificationPreview('weather', weather.severity, location, type, windSpeed);
+    }
+
+    function addNotificationPreview(type, severity, location, value1, value2) {
+      const container = document.getElementById('notificationPreview');
+      
+      // Clear initial message
+      if (container.children.length === 1 && container.children[0].classList.contains('text-white/40')) {
+        container.innerHTML = '';
+      }
+      
+      let icon, title, message, colorClass;
+      
+      if (type === 'flood') {
+        icon = '🌊';
+        title = 'FLOOD ALERT';
+        message = `River level rising at ${location}. Current: ${value1}m. Evacuate low-lying areas immediately.`;
+        colorClass = 'border-blue-500 bg-blue-500/10';
+      } else if (type === 'earthquake') {
+        icon = '🌍';
+        title = 'EARTHQUAKE ALERT';
+        message = `Magnitude ${value1} earthquake detected near ${location}. Drop, Cover, Hold On. Expect aftershocks.`;
+        colorClass = 'border-red-500 bg-red-500/10';
+      } else {
+        icon = '⛈️';
+        title = 'WEATHER ALERT';
+        message = `${value1 === 'cyclone' ? 'CYCLONE' : 'SEVERE WEATHER'} warning for ${location}. Wind speed ${value2} km/h. Stay indoors.`;
+        colorClass = 'border-purple-500 bg-purple-500/10';
+      }
+      
+      const preview = document.createElement('div');
+      preview.className = `${colorClass} border-2 rounded-xl p-4 transform transition hover:scale-105`;
+      preview.innerHTML = `
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-2xl">${icon}</span>
+          <span class="font-bold text-white">${title}</span>
+          <span class="ml-auto text-xs px-2 py-0.5 rounded bg-white/20 uppercase">${severity}</span>
+        </div>
+        <div class="text-sm text-white/80 bg-black/30 rounded-lg p-3 font-mono">
+          <div class="text-xs text-white/50 mb-1">📱 SMS / Push Notification</div>
+          "${message}"
+        </div>
+        <div class="flex gap-2 mt-3 text-xs">
+          <span class="px-2 py-1 rounded bg-white/20">📍 ${location}</span>
+          <span class="px-2 py-1 rounded bg-white/20">⏰ ${getTimestamp()}</span>
+        </div>
+      `;
+      
+      container.insertBefore(preview, container.firstChild);
+      
+      // Keep only last 6 notifications
+      while (container.children.length > 6) {
+        container.removeChild(container.lastChild);
+      }
+    }
+
+    function updateMetrics() {
+      document.getElementById('activeAlerts').textContent = `${activeAlertCount} Active`;
+      document.getElementById('totalAlertsToday').textContent = alertCount;
+    }
+
+    function clearAllLogs() {
+      document.getElementById('workflowLog').innerHTML = `
+        <div class="text-white/40 text-center py-8">
+          No alerts generated yet. Click a generator above to start the workflow demonstration.
+        </div>
+      `;
+      document.getElementById('notificationPreview').innerHTML = `
+        <div class="text-white/40 text-center py-8 md:col-span-3">
+          Generated alerts will appear here showing the exact notifications sent to users
+        </div>
+      `;
+      alertCount = 0;
+      activeAlertCount = 0;
+      updateMetrics();
+    }
+
+    // Initialize
+    updateMetrics();
+  </script>
+</body>
+</html>

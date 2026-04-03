@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Control Panel | NDMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;600;700;800&family=Rajdhani:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Telugu:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gov-primary': '#FF9933',
+            'gov-secondary': '#138808',
+            'gov-accent': '#000080',
+            'gov-alert': '#DC143C',
+            'gov-warning': '#F39C12',
+            'gov-safe': '#27AE60',
+            'gov-yellow': '#FFD700',
+            'gov-peacock': '#1A4E8A',
+            'gov-cream': '#FFF8DC',
+            'admin-purple': '#8E44AD'
+          },
+          fontFamily: {
+            hindi: ['Tiro Devanagari Hindi', 'serif'],
+            telugu: ['Noto Telugu', 'serif'],
+            display: ['Baloo Bhai 2', 'cursive'],
+            heading: ['Rajdhani', 'sans-serif'],
+          },
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { --saffron:#FF9933; --green:#138808; }
+    body { font-family: 'Rajdhani','Baloo Bhai 2',sans-serif; }
+    body.lang-hi { font-family: 'Tiro Devanagari Hindi','Rajdhani',sans-serif; }
+    body.lang-te { font-family: 'Noto Telugu','Rajdhani',sans-serif; }
+    .gov-header-strip{background:linear-gradient(180deg,var(--saffron) 0%,var(--saffron) 33.33%,#fff 33.33%,#fff 66.66%,var(--green) 66.66%,var(--green) 100%);height:8px;width:100%;position:fixed;top:0;left:0;z-index:1000}
+    .focus-visible:focus-visible{outline:3px solid #000080; outline-offset:2px}
+    #adminMap{height:420px}
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-white min-h-screen">
+  <div class="gov-header-strip"></div>
+
+  <!-- PIN Gate -->
+  <div id="gate" class="fixed inset-0 z-[5000] bg-black/70 flex items-center justify-center p-6">
+    <div class="w-full max-w-md rounded-3xl border-4 border-gov-yellow bg-white/10 backdrop-blur-xl p-6 shadow-2xl">
+      <div class="text-center">
+        <div class="text-5xl">⚙️</div>
+        <div class="mt-2 font-display text-2xl font-extrabold text-gov-yellow">Admin Access Required</div>
+        <div class="mt-2 text-white/70">Enter Admin PIN to open Control Center.</div>
+      </div>
+      <div class="mt-6 flex gap-3">
+        <input id="pin" type="password" inputmode="numeric" maxlength="8" class="flex-1 rounded-2xl border-2 border-gov-yellow/40 bg-black/30 px-4 py-3 text-center text-xl font-extrabold tracking-[0.35em] focus-visible" placeholder="••••" />
+        <button id="unlock" class="rounded-2xl bg-gradient-to-r from-gov-yellow to-yellow-200 px-5 py-3 font-extrabold text-slate-950 hover:scale-[1.02] transition focus-visible">Unlock</button>
+      </div>
+      <div class="mt-3 text-xs text-white/60">Demo PIN: <span class="font-extrabold">9392</span>. Front-end only (for viva/demo). Real security needs backend.</div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="mt-2 fixed w-full z-50 bg-gradient-to-r from-admin-purple to-indigo-900 border-b-4 border-gov-yellow shadow-xl">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gov-alert to-red-900 flex items-center justify-center text-2xl border-4 border-gov-yellow shadow-lg">⚙️</div>
+        <div>
+          <div class="font-hindi text-xl font-extrabold">प्रशासन नियंत्रण केंद्र</div>
+          <div class="text-gov-yellow text-sm tracking-widest uppercase">Admin Control Center (Simulation)</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-2 rounded-full border-2 border-white/60 bg-gov-warning px-4 py-2 font-extrabold text-slate-900">⚠️ SIMULATION MODE</div>
+        <button id="logout" class="px-4 py-2 rounded-xl bg-gradient-to-r from-gov-alert to-red-900 font-extrabold hover:scale-105 transition focus-visible">Logout</button>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 pb-4">
+      <div class="flex flex-wrap gap-2">
+        <button class="tab px-4 py-2 rounded-xl bg-white/10 border border-gov-yellow/30 font-extrabold hover:bg-white/15 focus-visible" data-tab="dash">📊 Dashboard</button>
+        <button class="tab px-4 py-2 rounded-xl bg-white/10 border border-gov-yellow/30 font-extrabold hover:bg-white/15 focus-visible" data-tab="monitor">📡 Live Monitor</button>
+        <button class="tab px-4 py-2 rounded-xl bg-white/10 border border-gov-yellow/30 font-extrabold hover:bg-white/15 focus-visible" data-tab="users">👥 Users</button>
+        <button class="tab px-4 py-2 rounded-xl bg-white/10 border border-gov-yellow/30 font-extrabold hover:bg-white/15 focus-visible" data-tab="alerts">🚨 Alerts</button>
+        <button class="tab rounded-2xl bg-white/10 border border-white/10 px-4 py-2 font-extrabold hover:bg-white/20 transition focus-visible" data-tab="generator">🎮 Generator</button>
+        <button class="px-4 py-2 rounded-xl bg-white/10 border border-gov-yellow/30 font-extrabold hover:bg-white/15 focus-visible" onclick="window.location.href='../dashboard.html'">👤 User View</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-40 max-w-7xl mx-auto px-6 pb-10">
+    <!-- Dashboard -->
+    <section id="tab-dash" class="tab-pane">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="rounded-2xl border-2 border-gov-yellow/30 bg-white/10 backdrop-blur p-5">
+          <div class="text-white/70 text-xs uppercase tracking-widest">Total Users</div>
+          <div id="statUsers" class="mt-2 text-4xl font-display font-extrabold text-gov-yellow">0</div>
+        </div>
+        <div class="rounded-2xl border-2 border-gov-yellow/30 bg-white/10 backdrop-blur p-5">
+          <div class="text-white/70 text-xs uppercase tracking-widest">Active Alerts</div>
+          <div id="statAlerts" class="mt-2 text-4xl font-display font-extrabold text-gov-yellow">0</div>
+        </div>
+        <div class="rounded-2xl border-2 border-gov-yellow/30 bg-white/10 backdrop-blur p-5">
+          <div class="text-white/70 text-xs uppercase tracking-widest">Last Generated</div>
+          <div id="statLast" class="mt-2 text-xl font-extrabold">—</div>
+        </div>
+        <div class="rounded-2xl border-2 border-gov-yellow/30 bg-white/10 backdrop-blur p-5">
+          <div class="text-white/70 text-xs uppercase tracking-widest">Affected Areas</div>
+          <div id="statAreas" class="mt-2 text-4xl font-display font-extrabold text-gov-yellow">0</div>
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-2xl border-2 border-gov-yellow/20 bg-black/30 p-6">
+        <div class="text-2xl font-display font-extrabold text-gov-yellow">Recent Activity</div>
+        <div id="recentLogs" class="mt-4 space-y-3"></div>
+      </div>
+
+      <div class="mt-6 rounded-2xl border-2 border-gov-yellow/20 bg-black/30 p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="text-2xl font-display font-extrabold text-gov-yellow">🗺️ Registered Users Map</div>
+          <div class="text-white/60 text-sm">Pins appear when users have location permission on Dashboard.</div>
+        </div>
+        <div id="adminMap" class="mt-4 rounded-2xl overflow-hidden border border-white/10"></div>
+      </div>
+    </section>
+
+    <!-- Live API Monitor -->
+    <section id="tab-monitor" class="tab-pane hidden">
+      <div class="rounded-3xl border-4 border-blue-500 bg-white/10 backdrop-blur p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div>
+            <div class="text-3xl font-display font-extrabold text-blue-400">📡 Live API Monitor</div>
+            <div class="text-white/70 mt-1">Real-time data from external APIs with alert generation logic explained</div>
+          </div>
+          <button onclick="refreshLiveData()" class="rounded-2xl bg-gradient-to-r from-blue-600 to-blue-800 px-5 py-3 font-extrabold hover:scale-[1.02] transition focus-visible">� Refresh Data</button>
+        </div>
+
+        <!-- API Status Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="rounded-2xl border-2 border-green-500/30 bg-green-500/10 p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-2xl">🌊</span>
+              <span class="font-bold text-green-400">Flood API (Open-Meteo + CWC)</span>
+            </div>
+            <div id="floodApiStatus" class="text-sm text-white/70">Checking...</div>
+            <div class="mt-2 text-xs text-green-400">✅ Active - Real-time river levels & rainfall</div>
+          </div>
+          <div class="rounded-2xl border-2 border-yellow-500/30 bg-yellow-500/10 p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-2xl">🌍</span>
+              <span class="font-bold text-yellow-400">Earthquake API (USGS)</span>
+            </div>
+            <div id="earthquakeApiStatus" class="text-sm text-white/70">Checking...</div>
+            <div class="mt-2 text-xs text-yellow-400">⚡ Live - Global seismic activity</div>
+          </div>
+          <div class="rounded-2xl border-2 border-purple-500/30 bg-purple-500/10 p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-2xl">�️</span>
+              <span class="font-bold text-purple-400">Weather API (Open-Meteo)</span>
+            </div>
+            <div id="weatherApiStatus" class="text-sm text-white/70">Checking...</div>
+            <div class="mt-2 text-xs text-purple-400">🔄 Updates every 10 minutes</div>
+          </div>
+        </div>
+
+        <!-- Live Data Display -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Flood Risk Section -->
+          <div class="rounded-2xl border-2 border-blue-500/30 bg-black/30 p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold text-blue-400">🌊 Live Flood Risk Analysis</h3>
+              <span id="floodRiskBadge" class="px-3 py-1 rounded-full text-sm font-bold bg-gray-500/30">Checking...</span>
+            </div>
+            <div id="floodData" class="space-y-3">
+              <div class="text-white/50 text-center py-4">Click Refresh to load live flood data</div>
+            </div>
+            <div class="mt-4 p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
+              <div class="text-sm font-bold text-blue-400 mb-1">🧠 Why Alert Would Generate:</div>
+              <div id="floodReasoning" class="text-xs text-white/70">
+                System analyzes river level from CWC + rainfall from Open-Meteo. If river &gt; 80% capacity OR rainfall &gt; 100mm/24h = Alert triggered.
+              </div>
+            </div>
+          </div>
+
+          <!-- Earthquake Section -->
+          <div class="rounded-2xl border-2 border-yellow-500/30 bg-black/30 p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold text-yellow-400">🌍 Recent Seismic Activity</h3>
+              <span class="text-xs text-white/50">Last 24 hours</span>
+            </div>
+            <div id="earthquakeData" class="space-y-3 max-h-64 overflow-y-auto">
+              <div class="text-white/50 text-center py-4">Click Refresh to load earthquake data</div>
+            </div>
+            <div class="mt-4 p-3 bg-yellow-500/10 rounded-xl border border-yellow-500/20">
+              <div class="text-sm font-bold text-yellow-400 mb-1">🧠 Why Alert Would Generate:</div>
+              <div class="text-xs text-white/70">
+                Earthquakes M≥4.5 within 500km of user location trigger alerts. Higher magnitude = wider alert radius. M≥6 = National alert.
+              </div>
+            </div>
+          </div>
+
+          <!-- Weather Section -->
+          <div class="rounded-2xl border-2 border-purple-500/30 bg-black/30 p-5 lg:col-span-2">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold text-purple-400">🌤️ Live Weather Conditions</h3>
+              <span id="weatherRiskBadge" class="px-3 py-1 rounded-full text-sm font-bold bg-gray-500/30">Checking...</span>
+            </div>
+            <div id="weatherData" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="text-white/50 text-center py-4 col-span-full">Click Refresh to load weather data</div>
+            </div>
+            <div class="mt-4 p-3 bg-purple-500/10 rounded-xl border border-purple-500/20">
+              <div class="text-sm font-bold text-purple-400 mb-1">🧠 Why Alert Would Generate:</div>
+              <div class="text-xs text-white/70">
+                Severe weather alerts trigger when: Wind &gt; 60km/h, Visibility &lt; 1km, Heavy rain &gt; 50mm/h, or Thunderstorm detected.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alert Decision Log -->
+        <div class="mt-6 rounded-2xl border-2 border-gov-yellow/30 bg-black/30 p-5">
+          <h3 class="text-xl font-bold text-gov-yellow mb-4">📋 Alert Decision Log (Last 10 Checks)</h3>
+          <div id="alertDecisionLog" class="space-y-2 max-h-48 overflow-y-auto">
+            <div class="text-white/50 text-center py-4">Refresh to see decision history</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fake Alert Generator -->
+    <section id="tab-generator" class="tab-pane hidden">
+      <div class="rounded-3xl border-2 border-gov-yellow/30 bg-white/10 backdrop-blur p-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap mb-4">
+          <div class="text-2xl font-display font-extrabold text-gov-yellow">🎮 Fake Alert Generator</div>
+          <div class="text-sm text-white/60">For testing only - creates simulated disasters</div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Form -->
+          <form id="genForm" class="space-y-4">
+            <div>
+              <label class="block text-sm font-bold text-white/80 mb-1">Disaster Type (Trained Models Only)</label>
+              <select id="gType" class="w-full rounded-xl border-2 border-gov-yellow/30 bg-black/30 px-4 py-2 text-white focus-visible">
+                <option value="flood">🌊 Flood (Trained)</option>
+                <option value="earthquake">🌍 Earthquake (Trained)</option>
+              </select>
+              <p class="text-xs text-white/50 mt-1">Other disaster types available after ML training completion</p>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-bold text-white/80 mb-1">Location Name (District/Area)</label>
+              <input id="gLocation" type="text" placeholder="e.g., Mumbai, Maharashtra" class="w-full rounded-xl border-2 border-gov-yellow/30 bg-black/30 px-4 py-2 text-white focus-visible" required />
+              <p class="text-xs text-white/50 mt-1">Press Enter to geocode, or click on map below</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-bold text-white/80 mb-1">Latitude</label>
+                <input id="gLat" type="number" step="any" placeholder="Click map to set" class="w-full rounded-xl border-2 border-gov-yellow/30 bg-black/30 px-4 py-2 text-white focus-visible" required readonly />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-white/80 mb-1">Longitude</label>
+                <input id="gLng" type="number" step="any" placeholder="Click map to set" class="w-full rounded-xl border-2 border-gov-yellow/30 bg-black/30 px-4 py-2 text-white focus-visible" required readonly />
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-bold text-white/80 mb-2">Severity</label>
+              <div class="flex gap-4">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="sev" value="high" class="accent-gov-alert" checked />
+                  <span class="text-red-400 font-bold">🔴 High</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="sev" value="medium" class="accent-gov-warning" />
+                  <span class="text-yellow-400 font-bold">🟡 Medium</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="sev" value="low" class="accent-gov-safe" />
+                  <span class="text-green-400 font-bold">🟢 Low</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-bold text-white/80 mb-1">Radius (km)</label>
+                <input id="gRadius" type="number" value="10" min="1" max="500" class="w-full rounded-xl border-2 border-gov-yellow/30 bg-black/30 px-4 py-2 text-white focus-visible" />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-white/80 mb-1">Duration (minutes)</label>
+                <input id="gDuration" type="number" value="60" min="10" max="1440" class="w-full rounded-xl border-2 border-gov-yellow/30 bg-black/30 px-4 py-2 text-white focus-visible" />
+              </div>
+            </div>
+            
+            <button type="submit" class="w-full rounded-2xl bg-gradient-to-r from-gov-alert to-red-600 px-6 py-3 font-extrabold text-white hover:scale-[1.02] transition focus-visible shadow-lg shadow-red-900/30">
+              🚨 GENERATE FAKE ALERT
+            </button>
+            
+            <div class="rounded-xl bg-black/40 border border-gov-yellow/20 p-3 text-xs text-white/70">
+              <p class="font-bold text-gov-yellow mb-1">⚠️ How it works:</p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>Alert will be validated against real-time APIs</li>
+                <li>If no real disaster detected, you can force-send for testing</li>
+                <li>Targeted notifications sent to users in radius</li>
+                <li>Alert auto-expires after duration</li>
+              </ul>
+            </div>
+          </form>
+          
+          <!-- Map -->
+          <div class="space-y-2">
+            <label class="block text-sm font-bold text-white/80">Click map to set epicenter</label>
+            <div id="genMap" class="h-96 rounded-2xl border-2 border-gov-yellow/30"></div>
+            <p class="text-xs text-white/50 text-center">Map shows India. Click anywhere to set disaster location.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Users -->
+    <section id="tab-users" class="tab-pane hidden">
+      <div class="rounded-3xl border-2 border-gov-yellow/30 bg-white/10 backdrop-blur p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="text-2xl font-display font-extrabold text-gov-yellow">👥 Manage Users</div>
+          <div class="flex gap-2">
+            <input id="userSearch" class="rounded-2xl border-2 border-gov-yellow/30 bg-black/30 px-4 py-2 focus-visible" placeholder="Search name/phone/location" />
+            <button id="userRefresh" class="rounded-2xl bg-gradient-to-r from-gov-yellow to-yellow-200 px-4 py-2 font-extrabold text-slate-950 focus-visible">Refresh</button>
+          </div>
+        </div>
+
+        <div class="mt-4 overflow-auto rounded-2xl border border-white/10">
+          <table class="w-full text-left">
+            <thead class="bg-black/30">
+              <tr class="text-gov-yellow text-xs uppercase tracking-widest">
+                <th class="p-3">User ID</th>
+                <th class="p-3">Name</th>
+                <th class="p-3">Phone</th>
+                <th class="p-3">Location</th>
+                <th class="p-3">Registered</th>
+                <th class="p-3">Status</th>
+                <th class="p-3">Action</th>
+              </tr>
+            </thead>
+            <tbody id="usersBody" class="divide-y divide-white/10"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alerts -->
+    <section id="tab-alerts" class="tab-pane hidden">
+      <div class="rounded-3xl border-2 border-gov-yellow/30 bg-white/10 backdrop-blur p-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="text-2xl font-display font-extrabold text-gov-yellow">🚨 Active Alerts</div>
+          <button id="alertsRefresh" class="rounded-2xl bg-gradient-to-r from-gov-yellow to-yellow-200 px-4 py-2 font-extrabold text-slate-950 focus-visible">Refresh</button>
+        </div>
+        <div id="alertsList" class="mt-4 space-y-3"></div>
+      </div>
+    </section>
+
+    <!-- Logs -->
+    <section id="tab-logs" class="tab-pane hidden">
+      <div class="rounded-3xl border-2 border-gov-yellow/30 bg-white/10 backdrop-blur p-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="text-2xl font-display font-extrabold text-gov-yellow">📋 Admin Logs</div>
+          <button id="logsRefresh" class="rounded-2xl bg-gradient-to-r from-gov-yellow to-yellow-200 px-4 py-2 font-extrabold text-slate-950 focus-visible">Refresh</button>
+        </div>
+        <div id="logsList" class="mt-4 space-y-3"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../translations.js"></script>
+  <script src="../i18n.js"></script>
+  <script>
+    const ADMIN_PIN = '9392';
+
+    function showToast(message, kind = 'info') {
+      const host = document.getElementById('toastHost');
+      if (!host) return;
+      const colors = {
+        success: 'border-gov-safe bg-emerald-950/80',
+        error: 'border-gov-alert bg-red-950/80',
+        info: 'border-gov-yellow bg-slate-950/80',
+      };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto w-full sm:w-96 rounded-2xl border-2 ${colors[kind] || colors.info} text-white px-4 py-3 shadow-2xl backdrop-blur`;
+      el.innerHTML = `<div class="font-extrabold">${kind === 'error' ? '⚠️' : kind === 'success' ? '✅' : 'ℹ️'} ${String(message || '')}</div>`;
+      host.appendChild(el);
+      setTimeout(() => {
+        try { el.remove(); } catch { /* ignore */ }
+      }, 4200);
+    }
+
+    (function initToastHost() {
+      if (document.getElementById('toastHost')) return;
+      const host = document.createElement('div');
+      host.id = 'toastHost';
+      host.className = 'fixed top-5 right-5 z-[9999] flex flex-col gap-3 items-end pointer-events-none';
+      document.body.appendChild(host);
+    })();
+
+    let genMap = null;
+    let genMarker = null;
+    let genCircle = null;
+    
+    function initGenMap() {
+      const el = document.getElementById('genMap');
+      if (!el || genMap) return;
+
+      genMap = L.map('genMap', {
+        zoomControl: true,
+        preferCanvas: true,
+        updateWhenIdle: true,
+        updateWhenZooming: false,
+        fadeAnimation: false,
+        zoomAnimation: false,
+        markerZoomAnimation: false,
+        inertia: true,
+        worldCopyJump: true,
+      }).setView([20.5937, 78.9629], 5);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap',
+        subdomains: 'abc',
+        detectRetina: true,
+        updateWhenIdle: true,
+        keepBuffer: 6,
+        crossOrigin: true,
+      }).addTo(genMap);
+
+      genMarker = L.marker([20.5937, 78.9629]).addTo(genMap);
+      genCircle = L.circle([20.5937, 78.9629], { radius: 10000, color: '#FFD700', fillColor: '#FFD700', fillOpacity: 0.12 }).addTo(genMap);
+
+      function setEpicenter(lat, lng) {
+        document.getElementById('gLat').value = String(lat);
+        document.getElementById('gLng').value = String(lng);
+        genMarker.setLatLng([lat, lng]);
+        genCircle.setLatLng([lat, lng]);
+      }
+
+      function updateRadius() {
+        const km = Number(document.getElementById('gRadius')?.value || 10);
+        if (!Number.isFinite(km)) return;
+        genCircle.setRadius(Math.max(1, km) * 1000);
+      }
+
+      genMap.on('click', (e) => {
+        const lat = e?.latlng?.lat;
+        const lng = e?.latlng?.lng;
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+        setEpicenter(lat, lng);
+        updateRadius();
+        genMap.setView([lat, lng], 11);
+      });
+
+      document.getElementById('gRadius')?.addEventListener('input', updateRadius);
+
+      // Auto-geocode location when admin presses Enter in location field
+      const locInput = document.getElementById('gLocation');
+      if (locInput) {
+        locInput.addEventListener('keydown', async (e) => {
+          if (e.key !== 'Enter') return;
+          const query = locInput.value.trim();
+          if (!query) return;
+          e.preventDefault();
+          try {
+            showToast('Geocoding location...', 'info');
+            const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1&countrycodes=in`);
+            const data = await r.json();
+            if (!Array.isArray(data) || data.length === 0) {
+              showToast('Location not found. Please check spelling or click map manually.', 'error');
+              return;
+            }
+            const result = data[0];
+            const lat = Number(result.lat);
+            const lng = Number(result.lon);
+            if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+              showToast('Invalid coordinates returned. Please click map manually.', 'error');
+              return;
+            }
+            setEpicenter(lat, lng);
+            updateRadius();
+            genMap.setView([lat, lng], 12);
+            showToast(`Epicenter set to: ${result.display_name || query}`, 'success');
+          } catch (err) {
+            showToast('Geocoding failed. Please click map manually.', 'error');
+          }
+        });
+      }
+    }
+
+    let stateUsers = [];
+    let adminMap = null;
+    let userMarkersLayer = null;
+    let quakeLayer = null;
+    let quakeTimer = null;
+
+    function ts(d = new Date()) {
+      return new Date(d).toLocaleString('en-IN', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false
+      });
+    }
+
+    function getUsers() {
+      if (Array.isArray(stateUsers) && stateUsers.length) return stateUsers;
+      return JSON.parse(localStorage.getItem('ndms_users') || '[]');
+    }
+
+    function setUsers(users) {
+      stateUsers = Array.isArray(users) ? users : [];
+      localStorage.setItem('ndms_users', JSON.stringify(stateUsers));
+    }
+
+    async function refreshUsersFromBackend() {
+      try {
+        const r = await fetch('/api/admin/users');
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok || !data.ok) throw new Error(data.error || 'Failed to load users');
+        setUsers(data.users);
+        renderUsers();
+        renderDashboard();
+        renderAdminMap();
+      } catch (_e) {
+        renderUsers();
+        renderDashboard();
+        renderAdminMap();
+      }
+    }
+
+    function connectRealtime() {
+      try {
+        const es = new EventSource('/api/admin/stream');
+        es.addEventListener('users', (evt) => {
+          try {
+            const users = JSON.parse(evt.data || '[]');
+            setUsers(users);
+            renderUsers();
+            renderDashboard();
+            renderAdminMap();
+          } catch (_e) {
+            // ignore
+          }
+        });
+        es.onerror = () => {
+          try { es.close(); } catch (_e) { /* ignore */ }
+          setTimeout(connectRealtime, 3000);
+        };
+      } catch (_e) {
+        // ignore
+      }
+    }
+
+    function cleanAlerts() {
+      const raw = JSON.parse(localStorage.getItem('activeAlerts') || '[]');
+      const now = Date.now();
+      const filtered = raw.filter(a => {
+        if (!a || !a.expiresAt) return true;
+        return new Date(a.expiresAt).getTime() > now;
+      });
+      if (filtered.length !== raw.length) localStorage.setItem('activeAlerts', JSON.stringify(filtered));
+      return filtered;
+    }
+
+    function setAlerts(alerts) {
+      localStorage.setItem('activeAlerts', JSON.stringify(alerts));
+    }
+
+    function addLog(message) {
+      const logs = JSON.parse(localStorage.getItem('adminLogs') || '[]');
+      logs.unshift({ timestamp: new Date().toISOString(), message });
+      if (logs.length > 200) logs.pop();
+      localStorage.setItem('adminLogs', JSON.stringify(logs));
+    }
+
+    function getLogs() {
+      return JSON.parse(localStorage.getItem('adminLogs') || '[]');
+    }
+
+    function setTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`tab-${tabId}`)?.classList.remove('hidden');
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('bg-white/25'));
+      document.querySelectorAll(`.tab[data-tab="${tabId}"]`).forEach(b => b.classList.add('bg-white/25'));
+
+      if (tabId === 'dash') renderDashboard();
+      if (tabId === 'users') renderUsers();
+      if (tabId === 'alerts') renderAlerts();
+      if (tabId === 'logs') renderLogs();
+      if (tabId === 'monitor') refreshLiveData();
+      if (tabId === 'generator') initGenMap();
+
+      // Leaflet maps often render blank when initialized in hidden containers.
+      // Ensure maps are initialized and resized after tab becomes visible.
+      if (tabId === 'dash') {
+        initAdminMap();
+      }
+      if (tabId === 'generator') {
+        setTimeout(() => {
+          try { genMap?.invalidateSize?.(); } catch { /* ignore */ }
+        }, 100);
+      }
+      setTimeout(() => {
+        try { adminMap?.invalidateSize?.(); } catch { /* ignore */ }
+      }, 80);
+    }
+
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => setTab(btn.getAttribute('data-tab')));
+    });
+
+    function renderDashboard() {
+      const users = getUsers();
+      const alerts = cleanAlerts();
+      const logs = getLogs();
+      document.getElementById('statUsers').textContent = String(users.length);
+      document.getElementById('statAlerts').textContent = String(alerts.length);
+
+      const last = alerts[0]?.createdAt || logs[0]?.timestamp || '';
+      document.getElementById('statLast').textContent = last ? ts(last) : '—';
+
+      const areas = new Set(alerts.map(a => (a.location || '').trim()).filter(Boolean));
+      document.getElementById('statAreas').textContent = String(areas.size);
+
+      const recent = logs.slice(0, 10);
+      const box = document.getElementById('recentLogs');
+      box.innerHTML = recent.length
+        ? recent.map(l => `<div class="rounded-2xl border border-white/10 bg-black/30 p-4"><div class="text-gov-yellow font-extrabold text-sm">[${ts(l.timestamp)}]</div><div class="text-white/80 mt-1">${escapeHtml(l.message)}</div></div>`).join('')
+        : `<div class="text-white/60">No logs yet.</div>`;
+
+      renderAdminMap();
+    }
+
+    function initAdminMap() {
+      const el = document.getElementById('adminMap');
+      if (!el || adminMap) return;
+
+      adminMap = L.map('adminMap', {
+        zoomControl: true,
+        preferCanvas: true,
+        updateWhenIdle: true,
+        updateWhenZooming: false,
+        fadeAnimation: false,
+        zoomAnimation: false,
+        markerZoomAnimation: false,
+        inertia: true,
+        worldCopyJump: true,
+      }).setView([20.5937, 78.9629], 5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap',
+        subdomains: 'abc',
+        detectRetina: true,
+        updateWhenIdle: true,
+        keepBuffer: 6,
+        crossOrigin: true,
+      }).addTo(adminMap);
+      userMarkersLayer = L.layerGroup().addTo(adminMap);
+      quakeLayer = L.layerGroup().addTo(adminMap);
+
+      try {
+        const doRefresh = async () => {
+          try {
+            const c = adminMap.getCenter();
+            const lat = Number(c?.lat);
+            const lng = Number(c?.lng);
+            if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+            const r = await fetch(`/api/realtime/earthquakes?lat=${encodeURIComponent(lat)}&lng=${encodeURIComponent(lng)}&radiusKm=800&minutes=1440&limit=50`);
+            const data = await r.json().catch(() => ({}));
+            if (!r.ok || !data.ok) return;
+            if (!quakeLayer) return;
+
+            quakeLayer.clearLayers();
+            const quakes = Array.isArray(data?.quakes) ? data.quakes : [];
+            quakes.forEach((q) => {
+              const qLat = Number(q?.lat);
+              const qLng = Number(q?.lng);
+              const mag = Number(q?.magnitude);
+              if (!Number.isFinite(qLat) || !Number.isFinite(qLng)) return;
+
+              const color = Number.isFinite(mag) && mag >= 5.5 ? '#FF3B30' : Number.isFinite(mag) && mag >= 4.5 ? '#FFD60A' : '#27AE60';
+              const radius = Number.isFinite(mag) ? Math.max(4, Math.min(14, 4 + mag * 1.6)) : 6;
+              const marker = L.circleMarker([qLat, qLng], {
+                radius,
+                color,
+                weight: 2,
+                fillColor: color,
+                fillOpacity: 0.35,
+              });
+              const title = `Earthquake M ${Number.isFinite(mag) ? mag.toFixed(1) : '—'}`;
+              const place = escapeHtml(String(q?.place || ''));
+              const time = escapeHtml(String(q?.time || ''));
+              const link = String(q?.url || '');
+              const linkHtml = link ? `<div style="margin-top:6px"><a href="${escapeHtml(link)}" target="_blank" rel="noopener" style="color:#FFD60A; font-weight:800">Open USGS</a></div>` : '';
+              marker.bindPopup(`<div style="font-weight:900">${escapeHtml(title)}</div><div style="opacity:.85; margin-top:4px">${place}</div><div style="opacity:.7; margin-top:4px">${time}</div>${linkHtml}`);
+              marker.addTo(quakeLayer);
+            });
+          } catch {
+            // ignore
+          }
+        };
+
+        if (!quakeTimer) {
+          quakeTimer = setInterval(doRefresh, 60000);
+        }
+        adminMap.on('moveend', () => {
+          // refresh after panning/zooming
+          doRefresh();
+        });
+        doRefresh();
+      } catch {
+        // ignore
+      }
+    }
+
+    function renderAdminMap() {
+      initAdminMap();
+      ensureAdminMap();
+      if (!adminMap || !userMarkersLayer) return;
+
+      userMarkersLayer.clearLayers();
+      const users = getUsers();
+      const pts = [];
+
+      users.forEach((u) => {
+        const lat = Number(u?.lat);
+        const lng = Number(u?.lng);
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+        pts.push([lat, lng]);
+        const label = `${u?.name || 'User'} (${u?.phone || ''})`;
+        const m = L.marker([lat, lng]);
+        m.bindPopup(`<div style="font-weight:700">${escapeHtml(label)}</div><div style="opacity:.8">${escapeHtml(u?.location || '')}</div>`);
+        m.addTo(userMarkersLayer);
+      });
+
+      if (pts.length === 1) {
+        adminMap.setView(pts[0], 10);
+      } else if (pts.length > 1) {
+        adminMap.fitBounds(pts, { padding: [24, 24] });
+      }
+    }
+
+    function renderUsers() {
+      const q = (document.getElementById('userSearch')?.value || '').toLowerCase();
+      const users = getUsers().filter(u => {
+        const text = `${u.id} ${u.name} ${u.phone} ${u.location} ${u.state || ''} ${u.district || ''}`.toLowerCase();
+        return text.includes(q);
+      });
+
+      const body = document.getElementById('usersBody');
+      body.innerHTML = users.length
+        ? users.map(u => {
+          const active = (u.status || 'active') === 'active';
+          const badge = active
+            ? `<span class="inline-block rounded-full bg-gov-safe px-3 py-1 text-xs font-extrabold">Active</span>`
+            : `<span class="inline-block rounded-full bg-gov-alert px-3 py-1 text-xs font-extrabold">Inactive</span>`;
+          const action = active
+            ? `<button class="rounded-xl bg-gov-alert px-3 py-2 font-extrabold text-sm hover:scale-[1.02] transition focus-visible" data-act="toggle" data-id="${u.id}">Disable</button>`
+            : `<button class="rounded-xl bg-gov-safe px-3 py-2 font-extrabold text-sm hover:scale-[1.02] transition focus-visible" data-act="toggle" data-id="${u.id}">Enable</button>`;
+          const loc = escapeHtml(u.location || `${u.district || ''}${u.state ? ', ' + u.state : ''}`.trim() || '—');
+          return `<tr>
+            <td class="p-3 font-extrabold">${escapeHtml(u.id || '—')}</td>
+            <td class="p-3">${escapeHtml(u.name || '—')}</td>
+            <td class="p-3">${escapeHtml(u.phone || '—')}</td>
+            <td class="p-3">${loc}</td>
+            <td class="p-3">${escapeHtml(u.registeredAt ? ts(u.registeredAt) : '—')}</td>
+            <td class="p-3">${badge}</td>
+            <td class="p-3">${action}</td>
+          </tr>`;
+        }).join('')
+        : `<tr><td class="p-4 text-white/60" colspan="7">No users found. Register a user first on registration page.</td></tr>`;
+
+      body.querySelectorAll('[data-act="toggle"]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.getAttribute('data-id');
+          const all = getUsers();
+          const idx = all.findIndex(x => String(x.id) === String(id));
+          if (idx === -1) return;
+          const next = (all[idx].status || 'active') === 'active' ? 'inactive' : 'active';
+          try {
+            const r = await fetch(`/api/admin/users/${encodeURIComponent(id)}/status`, {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ status: next })
+            });
+            const data = await r.json().catch(() => ({}));
+            if (!r.ok || !data.ok) throw new Error(data.error || 'Failed to update status');
+            addLog(`USER STATUS CHANGED - ID: ${all[idx].id} | Name: ${all[idx].name} | Status: ${next.toUpperCase()}`);
+            await refreshUsersFromBackend();
+          } catch (e) {
+            showToast(e?.message || 'Failed to update status', 'error');
+          }
+        });
+      });
+    }
+
+    function severityBadge(sev) {
+      if (sev === 'high') return `<span class="rounded-full bg-gov-alert px-3 py-1 text-xs font-extrabold">HIGH</span>`;
+      if (sev === 'medium') return `<span class="rounded-full bg-gov-warning px-3 py-1 text-xs font-extrabold text-slate-900">MEDIUM</span>`;
+      return `<span class="rounded-full bg-gov-safe px-3 py-1 text-xs font-extrabold">LOW</span>`;
+    }
+
+    function renderAlerts() {
+      const alerts = cleanAlerts();
+      const list = document.getElementById('alertsList');
+      list.innerHTML = alerts.length
+        ? alerts.map(a => {
+          const exp = a.expiresAt ? ts(a.expiresAt) : '—';
+          return `<div class="rounded-2xl border border-white/10 bg-black/30 p-4 flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <div class="font-extrabold text-lg">${escapeHtml(a.emoji || '🚨')} ${escapeHtml((a.type || 'Alert').toUpperCase())} ${severityBadge(a.severity)}</div>
+              <div class="text-white/70 mt-1">📍 ${escapeHtml(a.location || '—')} | Radius: ${escapeHtml(String(a.radius || '—'))} km</div>
+              <div class="text-white/60 text-sm mt-1">Expires: ${escapeHtml(exp)} | SIMULATED</div>
+              <div class="text-white/80 mt-2">${escapeHtml(a.message || '')}</div>
+            </div>
+            <div class="flex gap-2">
+              <button class="rounded-xl bg-white/10 border border-white/15 px-3 py-2 font-extrabold text-sm hover:bg-white/15 focus-visible" data-act="view" data-id="${a.id}">View</button>
+              <button class="rounded-xl bg-gov-alert px-3 py-2 font-extrabold text-sm hover:scale-[1.02] transition focus-visible" data-act="stop" data-id="${a.id}">Stop</button>
+            </div>
+          </div>`;
+        }).join('')
+        : `<div class="text-white/60">No active alerts. Generate one from Generator.</div>`;
+
+      list.querySelectorAll('[data-act="stop"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const all = cleanAlerts().filter(a => String(a.id) !== String(id));
+          setAlerts(all);
+          addLog(`ALERT STOPPED - ID: ${id}`);
+          renderAlerts();
+          renderDashboard();
+        });
+      });
+
+      list.querySelectorAll('[data-act="view"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const a = cleanAlerts().find(x => String(x.id) === String(id));
+          if (!a) return;
+          showToast(`Alert: ${String(a.type || '').toUpperCase()} | ${String(a.severity || '').toUpperCase()} | ${String(a.location || '')}`, 'info');
+        });
+      });
+    }
+
+    function renderLogs() {
+      const logs = getLogs();
+      const box = document.getElementById('logsList');
+      box.innerHTML = logs.length
+        ? logs.map(l => `<div class="rounded-2xl border border-white/10 bg-black/30 p-4"><div class="text-gov-yellow font-extrabold text-sm">[${ts(l.timestamp)}]</div><div class="text-white/80 mt-1">${escapeHtml(l.message)}</div></div>`).join('')
+        : `<div class="text-white/60">No logs yet.</div>`;
+    }
+
+    function escapeHtml(str) {
+      const s = String(str ?? '');
+      return s.replace(/[&<>"]+/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c] || c));
+    }
+
+    document.getElementById('alertsRefresh')?.addEventListener('click', renderAlerts);
+    document.getElementById('logsRefresh')?.addEventListener('click', renderLogs);
+    document.getElementById('userRefresh')?.addEventListener('click', refreshUsersFromBackend);
+
+    document.getElementById('userSearch')?.addEventListener('input', renderUsers);
+
+    document.getElementById('stopAll')?.addEventListener('click', () => {
+      if (!confirm('Stop ALL alerts? This will clear all active simulated disasters.')) return;
+      setAlerts([]);
+      addLog('ALL ALERTS STOPPED');
+      renderAlerts();
+      renderDashboard();
+    });
+
+    document.getElementById('genForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const type = document.getElementById('gType').value;
+      const location = document.getElementById('gLocation').value.trim();
+      const severity = (document.querySelector('input[name="sev"]:checked') || {}).value;
+      const duration = Number(document.getElementById('gDuration').value || 60);
+      const radius = Number(document.getElementById('gRadius').value || 10);
+
+      const lat = Number(document.getElementById('gLat').value || '');
+      const lng = Number(document.getElementById('gLng').value || '');
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+        showToast('Please pick epicenter on the map (lat/lng).', 'error');
+        return;
+      }
+
+      const typeEmojis = { flood:'🌊', earthquake:'🌍', fire:'🔥', cyclone:'🌀', landslide:'⛰️', tsunami:'🌊', drought:'☀️', heatwave:'🌡️' };
+      const createdAt = new Date().toISOString();
+      const expiresAt = new Date(Date.now() + duration * 60 * 1000).toISOString();
+
+      // Try to create alert with validation (original flow)
+      let useForce = false;
+      let attemptCount = 0;
+      const maxAttempts = 2;
+
+      while (attemptCount < maxAttempts) {
+        attemptCount++;
+        try {
+          const r = await fetch('/api/admin/alerts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type,
+              severity,
+              durationMin: duration,
+              radiusKm: radius,
+              lat,
+              lng,
+              location,
+              force: useForce
+            })
+          });
+          const data = await r.json().catch(() => ({}));
+
+          if (!r.ok && data.validation && !useForce) {
+            // Validation failed - ask admin to confirm override
+            const confirmMsg = `⚠️ VALIDATION WARNING\n\n${data.error}\n\nData: ${JSON.stringify(data.validation?.data || {})}\n\nIf this is a REAL EMERGENCY not yet detected by APIs, click OK to force send.\nOtherwise, click Cancel.`;
+            if (confirm(confirmMsg)) {
+              useForce = true;
+              continue; // Retry with force=true
+            } else {
+              showToast('Alert cancelled - did not meet real-time validation.', 'info');
+              return;
+            }
+          }
+
+          if (!r.ok || !data.ok) throw new Error(data.error || 'Alert create failed');
+
+          // Success - now also log to blockchain for audit trail
+          let blockchainData = null;
+          try {
+            const blockchainRes = await fetch('/api/admin/alert-with-audit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type,
+                severity,
+                location,
+                message: `Flood alert in ${location}. Take precautions immediately.`,
+                adminWallet: 'admin-wallet-1'
+              })
+            });
+            blockchainData = await blockchainRes.json().catch(() => ({}));
+          } catch (e) {
+            console.log('Blockchain logging failed (non-critical):', e);
+          }
+
+          const alertObj = {
+            id: data.alert?.id || String(Date.now()),
+            type,
+            emoji: typeEmojis[type] || '🚨',
+            location,
+            severity,
+            duration,
+            radius,
+            message: data.alert?.message || `Flood alert in ${location}. Take precautions immediately.`,
+            createdAt,
+            expiresAt,
+            simulated: true,
+            blockchainVerified: blockchainData?.ok || false,
+            blockchainHash: blockchainData?.blockchain?.hash,
+            transactionHash: blockchainData?.blockchain?.transactionHash
+          };
+
+          const alertsLocal = cleanAlerts();
+          alertsLocal.unshift(alertObj);
+          setAlerts(alertsLocal);
+
+          const blockchainMsg = blockchainData?.ok 
+            ? ` | Blockchain: ${blockchainData.blockchain.transactionHash.substring(0, 16)}...`
+            : '';
+          
+          addLog(`DISASTER GENERATED - Type: ${type.toUpperCase()} | Severity: ${severity.toUpperCase()} | Location: ${location} | Targeted: ${data.targeted} | Emailed: ${data.emailed}${blockchainMsg}`);
+          showToast(`Alert created. Targeted: ${data.targeted} | Email sent: ${data.emailed}${blockchainData?.ok ? ' | ✓ Blockchain logged' : ''}`, 'success');
+          refreshAlertsFromBackend();
+          e.target.reset();
+          renderDashboard();
+          return;
+        } catch (err) {
+          if (attemptCount >= maxAttempts) {
+            showToast(err?.message || 'Failed to create alert', 'error');
+            return;
+          }
+        }
+      }
+    });
+
+    function logout() {
+      if (!confirm('Logout from admin panel?')) return;
+      localStorage.removeItem('ndms_admin_unlocked');
+      addLog('ADMIN LOGOUT');
+      window.location.href = '../index.html';
+    }
+
+    document.getElementById('logout')?.addEventListener('click', logout);
+
+    function openGate() {
+      document.getElementById('gate').style.display = 'none';
+      setTab('dash');
+    }
+
+    function requireGate() {
+      const unlocked = localStorage.getItem('ndms_admin_unlocked') === 'true';
+      if (unlocked) {
+        openGate();
+      } else {
+        document.getElementById('gate').style.display = 'flex';
+      }
+    }
+
+    function attemptUnlock() {
+      const pin = document.getElementById('pin').value.trim();
+      if (pin !== ADMIN_PIN) {
+        showToast('Invalid PIN', 'error');
+        return;
+      }
+      localStorage.setItem('ndms_admin_unlocked', 'true');
+      addLog('ADMIN LOGIN');
+      openGate();
+    }
+
+    document.getElementById('unlock')?.addEventListener('click', attemptUnlock);
+    document.getElementById('pin')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') attemptUnlock();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      requireGate();
+      refreshUsersFromBackend();
+      connectRealtime();
+      refreshAlertsFromBackend();
+      renderDashboard();
+    });
+
+    async function refreshAlertsFromBackend() {
+      try {
+        const r = await fetch('/api/admin/alerts');
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok || !data.ok) throw new Error(data.error || 'Failed to load alerts');
+        setAlerts(Array.isArray(data.alerts) ? data.alerts : []);
+        renderAlerts();
+        renderDashboard();
+      } catch (_e) {
+        renderAlerts();
+        renderDashboard();
+      }
+    }
+
+    // Live API Monitoring Functions
+    let decisionLog = [];
+    
+    async function refreshLiveData() {
+      showToast('🔄 Fetching live data from APIs...', 'info');
+      
+      // Update API status indicators
+      document.getElementById('floodApiStatus').textContent = 'Connected - Fetching...';
+      document.getElementById('earthquakeApiStatus').textContent = 'Connected - Fetching...';
+      document.getElementById('weatherApiStatus').textContent = 'Connected - Fetching...';
+      
+      // Fetch all data in parallel
+      await Promise.all([
+        fetchFloodData(),
+        fetchEarthquakeData(),
+        fetchWeatherData()
+      ]);
+      
+      showToast('✅ Live data updated', 'success');
+    }
+    
+    async function fetchFloodData() {
+      try {
+        // Use demo coordinates (can be updated to use admin location)
+        const lat = 20.5937;
+        const lng = 78.9629;
+        
+        const response = await fetch(`/api/ml/flood/predict-realtime?lat=${lat}&lng=${lng}&state=Maharashtra&district=Mumbai`);
+        const data = await response.json();
+        
+        if (data?.flood_risk_level) {
+          const risk = data.flood_risk_level.toLowerCase();
+          const badge = document.getElementById('floodRiskBadge');
+          
+          // Update badge color based on risk
+          if (risk.includes('severe') || risk.includes('high')) {
+            badge.className = 'px-3 py-1 rounded-full text-sm font-bold bg-red-500/30 text-red-400';
+            badge.textContent = '🔴 HIGH RISK';
+            addDecisionLog('FLOOD', 'HIGH', `River level: ${data.river?.levelM}m, Rain: ${data.weather?.precipitationMm}mm - Threshold exceeded`);
+          } else if (risk.includes('moderate')) {
+            badge.className = 'px-3 py-1 rounded-full text-sm font-bold bg-yellow-500/30 text-yellow-400';
+            badge.textContent = '🟡 MODERATE';
+          } else {
+            badge.className = 'px-3 py-1 rounded-full text-sm font-bold bg-green-500/30 text-green-400';
+            badge.textContent = '🟢 SAFE';
+          }
+          
+          // Update data display
+          document.getElementById('floodData').innerHTML = `
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-white/10 rounded-lg p-3">
+                <div class="text-xs text-white/60">River Level</div>
+                <div class="text-lg font-bold">${data.river?.levelM || '--'} m</div>
+                <div class="text-xs text-white/50">Source: ${data.river?.source || 'CWC'}</div>
+              </div>
+              <div class="bg-white/10 rounded-lg p-3">
+                <div class="text-xs text-white/60">Rainfall (24h)</div>
+                <div class="text-lg font-bold">${data.weather?.precipitationMm || '--'} mm</div>
+                <div class="text-xs text-white/50">Source: Open-Meteo</div>
+              </div>
+              <div class="bg-white/10 rounded-lg p-3">
+                <div class="text-xs text-white/60">Flood Severity</div>
+                <div class="text-lg font-bold">${data.flood_severity || '--'}</div>
+                <div class="text-xs text-white/50">ML Prediction</div>
+              </div>
+              <div class="bg-white/10 rounded-lg p-3">
+                <div class="text-xs text-white/60">Risk Score</div>
+                <div class="text-lg font-bold">${data.risk_score || '--'}/100</div>
+                <div class="text-xs text-white/50">Confidence: ${data.confidence || '--'}%</div>
+              </div>
+            </div>
+          `;
+          
+          // Update reasoning
+          let reasoning = '';
+          if (data.river?.levelM > 8) {
+            reasoning = `⚠️ ALERT REASON: River level (${data.river.levelM}m) exceeds danger threshold (8m). `;
+          }
+          if (data.weather?.precipitationMm > 100) {
+            reasoning += `Heavy rainfall (${data.weather.precipitationMm}mm/24h) detected. `;
+          }
+          if (!reasoning) {
+            reasoning = `✅ Safe conditions: River level normal (${data.river?.levelM}m < 8m), Rainfall moderate (${data.weather?.precipitationMm}mm < 100mm). No alert triggered.`;
+          }
+          document.getElementById('floodReasoning').textContent = reasoning;
+          
+          document.getElementById('floodApiStatus').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+        }
+      } catch (e) {
+        document.getElementById('floodData').innerHTML = `<div class="text-red-400 text-center py-4">❌ Failed to load flood data: ${e.message}</div>`;
+        document.getElementById('floodApiStatus').textContent = 'Error - See console';
+      }
+    }
+    
+    async function fetchEarthquakeData() {
+      try {
+        const response = await fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson');
+        const data = await response.json();
+        
+        if (data?.features) {
+          // Filter for significant earthquakes near India region
+          const indiaQuakes = data.features.filter(q => {
+            const coords = q.geometry?.coordinates;
+            if (!coords) return false;
+            const lng = coords[0];
+            const lat = coords[1];
+            // Rough bounding box for India region
+            return lng >= 68 && lng <= 97 && lat >= 6 && lat <= 37 && q.properties?.mag >= 4.0;
+          }).slice(0, 5);
+          
+          if (indiaQuakes.length > 0) {
+            document.getElementById('earthquakeData').innerHTML = indiaQuakes.map(q => {
+              const mag = q.properties.mag;
+              const place = q.properties.place;
+              const time = new Date(q.properties.time).toLocaleString('en-IN');
+              const severityClass = mag >= 6 ? 'bg-red-500/20 border-red-500' : mag >= 5 ? 'bg-orange-500/20 border-orange-500' : 'bg-yellow-500/20 border-yellow-500';
+              
+              if (mag >= 4.5) {
+                addDecisionLog('EARTHQUAKE', mag >= 6 ? 'HIGH' : 'MODERATE', `M${mag} at ${place} - Magnitude threshold exceeded`);
+              }
+              
+              return `
+                <div class="rounded-xl border ${severityClass} p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-lg">M ${mag}</span>
+                    <span class="text-xs text-white/60">${time}</span>
+                  </div>
+                  <div class="text-sm text-white/80">📍 ${place}</div>
+                  <div class="text-xs text-white/50 mt-1">${mag >= 6 ? '🔴 Would trigger NATIONAL alert' : mag >= 5 ? '🟠 Would trigger REGIONAL alert' : '🟡 Monitoring'}</div>
+                </div>
+              `;
+            }).join('');
+          } else {
+            document.getElementById('earthquakeData').innerHTML = `<div class="text-white/50 text-center py-4">No significant earthquakes (M≥4) in India region in last 24 hours</div>`;
+          }
+          
+          document.getElementById('earthquakeApiStatus').textContent = `${data.features.length} global quakes | ${indiaQuakes.length} near India`;
+        }
+      } catch (e) {
+        document.getElementById('earthquakeData').innerHTML = `<div class="text-red-400 text-center py-4">❌ Failed to load earthquake data</div>`;
+        document.getElementById('earthquakeApiStatus').textContent = 'Error - USGS API';
+      }
+    }
+    
+    async function fetchWeatherData() {
+      try {
+        // Fetch for major Indian cities
+        const cities = [
+          { name: 'Delhi', lat: 28.6139, lng: 77.2090 },
+          { name: 'Mumbai', lat: 19.0760, lng: 72.8777 },
+          { name: 'Chennai', lat: 13.0827, lng: 80.2707 },
+          { name: 'Kolkata', lat: 22.5726, lng: 88.3639 }
+        ];
+        
+        const weatherPromises = cities.map(async city => {
+          const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lng}&current_weather=true`);
+          return { city, data: await res.json() };
+        });
+        
+        const results = await Promise.all(weatherPromises);
+        
+        let highRiskCount = 0;
+        document.getElementById('weatherData').innerHTML = results.map(({ city, data }) => {
+          const weather = data.current_weather;
+          const temp = weather.temperature;
+          const wind = weather.windspeed;
+          const code = weather.weathercode;
+          
+          // Check for severe conditions
+          const isSevere = wind > 60 || code >= 95; // Thunderstorm or high wind
+          if (isSevere) highRiskCount++;
+          
+          return `
+            <div class="bg-white/10 rounded-lg p-3 ${isSevere ? 'border border-red-500/50' : ''}">
+              <div class="font-bold text-white">${city.name}</div>
+              <div class="text-2xl my-1">${getWeatherIcon(code)}</div>
+              <div class="text-sm">${temp}°C | ${wind} km/h</div>
+              <div class="text-xs ${isSevere ? 'text-red-400 font-bold' : 'text-white/50'}">${isSevere ? '⚠️ ALERT CONDITION' : 'Normal'}</div>
+            </div>
+          `;
+        }).join('');
+        
+        const badge = document.getElementById('weatherRiskBadge');
+        if (highRiskCount > 0) {
+          badge.className = 'px-3 py-1 rounded-full text-sm font-bold bg-red-500/30 text-red-400';
+          badge.textContent = `🔴 ${highRiskCount} Cities at Risk`;
+          addDecisionLog('WEATHER', 'HIGH', `${highRiskCount} cities showing severe weather (wind>60km/h or thunderstorm)`);
+        } else {
+          badge.className = 'px-3 py-1 rounded-full text-sm font-bold bg-green-500/30 text-green-400';
+          badge.textContent = '🟢 All Clear';
+        }
+        
+        document.getElementById('weatherApiStatus').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+      } catch (e) {
+        document.getElementById('weatherData').innerHTML = `<div class="text-red-400 text-center py-4 col-span-full">❌ Failed to load weather data</div>`;
+        document.getElementById('weatherApiStatus').textContent = 'Error - Open-Meteo';
+      }
+    }
+    
+    function getWeatherIcon(code) {
+      if (code === 0) return '☀️';
+      if (code <= 3) return '⛅';
+      if (code <= 48) return '🌫️';
+      if (code <= 67) return '🌧️';
+      if (code <= 77) return '🌨️';
+      if (code <= 82) return '🌦️';
+      if (code <= 86) return '🌨️';
+      if (code <= 99) return '⛈️';
+      return '☀️';
+    }
+    
+    function addDecisionLog(type, severity, reason) {
+      const timestamp = new Date().toLocaleTimeString('en-IN');
+      decisionLog.unshift({ timestamp, type, severity, reason });
+      if (decisionLog.length > 10) decisionLog.pop();
+      
+      renderDecisionLog();
+    }
+    
+    function renderDecisionLog() {
+      const container = document.getElementById('alertDecisionLog');
+      if (decisionLog.length === 0) {
+        container.innerHTML = '<div class="text-white/50 text-center py-4">Refresh to see decision history</div>';
+        return;
+      }
+      
+      container.innerHTML = decisionLog.map(entry => {
+        const colors = {
+          'HIGH': 'text-red-400 bg-red-500/10 border-red-500/30',
+          'MODERATE': 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30',
+          'LOW': 'text-green-400 bg-green-500/10 border-green-500/30'
+        };
+        return `
+          <div class="rounded-lg border ${colors[entry.severity] || colors.LOW} p-2 text-sm">
+            <div class="flex items-center justify-between">
+              <span class="font-bold">${entry.type}</span>
+              <span class="text-xs text-white/50">${entry.timestamp}</span>
+            </div>
+            <div class="text-xs mt-1">${entry.reason}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="registration.page_title">User Registration</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Baloo+Bhai+2:wght@400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Noto+Telugu:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gov-primary': '#FF9933',
+            'gov-secondary': '#138808',
+            'gov-accent': '#000080',
+            'gov-alert': '#DC143C',
+            'gov-warning': '#F39C12',
+            'gov-safe': '#27AE60',
+            'gov-neutral': '#F5F5DC',
+            'gov-gray': '#B2BEB5',
+            'gov-dark': '#333333',
+            'gov-white': '#FFFFFF',
+            'gov-yellow': '#FFD700',
+            'gov-peacock': '#1A4E8A',
+            'gov-cream': '#FFF8DC',
+          },
+          fontFamily: {
+            hindi: ['Tiro Devanagari Hindi', 'serif'],
+            telugu: ['Noto Telugu', 'serif'],
+            display: ['Baloo Bhai 2', 'cursive'],
+            heading: ['Rajdhani', 'sans-serif'],
+            body: ['Merriweather', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --saffron: #FF9933;
+      --green: #138808;
+      --navy: #000080;
+      --gold: #FFD700;
+      --alert: #DC143C;
+      --safe: #27AE60;
+    }
+
+    body { font-family: 'Rajdhani', 'Baloo Bhai 2', sans-serif; }
+    body.lang-hi { font-family: 'Tiro Devanagari Hindi', 'Rajdhani', sans-serif; }
+    body.lang-te { font-family: 'Noto Telugu', 'Rajdhani', sans-serif; }
+
+    .gov-header-strip {
+      background: linear-gradient(180deg, var(--saffron) 0%, var(--saffron) 33.33%, #fff 33.33%, #fff 66.66%, var(--green) 66.66%, var(--green) 100%);
+      height: 8px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    }
+
+    .lang-switch {
+      position: static;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 6px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--navy);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .lang-btn.active { background: var(--navy); color: #fff; }
+    .lang-btn:hover { transform: translateY(-1px); background: rgba(0,0,0,0.06); }
+
+    .card { border: 3px solid var(--gold); }
+    .focus-visible:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+
+    .otp-box { width: 52px; height: 56px; text-align: center; font-size: 24px; font-weight: 800; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-900 to-slate-900 flex items-center justify-center p-6">
+  <div class="gov-header-strip"></div>
+
+  <main class="w-full max-w-xl">
+    <div class="flex justify-center sm:justify-end mb-4">
+      <div class="lang-switch" role="group" aria-label="Language selector">
+        <button class="lang-btn active" type="button" data-lang-btn="en">English</button>
+        <button class="lang-btn" type="button" data-lang-btn="hi">हिन्दी</button>
+        <button class="lang-btn" type="button" data-lang-btn="te">తెలుగు</button>
+      </div>
+    </div>
+    <section class="card bg-white/95 rounded-3xl shadow-2xl overflow-hidden">
+      <div class="h-2 bg-gradient-to-r from-gov-primary via-gov-yellow to-gov-secondary"></div>
+
+      <div class="p-10">
+        <div class="text-center mb-8">
+          <div class="text-6xl mb-3">🇮🇳</div>
+          <div class="font-hindi text-3xl font-extrabold text-gov-accent" data-i18n="registration.heading">Citizen Registration</div>
+          <div class="font-body text-xl font-bold text-gov-primary uppercase tracking-widest mt-2" data-i18n="registration.page_title">User Registration</div>
+          <div class="text-gray-600 mt-3 italic" data-i18n="registration.subtitle">Secure your safety in 2 simple steps</div>
+        </div>
+
+        <div class="flex items-center justify-center gap-4 mb-8">
+          <div id="step1" class="w-12 h-12 rounded-full bg-gov-primary text-white flex items-center justify-center font-extrabold">1</div>
+          <div id="line1" class="w-16 h-1 rounded bg-gray-300"></div>
+          <div id="step2" class="w-12 h-12 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-extrabold">2</div>
+          <div id="line2" class="w-16 h-1 rounded bg-gray-300"></div>
+          <div id="step3" class="w-12 h-12 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-extrabold">✓</div>
+        </div>
+
+        <div id="sectionRegister">
+          <form id="regForm" class="space-y-5" novalidate>
+            <div>
+              <label class="block font-bold text-gov-accent uppercase tracking-wide" data-i18n="registration.full_name">Full Name</label>
+              <input id="fullName" type="text" class="mt-2 w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-lg focus-visible" required data-i18n-placeholder="registration.full_name_ph" placeholder="Enter your full name" />
+            </div>
+
+            <div>
+              <label class="block font-bold text-gov-accent uppercase tracking-wide">Email</label>
+              <input id="email" type="email" class="mt-2 w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-lg focus-visible" required placeholder="Enter your email" />
+            </div>
+
+            <div>
+              <label class="block font-bold text-gov-accent uppercase tracking-wide" data-i18n="registration.mobile">Mobile Number</label>
+              <div class="mt-2 flex gap-3">
+                <div class="w-24 bg-gov-cream border-2 border-gray-200 rounded-xl flex items-center justify-center font-extrabold text-gov-accent">+91</div>
+                <input id="phoneNumber" type="tel" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" class="flex-1 border-2 border-gray-200 rounded-xl px-4 py-3 text-lg focus-visible" required data-i18n-placeholder="registration.mobile_ph" placeholder="Enter 10-digit mobile number" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-bold text-gov-accent uppercase tracking-wide" data-i18n="registration.state">State</label>
+              <select id="state" class="mt-2 w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-lg focus-visible" required>
+                <option value="" data-i18n="registration.state_ph">Select your state</option>
+                <option value="AP">Andhra Pradesh</option>
+                <option value="TS">Telangana</option>
+                <option value="KA">Karnataka</option>
+                <option value="TN">Tamil Nadu</option>
+                <option value="MH">Maharashtra</option>
+                <option value="UP">Uttar Pradesh</option>
+                <option value="WB">West Bengal</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-bold text-gov-accent uppercase tracking-wide" data-i18n="registration.district">District</label>
+              <input id="district" type="text" class="mt-2 w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-lg focus-visible" required data-i18n-placeholder="registration.district_ph" placeholder="Enter your district" />
+            </div>
+
+            <div>
+              <label class="block font-bold text-gov-accent uppercase tracking-wide">Current Location (GPS)</label>
+              <input id="gpsAddress" type="text" class="mt-2 w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-lg focus-visible bg-gray-50" placeholder="Allow location permission to auto-fill" readonly />
+              <div class="mt-2 text-xs text-gray-600">Live tracking updates when you move (if location is enabled).</div>
+            </div>
+
+            <label class="flex gap-3 text-sm text-gray-700 leading-relaxed">
+              <input id="terms" type="checkbox" class="mt-1 w-5 h-5" required />
+              <span data-i18n="registration.consent">I agree to share my location for disaster alerts and consent to receive emergency SMS notifications.</span>
+            </label>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-gov-primary to-gov-warning text-white font-extrabold text-lg py-4 rounded-xl shadow-lg hover:scale-[1.01] transition focus-visible" data-i18n="registration.send_otp">Send OTP</button>
+          </form>
+
+          <div class="text-center mt-6">
+            <a href="index.html" class="text-gov-accent font-bold hover:text-gov-primary" data-i18n="common.back_to_home">← Back to Home</a>
+          </div>
+        </div>
+
+        <div id="sectionOtp" class="hidden">
+          <div class="bg-blue-50 border-l-4 border-gov-safe rounded-xl p-4 text-gray-700">
+            <span data-i18n="registration.otp_sent">OTP sent to</span> <span class="font-extrabold text-gov-accent" id="displayEmail">—</span>
+          </div>
+
+          <div class="flex justify-center gap-3 mt-6">
+            <input class="otp-box border-2 border-gray-200 rounded-xl focus-visible" maxlength="1" id="otp1" />
+            <input class="otp-box border-2 border-gray-200 rounded-xl focus-visible" maxlength="1" id="otp2" />
+            <input class="otp-box border-2 border-gray-200 rounded-xl focus-visible" maxlength="1" id="otp3" />
+            <input class="otp-box border-2 border-gray-200 rounded-xl focus-visible" maxlength="1" id="otp4" />
+            <input class="otp-box border-2 border-gray-200 rounded-xl focus-visible" maxlength="1" id="otp5" />
+            <input class="otp-box border-2 border-gray-200 rounded-xl focus-visible" maxlength="1" id="otp6" />
+          </div>
+
+          <div class="text-center mt-5 font-extrabold text-gov-alert">
+            ⏱️ <span data-i18n="registration.time_remaining">Time remaining:</span> <span id="countdown">02:00</span>
+          </div>
+
+          <div class="text-center mt-4">
+            <button id="resendBtn" type="button" class="font-bold text-gov-primary opacity-50 cursor-not-allowed" disabled data-i18n="registration.resend">Resend OTP</button>
+          </div>
+
+          <div class="mt-6 space-y-3">
+            <button id="verifyBtn" type="button" class="w-full bg-gradient-to-r from-gov-primary to-gov-warning text-white font-extrabold text-lg py-4 rounded-xl shadow-lg hover:scale-[1.01] transition focus-visible" data-i18n="registration.verify">Verify OTP</button>
+            <button id="changeBtn" type="button" class="w-full border-2 border-gov-accent text-gov-accent font-extrabold text-lg py-4 rounded-xl hover:bg-gov-accent hover:text-white transition focus-visible" data-i18n="registration.change_number">Change Number</button>
+          </div>
+        </div>
+
+        <div id="sectionPin" class="hidden">
+          <div class="bg-blue-50 border-l-4 border-gov-safe rounded-xl p-4 text-gray-700">
+            Set a 4-digit PIN. Next time you can login directly with PIN.
+          </div>
+
+          <div class="mt-6">
+            <label class="block font-bold text-gov-accent uppercase tracking-wide">4-digit PIN *</label>
+            <input id="setPin" inputmode="numeric" maxlength="4" class="mt-2 w-full rounded-xl border-2 border-gov-accent/30 px-4 py-3 text-center font-extrabold tracking-[0.4em] focus-visible" placeholder="••••" />
+          </div>
+
+          <div class="mt-4">
+            <label class="block font-bold text-gov-accent uppercase tracking-wide">Confirm PIN *</label>
+            <input id="setPin2" inputmode="numeric" maxlength="4" class="mt-2 w-full rounded-xl border-2 border-gov-accent/30 px-4 py-3 text-center font-extrabold tracking-[0.4em] focus-visible" placeholder="••••" />
+          </div>
+
+          <button id="savePinBtn" type="button" class="mt-6 w-full bg-gradient-to-r from-gov-safe to-emerald-700 text-white font-extrabold text-lg py-4 rounded-xl shadow-lg hover:scale-[1.01] transition focus-visible">Save PIN & Continue</button>
+        </div>
+
+        <div id="sectionSuccess" class="hidden text-center">
+          <div class="text-7xl mb-4">✅</div>
+          <div class="text-3xl font-extrabold text-gov-safe" data-i18n="registration.success_title">Registration Successful!</div>
+          <div class="text-gray-600 mt-3 leading-relaxed" data-i18n="registration.success_msg">Welcome to National Disaster Management System.</div>
+          <button id="goDashboard" type="button" class="mt-6 w-full bg-gradient-to-r from-gov-safe to-emerald-700 text-white font-extrabold text-lg py-4 rounded-xl shadow-lg hover:scale-[1.01] transition focus-visible" data-i18n="registration.go_dashboard">Go to Dashboard</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./translations.js"></script>
+  <script src="./i18n.js"></script>
+  <script>
+    let timerId;
+    let timeLeft = 120;
+
+    function showToast(message, kind = 'info') {
+      const host = document.getElementById('toastHost');
+      if (!host) return;
+      const colors = {
+        success: 'border-gov-safe bg-emerald-950/80',
+        error: 'border-gov-alert bg-red-950/80',
+        info: 'border-gov-yellow bg-slate-950/80',
+      };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto w-full sm:w-96 rounded-2xl border-2 ${colors[kind] || colors.info} text-white px-4 py-3 shadow-2xl backdrop-blur`;
+      el.innerHTML = `<div class="font-extrabold">${kind === 'error' ? '⚠️' : kind === 'success' ? '✅' : 'ℹ️'} ${String(message || '')}</div>`;
+      host.appendChild(el);
+      setTimeout(() => {
+        try { el.remove(); } catch { /* ignore */ }
+      }, 4200);
+    }
+
+    const sectionRegister = document.getElementById('sectionRegister');
+    const sectionOtp = document.getElementById('sectionOtp');
+    const sectionPin = document.getElementById('sectionPin');
+    const sectionSuccess = document.getElementById('sectionSuccess');
+
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const line1 = document.getElementById('line1');
+    const line2 = document.getElementById('line2');
+
+    const phoneInput = document.getElementById('phoneNumber');
+    const otpBoxes = ['otp1','otp2','otp3','otp4','otp5','otp6'].map(id => document.getElementById(id));
+
+    const emailInput = document.getElementById('email');
+
+    const gpsAddressEl = document.getElementById('gpsAddress');
+
+    function setGps(lat, lng, address) {
+      if (Number.isFinite(lat) && Number.isFinite(lng)) {
+        localStorage.setItem('userLat', String(lat));
+        localStorage.setItem('userLng', String(lng));
+        localStorage.setItem('pendingLat', String(lat));
+        localStorage.setItem('pendingLng', String(lng));
+      }
+      if (address) {
+        localStorage.setItem('pendingAddress', String(address));
+        if (gpsAddressEl) gpsAddressEl.value = String(address);
+      }
+    }
+
+    let lastGeoTs = 0;
+    let lastGeoKey = '';
+    async function reverseGeocode(lat, lng) {
+      const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
+      const now = Date.now();
+      if (key === lastGeoKey && (now - lastGeoTs) < 30000) return;
+      if ((now - lastGeoTs) < 6000) return;
+      lastGeoTs = now;
+      lastGeoKey = key;
+
+      try {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lng)}`;
+        const r = await fetch(url);
+        const data = await r.json().catch(() => ({}));
+        const addr = String(data?.display_name || '').trim();
+        if (addr) setGps(lat, lng, addr);
+      } catch {
+        // ignore
+      }
+    }
+
+    (function initGpsOnRegistration() {
+      try {
+        const cachedAddr = localStorage.getItem('pendingAddress') || '';
+        if (cachedAddr && gpsAddressEl) gpsAddressEl.value = cachedAddr;
+
+        const lat = Number(localStorage.getItem('pendingLat') || localStorage.getItem('userLat') || '');
+        const lng = Number(localStorage.getItem('pendingLng') || localStorage.getItem('userLng') || '');
+        if (Number.isFinite(lat) && Number.isFinite(lng)) {
+          setGps(lat, lng, cachedAddr);
+        }
+
+        if (!('geolocation' in navigator)) return;
+
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const { latitude, longitude } = pos.coords;
+            setGps(latitude, longitude);
+            reverseGeocode(latitude, longitude);
+          },
+          () => {
+            // ignore
+          },
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 }
+        );
+
+        navigator.geolocation.watchPosition(
+          (pos) => {
+            const { latitude, longitude } = pos.coords;
+            setGps(latitude, longitude);
+            reverseGeocode(latitude, longitude);
+          },
+          () => {
+            // ignore
+          },
+          { enableHighAccuracy: true, timeout: 20000, maximumAge: 10000 }
+        );
+      } catch {
+        // ignore
+      }
+    })();
+
+    // Toast host
+    (function initToastHost() {
+      if (document.getElementById('toastHost')) return;
+      const host = document.createElement('div');
+      host.id = 'toastHost';
+      host.className = 'fixed top-5 right-5 z-[9999] flex flex-col gap-3 items-end pointer-events-none';
+      document.body.appendChild(host);
+    })();
+
+    function setStep(active) {
+      const activeCls = ['bg-gov-primary','text-white'];
+      const doneCls = ['bg-gov-safe','text-white'];
+      const idleCls = ['bg-gray-300','text-gray-500'];
+
+      [step1, step2, step3].forEach(s => { s.classList.remove(...activeCls, ...doneCls, ...idleCls); });
+
+      if (active === 1) {
+        step1.classList.add(...activeCls);
+        step2.classList.add(...idleCls);
+        step3.classList.add(...idleCls);
+        line1.className = 'w-16 h-1 rounded bg-gray-300';
+        line2.className = 'w-16 h-1 rounded bg-gray-300';
+      }
+
+      if (active === 2) {
+        step1.classList.add(...doneCls);
+        step2.classList.add(...activeCls);
+        step3.classList.add(...idleCls);
+        line1.className = 'w-16 h-1 rounded bg-gov-primary';
+        line2.className = 'w-16 h-1 rounded bg-gray-300';
+      }
+
+      if (active === 3) {
+        step1.classList.add(...doneCls);
+        step2.classList.add(...doneCls);
+        step3.classList.add(...activeCls);
+        line1.className = 'w-16 h-1 rounded bg-gov-primary';
+        line2.className = 'w-16 h-1 rounded bg-gov-primary';
+      }
+    }
+
+    function startTimer() {
+      timeLeft = 120;
+      const resendBtn = document.getElementById('resendBtn');
+      resendBtn.disabled = true;
+      resendBtn.classList.add('opacity-50','cursor-not-allowed');
+      resendBtn.classList.remove('opacity-100','cursor-pointer');
+
+      clearInterval(timerId);
+      timerId = setInterval(() => {
+        timeLeft -= 1;
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        document.getElementById('countdown').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        if (timeLeft <= 0) {
+          clearInterval(timerId);
+          resendBtn.disabled = false;
+          resendBtn.classList.remove('opacity-50','cursor-not-allowed');
+          resendBtn.classList.add('opacity-100','cursor-pointer');
+        }
+      }, 1000);
+    }
+
+    document.getElementById('regForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const phone = phoneInput.value.trim();
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const state = document.getElementById('state').value;
+      const district = document.getElementById('district').value.trim();
+      const terms = document.getElementById('terms').checked;
+
+      if (!name) {
+        showToast('Please enter your full name', 'error');
+        document.getElementById('fullName').focus();
+        return;
+      }
+
+      if (phone.length !== 10) {
+        showToast('Please enter a valid 10-digit mobile number', 'error');
+        phoneInput.focus();
+        return;
+      }
+
+      if (!email || !email.includes('@')) {
+        showToast('Please enter a valid email address', 'error');
+        document.getElementById('email').focus();
+        return;
+      }
+
+      if (!state) {
+        showToast('Please select your state', 'error');
+        document.getElementById('state').focus();
+        return;
+      }
+
+      if (!district) {
+        showToast('Please enter your district', 'error');
+        document.getElementById('district').focus();
+        return;
+      }
+
+      if (!terms) {
+        showToast('Please accept the consent/terms to proceed', 'error');
+        document.getElementById('terms').focus();
+        return;
+      }
+
+      const safeEmail = String(emailInput?.value || '').trim().toLowerCase();
+      document.getElementById('displayEmail').textContent = safeEmail || '—';
+
+      sectionRegister.classList.add('hidden');
+      sectionOtp.classList.remove('hidden');
+      setStep(2);
+
+      startTimer();
+      fetch('/api/auth/request-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, phone, name })
+      })
+      .then(async (r) => {
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok || !data.ok) {
+          throw new Error(data.error || 'Failed to send OTP');
+        }
+        localStorage.setItem('pendingEmail', email);
+        localStorage.setItem('pendingName', name);
+        localStorage.setItem('pendingPhone', phone);
+        localStorage.setItem('pendingState', state);
+        localStorage.setItem('pendingDistrict', district);
+        showToast(`OTP sent to ${email}. Please check inbox/spam.`, 'success');
+      })
+      .catch((err) => {
+        showToast(err?.message || 'Failed to send OTP', 'error');
+        sectionOtp.classList.add('hidden');
+        sectionRegister.classList.remove('hidden');
+        setStep(1);
+      });
+    });
+
+    otpBoxes.forEach((box, idx) => {
+      box.addEventListener('input', () => {
+        box.value = box.value.replace(/[^0-9]/g, '');
+        if (box.value && idx < otpBoxes.length - 1) otpBoxes[idx + 1].focus();
+      });
+
+      box.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !box.value && idx > 0) otpBoxes[idx - 1].focus();
+      });
+    });
+
+    document.getElementById('resendBtn').addEventListener('click', () => {
+      if (timeLeft > 0) return;
+      const email = localStorage.getItem('pendingEmail') || document.getElementById('email')?.value?.trim() || '';
+      const name = localStorage.getItem('pendingName') || document.getElementById('fullName')?.value?.trim() || '';
+      const phone = localStorage.getItem('pendingPhone') || phoneInput.value.trim();
+      if (!email || !phone) {
+        showToast('Missing email/phone. Please go back and try again.', 'error');
+        return;
+      }
+
+      startTimer();
+      fetch('/api/auth/request-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, phone, name })
+      }).then(async (r) => {
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok || !data.ok) throw new Error(data.error || 'Failed to resend OTP');
+        showToast('OTP resent to your email. Please check inbox/spam.', 'success');
+      }).catch((err) => {
+        showToast(err?.message || 'Failed to resend OTP', 'error');
+      });
+    });
+
+    document.getElementById('verifyBtn').addEventListener('click', () => {
+      const otp = otpBoxes.map(b => b.value).join('');
+      if (otp.length !== 6) {
+        showToast('Please enter complete 6-digit OTP', 'error');
+        return;
+      }
+
+      const email = localStorage.getItem('pendingEmail') || document.getElementById('email')?.value?.trim() || '';
+      const phone = localStorage.getItem('pendingPhone') || phoneInput.value.trim();
+
+      fetch('/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, phone, otp })
+      }).then(async (r) => {
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok || !data.ok) throw new Error(data.error || 'Invalid OTP');
+
+        clearInterval(timerId);
+
+        const name = localStorage.getItem('pendingName') || document.getElementById('fullName').value.trim();
+        const state = localStorage.getItem('pendingState') || document.getElementById('state').value;
+        const district = localStorage.getItem('pendingDistrict') || document.getElementById('district').value.trim();
+
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userPhone', phone);
+        localStorage.setItem('userEmail', email);
+
+        // Persist a user record for the admin panel (demo localStorage DB)
+        const usersRaw = localStorage.getItem('ndms_users') || '[]';
+        let users;
+        try {
+          users = JSON.parse(usersRaw);
+          if (!Array.isArray(users)) users = [];
+        } catch {
+          users = [];
+        }
+
+        const existingIdx = users.findIndex(u => String(u?.phone || '') === String(phone));
+        const nowIso = new Date().toISOString();
+        const record = {
+          id: existingIdx >= 0 ? (users[existingIdx]?.id || `U-${phone}`) : `U-${phone}`,
+          name,
+          phone,
+          email,
+          state,
+          district,
+          location: `${district}${state ? ', ' + state : ''}`,
+          registeredAt: existingIdx >= 0 ? (users[existingIdx]?.registeredAt || nowIso) : nowIso,
+          status: existingIdx >= 0 ? (users[existingIdx]?.status || 'active') : 'active'
+        };
+
+        if (existingIdx >= 0) users[existingIdx] = { ...users[existingIdx], ...record };
+        else users.unshift(record);
+        localStorage.setItem('ndms_users', JSON.stringify(users));
+
+        const lat = Number(localStorage.getItem('userLat') || '');
+        const lng = Number(localStorage.getItem('userLng') || '');
+
+        fetch('/api/users/upsert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...record,
+            lat: Number.isFinite(lat) ? lat : undefined,
+            lng: Number.isFinite(lng) ? lng : undefined,
+          })
+        }).catch(() => {
+          // ignore (admin panel can still use localStorage fallback)
+        });
+
+        localStorage.removeItem('pendingEmail');
+        localStorage.removeItem('pendingName');
+        localStorage.removeItem('pendingPhone');
+        localStorage.removeItem('pendingState');
+        localStorage.removeItem('pendingDistrict');
+
+        sectionOtp.classList.add('hidden');
+        sectionPin.classList.remove('hidden');
+        document.getElementById('setPin')?.focus();
+      }).catch((err) => {
+        showToast(err?.message || 'Invalid OTP', 'error');
+        otpBoxes.forEach(b => (b.value = ''));
+        otpBoxes[0]?.focus();
+      });
+    });
+
+    document.getElementById('savePinBtn').addEventListener('click', () => {
+      const pin1 = String(document.getElementById('setPin')?.value || '').replace(/\D+/g, '').slice(0, 4);
+      const pin2 = String(document.getElementById('setPin2')?.value || '').replace(/\D+/g, '').slice(0, 4);
+      if (pin1.length !== 4 || pin2.length !== 4) {
+        showToast('Please enter a valid 4-digit PIN in both fields', 'error');
+        return;
+      }
+      if (pin1 !== pin2) {
+        showToast('PIN does not match', 'error');
+        return;
+      }
+
+      const email = localStorage.getItem('userEmail') || '';
+      const phone = localStorage.getItem('userPhone') || '';
+
+      fetch('/api/auth/set-pin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, phone, pin: pin1 })
+      }).then(async (r) => {
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok || !data.ok) throw new Error(data.error || 'Failed to set PIN');
+
+        localStorage.setItem('isRegistered', 'true');
+        localStorage.setItem('ndms_session', JSON.stringify({
+          phone,
+          email,
+          time: new Date().toISOString()
+        }));
+
+        sectionPin.classList.add('hidden');
+        sectionSuccess.classList.remove('hidden');
+        setStep(3);
+
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 800);
+      }).catch((err) => {
+        showToast(err?.message || 'Failed to set PIN', 'error');
+      });
+    });
+
+    document.getElementById('changeBtn').addEventListener('click', () => {
+      clearInterval(timerId);
+      otpBoxes.forEach(b => (b.value = ''));
+      sectionOtp.classList.add('hidden');
+      sectionRegister.classList.remove('hidden');
+      setStep(1);
+    });
+
+    document.getElementById('goDashboard').addEventListener('click', () => {
+      window.location.href = 'dashboard.html';
+    });
+
+    // init step
+    setStep(1);
+  </script>
+</body>
+</html>

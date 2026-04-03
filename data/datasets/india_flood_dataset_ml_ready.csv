@@ -1,0 +1,1001 @@
+date,state,district,latitude,longitude,rainfall_mm,river_level_m,flood_severity
+2023-11-02,Kerala,Guntur,11.9956,89.5436,255.7,11.02,Low
+2024-12-21,Andhra Pradesh,East Godavari,18.7107,87.8787,239.06,7.66,Moderate
+2024-10-18,Andhra Pradesh,Kurnool,21.5503,83.0088,219.15,8.82,Severe
+2024-06-03,Telangana,East Godavari,9.9619,91.2317,187.67,10.78,Moderate
+2024-11-11,Assam,Srikakulam,9.1302,89.4155,106.26,5.08,Severe
+2024-11-24,Andhra Pradesh,Srikakulam,27.8719,74.0942,65.95,11.87,Severe
+2024-03-15,Bihar,Krishna,24.5507,91.7233,199.58,10.8,Moderate
+2024-09-29,Tamil Nadu,Kurnool,12.8461,81.0934,262.44,9.31,Moderate
+2024-10-16,Uttar Pradesh,Guntur,20.7397,75.1172,277.9,8.83,Low
+2024-10-01,Maharashtra,Kurnool,11.236,81.5166,213.24,10.9,Moderate
+2024-07-21,Andhra Pradesh,East Godavari,24.4371,76.8619,32.68,7.59,Severe
+2023-08-29,Telangana,Guntur,14.3844,87.8515,172.78,10.14,Low
+2024-01-21,Andhra Pradesh,Srikakulam,21.6125,76.7556,292.39,3.15,Moderate
+2023-06-09,Bihar,Visakhapatnam,13.7455,74.1652,342.91,7.52,Moderate
+2024-09-16,Bihar,Krishna,16.9472,85.0238,128.95,1.73,High
+2024-08-31,Telangana,Krishna,13.2553,87.3532,86.64,7.9,High
+2023-11-17,Telangana,Krishna,16.7792,80.3372,246.51,8.53,High
+2023-09-03,Uttar Pradesh,West Godavari,18.3734,90.0151,122.86,2.09,High
+2024-08-20,Bihar,West Godavari,8.9678,91.2377,190.63,11.3,Severe
+2023-11-24,Bihar,Krishna,17.8512,88.0223,229.43,6.64,Moderate
+2023-03-13,Assam,Srikakulam,9.579,80.0449,159.74,6.53,Low
+2023-02-01,Uttar Pradesh,Nellore,19.6477,86.7948,28.24,9.58,High
+2023-10-16,Bihar,East Godavari,11.1529,90.6287,180.48,4.59,High
+2023-06-15,Uttar Pradesh,Srikakulam,10.3566,84.6932,125.26,6.8,Moderate
+2023-12-26,Andhra Pradesh,Kurnool,14.8297,90.8711,191.91,4.15,Low
+2023-11-12,Telangana,Srikakulam,22.1493,80.3442,228.34,6.66,Moderate
+2024-12-28,Bihar,Visakhapatnam,8.3543,86.9021,147.11,2.14,Moderate
+2024-09-16,Assam,Visakhapatnam,22.2749,90.4276,94.11,11.57,High
+2023-01-02,Maharashtra,Nellore,13.2661,81.1164,329.72,7.72,High
+2024-10-12,Maharashtra,East Godavari,11.5619,79.6174,81.03,1.59,Moderate
+2024-04-26,Telangana,East Godavari,23.0363,87.5796,225.77,10.03,Severe
+2023-09-12,Assam,Kurnool,22.0118,80.0368,145.58,4.95,High
+2024-01-13,Uttar Pradesh,Nellore,27.2822,75.4513,144.87,10.56,High
+2023-03-27,Maharashtra,West Godavari,15.2284,82.6255,240.28,1.63,Low
+2023-08-09,Uttar Pradesh,Visakhapatnam,21.917,83.1605,330.68,10.54,Low
+2024-11-23,Tamil Nadu,Nellore,13.983,91.0296,149.94,8.23,Severe
+2024-05-24,Tamil Nadu,Krishna,25.4377,88.3001,123.79,4.03,Moderate
+2024-01-04,Uttar Pradesh,East Godavari,22.6729,91.1604,316.34,1.36,Severe
+2024-10-12,Kerala,Srikakulam,16.9236,81.4444,341.07,1.77,Severe
+2024-07-07,Assam,Guntur,12.4101,87.9329,135.52,9.55,Moderate
+2023-05-25,Uttar Pradesh,Srikakulam,9.5074,75.3565,167.77,4.27,High
+2023-07-05,Bihar,West Godavari,27.605,82.9747,18.59,7.27,Low
+2024-04-21,Uttar Pradesh,Srikakulam,14.407,80.7782,226.79,4.95,Severe
+2024-05-31,Bihar,Srikakulam,18.9217,80.4753,150.74,5.55,Severe
+2024-03-08,Maharashtra,Srikakulam,23.8981,87.7915,30.17,8.3,High
+2023-05-14,Kerala,Nellore,23.042,82.9942,335.77,8.56,High
+2024-11-18,Telangana,Visakhapatnam,15.8426,84.6666,113.29,8.17,Moderate
+2024-07-11,Andhra Pradesh,Krishna,20.3198,74.8972,220.22,11.36,Low
+2023-05-18,Assam,Srikakulam,8.0312,76.3204,74.22,11.98,Moderate
+2024-05-22,Assam,Kurnool,24.5654,89.5127,191.55,6.49,Moderate
+2023-08-02,Telangana,Srikakulam,11.1255,77.5119,219.18,5.77,Moderate
+2024-12-14,Uttar Pradesh,Krishna,22.0144,80.2156,259.32,7.37,Severe
+2023-03-01,Telangana,Nellore,11.1041,78.6268,41.82,11.5,High
+2024-03-10,Maharashtra,Srikakulam,16.5201,81.2908,298.03,2.31,Moderate
+2024-10-24,Kerala,West Godavari,27.9732,84.0406,86.59,1.78,High
+2024-06-20,Maharashtra,East Godavari,16.0351,77.5012,182.19,1.61,Low
+2024-03-07,Andhra Pradesh,Srikakulam,24.0054,91.1444,192.05,8.23,Low
+2024-01-12,Maharashtra,Srikakulam,9.5732,76.6011,104.44,6.5,Severe
+2023-02-16,Uttar Pradesh,Srikakulam,14.9631,75.7082,82.64,10.53,Low
+2024-12-07,Uttar Pradesh,Visakhapatnam,22.7728,75.8818,303.33,3.1,Severe
+2023-11-21,Uttar Pradesh,East Godavari,11.543,75.7635,306.42,11.71,Moderate
+2024-04-03,Uttar Pradesh,West Godavari,26.2827,81.5396,288.74,4.23,Severe
+2023-01-09,Tamil Nadu,West Godavari,16.7187,89.559,267.29,3.52,Moderate
+2024-12-10,Uttar Pradesh,Kurnool,27.973,76.5527,293.2,11.44,High
+2023-10-13,Telangana,West Godavari,27.5817,84.3174,44.75,7.48,Moderate
+2023-03-13,Tamil Nadu,East Godavari,13.8671,73.1105,118.17,4.56,Moderate
+2023-10-22,Bihar,Kurnool,13.3389,73.9563,301.75,1.93,Low
+2024-03-03,Bihar,Guntur,24.0525,86.2372,205.49,1.49,High
+2024-02-29,Maharashtra,West Godavari,27.7312,76.0809,90.65,7.86,Low
+2024-01-02,Maharashtra,Visakhapatnam,12.1577,84.0033,297.61,5.37,Moderate
+2023-01-15,Assam,Kurnool,17.3507,76.6423,22.04,10.49,Severe
+2024-04-29,Kerala,Guntur,13.6742,75.2578,42.44,4.04,Severe
+2023-12-24,Uttar Pradesh,West Godavari,9.8951,87.6866,327.86,1.99,Low
+2024-10-12,Telangana,West Godavari,22.1138,88.9398,84.15,10.05,Severe
+2024-02-05,Telangana,West Godavari,13.2368,77.4965,204.11,5.88,High
+2023-05-27,Uttar Pradesh,Srikakulam,9.6421,75.3542,169.46,11.16,Moderate
+2023-04-13,Uttar Pradesh,West Godavari,11.8357,91.7455,241.78,5.04,High
+2024-04-04,Kerala,Guntur,27.6745,91.2541,267.04,7.47,Low
+2023-03-14,Telangana,Nellore,15.7407,82.6004,264.87,3.91,Severe
+2024-06-14,Telangana,East Godavari,22.9217,75.1423,28.02,11.96,High
+2023-04-26,Tamil Nadu,Krishna,21.6209,91.5649,326.54,7.25,Severe
+2023-06-18,Bihar,Kurnool,27.4879,73.5458,175.72,11.28,Moderate
+2023-09-08,Uttar Pradesh,Visakhapatnam,22.9232,83.0663,45.18,10.81,Moderate
+2023-12-30,Assam,East Godavari,10.7517,78.2546,206.31,6.14,Low
+2024-05-23,Telangana,Kurnool,27.8915,73.389,155.28,8.94,Severe
+2023-08-10,Andhra Pradesh,Kurnool,14.8746,90.8924,298.8,6.89,Moderate
+2023-01-22,Uttar Pradesh,East Godavari,22.4175,83.9995,66.94,10.63,Low
+2023-06-19,Bihar,Krishna,16.0589,74.3343,21.7,3.04,Low
+2024-10-29,Tamil Nadu,Guntur,10.6602,76.9414,16.68,4.63,Moderate
+2023-06-02,Bihar,Guntur,16.1048,75.4366,217.04,1.26,Moderate
+2023-06-27,Kerala,Nellore,19.1869,73.6887,59.16,7.39,Moderate
+2023-08-15,Telangana,East Godavari,21.8332,85.6865,221.98,6.95,Severe
+2023-11-29,Uttar Pradesh,Srikakulam,27.8263,80.9228,151.26,10.74,Severe
+2024-09-22,Kerala,Srikakulam,27.0236,86.5165,247.9,6.78,Low
+2023-09-25,Assam,Nellore,19.0512,84.668,7.53,11.83,Severe
+2024-07-26,Telangana,Nellore,10.8474,91.1098,34.51,2.18,Severe
+2024-04-15,Uttar Pradesh,West Godavari,22.9227,91.1882,324.14,1.07,Severe
+2023-11-14,Andhra Pradesh,Visakhapatnam,10.8454,89.0132,150.67,2.54,High
+2024-02-26,Bihar,Visakhapatnam,24.3163,80.892,119.7,1.29,Severe
+2024-10-27,Assam,Nellore,26.0078,80.504,156.03,1.47,Moderate
+2024-07-29,Uttar Pradesh,West Godavari,26.9127,79.1405,56.32,8.35,High
+2023-12-09,Maharashtra,Krishna,8.715,90.2329,218.39,5.84,Low
+2023-03-22,Telangana,Visakhapatnam,14.2755,90.55,158.8,8.7,Moderate
+2024-05-21,Andhra Pradesh,Nellore,16.8775,82.3483,160.0,10.65,Severe
+2023-06-24,Maharashtra,Kurnool,15.1743,74.8647,84.31,2.11,High
+2023-10-18,Telangana,Visakhapatnam,26.4403,83.8302,292.4,3.11,Severe
+2023-09-14,Assam,Guntur,27.095,79.7555,86.89,6.08,Moderate
+2023-01-18,Telangana,Nellore,27.5227,84.7596,204.78,5.01,Low
+2024-10-29,Bihar,West Godavari,22.9469,85.5569,225.27,3.57,Moderate
+2023-08-29,Tamil Nadu,Krishna,14.6343,89.5441,248.07,9.96,Moderate
+2023-12-21,Maharashtra,Krishna,18.4949,90.2399,25.49,2.0,Severe
+2023-06-14,Uttar Pradesh,Visakhapatnam,16.1784,78.3332,116.62,3.41,High
+2023-08-14,Tamil Nadu,West Godavari,26.5748,87.294,194.78,8.84,Low
+2024-03-05,Maharashtra,Krishna,22.0012,80.298,211.99,7.53,Severe
+2023-12-09,Assam,Krishna,10.0162,78.0364,78.91,10.64,Moderate
+2024-09-15,Telangana,Krishna,21.2336,73.3065,187.76,1.5,Low
+2023-10-15,Kerala,Nellore,10.928,80.182,28.22,10.01,Moderate
+2023-03-12,Uttar Pradesh,West Godavari,10.6833,82.7312,66.32,3.39,Moderate
+2024-09-06,Tamil Nadu,East Godavari,8.9922,87.2344,237.82,9.26,Moderate
+2024-11-23,Bihar,Krishna,16.3459,83.3693,143.3,2.87,Severe
+2024-03-09,Maharashtra,East Godavari,20.8398,79.5655,161.18,7.09,Severe
+2024-03-27,Assam,Visakhapatnam,20.306,80.4314,332.02,7.99,Severe
+2024-07-20,Uttar Pradesh,West Godavari,14.9551,84.5619,289.65,2.47,Moderate
+2024-03-09,Maharashtra,Kurnool,12.8687,73.4242,323.33,5.95,Low
+2023-01-22,Andhra Pradesh,Guntur,17.4031,89.4934,256.03,10.16,Severe
+2023-12-06,Kerala,Krishna,26.2085,75.542,108.34,9.07,Severe
+2023-04-14,Kerala,Nellore,11.8481,86.2446,110.15,1.73,High
+2023-06-16,Assam,Srikakulam,27.7684,75.636,61.46,4.63,High
+2023-12-08,Assam,Guntur,20.2151,91.4802,12.57,8.87,Severe
+2023-06-18,Bihar,Guntur,23.5595,79.5542,185.67,9.67,Moderate
+2024-02-22,Telangana,East Godavari,13.0411,74.9791,227.45,7.7,Low
+2023-10-29,Maharashtra,East Godavari,20.9065,80.1329,114.14,6.85,Low
+2024-06-29,Kerala,Guntur,15.5333,74.4842,137.42,10.88,Low
+2023-02-10,Andhra Pradesh,East Godavari,14.1482,89.3787,216.87,2.07,Low
+2024-12-18,Uttar Pradesh,West Godavari,20.9589,84.16,216.61,4.71,Severe
+2024-02-08,Bihar,Krishna,24.2089,76.2455,167.24,2.86,Severe
+2023-02-18,Tamil Nadu,East Godavari,12.0322,79.8993,68.2,3.69,High
+2023-09-19,Andhra Pradesh,Visakhapatnam,16.2584,89.4096,244.57,6.52,Low
+2024-07-06,Telangana,West Godavari,25.1965,72.5817,300.1,10.12,Severe
+2024-08-13,Kerala,Visakhapatnam,25.2773,79.0935,71.11,11.93,High
+2024-01-15,Bihar,Kurnool,13.8919,78.8711,191.39,9.92,High
+2024-05-26,Maharashtra,West Godavari,11.6947,90.468,47.32,8.05,Severe
+2024-04-26,Andhra Pradesh,Guntur,20.5447,72.7176,137.58,4.48,High
+2023-02-12,Tamil Nadu,East Godavari,13.4086,75.1192,319.08,10.36,High
+2024-03-30,Maharashtra,Kurnool,27.4639,72.4618,31.52,7.1,Low
+2024-10-29,Kerala,East Godavari,15.4845,76.3427,210.29,4.04,Low
+2024-07-01,Assam,Krishna,17.0853,83.8426,74.86,11.93,High
+2023-09-02,Andhra Pradesh,Kurnool,27.0075,84.056,107.76,11.91,Moderate
+2024-05-30,Tamil Nadu,Srikakulam,23.2907,79.7748,31.22,11.7,Low
+2024-11-22,Bihar,Krishna,15.3855,77.9444,314.11,3.01,Severe
+2024-11-25,Maharashtra,Nellore,22.3654,87.0046,76.08,9.42,Moderate
+2024-04-03,Telangana,East Godavari,26.0427,81.6355,334.94,5.01,High
+2023-08-16,Bihar,Kurnool,25.8911,91.7777,286.79,3.66,High
+2023-11-09,Kerala,Kurnool,18.732,83.9928,78.55,9.04,Severe
+2023-10-24,Uttar Pradesh,Guntur,20.9259,74.8548,148.5,7.44,Moderate
+2024-03-16,Tamil Nadu,Guntur,20.869,79.0466,51.93,7.17,Moderate
+2023-07-10,Telangana,Kurnool,9.9065,90.3766,224.87,8.4,High
+2023-08-04,Assam,East Godavari,14.694,73.5854,215.84,11.68,High
+2023-05-22,Uttar Pradesh,Srikakulam,24.2373,77.1852,99.52,2.21,Severe
+2024-12-22,Uttar Pradesh,East Godavari,23.703,89.4555,194.34,11.12,Moderate
+2023-06-10,Uttar Pradesh,Kurnool,17.0853,79.5442,224.88,7.04,Moderate
+2024-12-29,Maharashtra,Srikakulam,16.8414,87.91,304.33,6.76,Moderate
+2024-01-27,Maharashtra,Visakhapatnam,8.7042,83.0338,277.37,4.95,Low
+2024-01-14,Assam,Krishna,16.2563,85.6645,80.32,10.56,Low
+2024-11-19,Uttar Pradesh,Nellore,20.9647,86.0626,7.79,2.83,Severe
+2023-02-14,Kerala,Nellore,22.2909,78.1607,157.61,4.4,Low
+2023-05-11,Uttar Pradesh,Visakhapatnam,14.4783,80.3212,298.28,9.86,High
+2024-05-13,Andhra Pradesh,Nellore,14.7256,76.4596,252.47,2.16,High
+2024-11-09,Kerala,West Godavari,14.1437,82.5547,39.87,5.29,Severe
+2024-01-02,Tamil Nadu,Kurnool,22.266,75.9031,67.69,4.16,Severe
+2024-06-23,Tamil Nadu,East Godavari,12.8411,73.8573,181.0,5.6,Severe
+2023-02-16,Assam,Nellore,11.1098,86.9585,230.4,7.19,Severe
+2024-03-13,Kerala,Guntur,26.756,79.1999,294.47,1.03,Moderate
+2023-04-17,Assam,East Godavari,11.7289,77.2296,151.19,10.66,Severe
+2023-02-16,Kerala,Nellore,26.1794,85.1989,29.78,5.74,Severe
+2024-12-13,Kerala,Nellore,16.4045,74.2052,125.63,11.22,Low
+2024-10-23,Maharashtra,Nellore,8.9036,73.6113,144.17,11.04,Low
+2023-08-15,Kerala,Guntur,15.8033,91.5639,98.11,6.18,Severe
+2023-05-06,Assam,Srikakulam,15.0204,79.6572,95.11,11.67,High
+2023-03-29,Maharashtra,Krishna,26.3402,76.0236,16.19,5.91,Moderate
+2023-11-07,Maharashtra,Guntur,12.7395,84.398,4.32,4.43,Severe
+2023-04-22,Assam,Kurnool,22.9253,73.4443,104.1,3.31,Severe
+2023-05-14,Bihar,Krishna,24.7389,74.0702,240.53,6.91,Moderate
+2023-02-06,Maharashtra,Srikakulam,18.2725,86.5227,229.32,9.88,High
+2023-09-13,Bihar,Visakhapatnam,8.5924,78.7083,340.71,5.29,Moderate
+2024-10-08,Maharashtra,Nellore,10.556,84.307,190.13,2.72,Moderate
+2023-06-18,Maharashtra,East Godavari,11.2974,89.5593,53.83,11.19,Low
+2024-06-18,Assam,Srikakulam,8.6125,83.945,126.23,9.84,Severe
+2024-12-04,Telangana,Kurnool,14.4473,86.2182,183.73,9.71,High
+2024-04-22,Uttar Pradesh,Nellore,21.3563,87.6579,50.07,6.25,Severe
+2024-11-09,Uttar Pradesh,Nellore,13.992,86.2758,143.21,5.71,High
+2024-06-14,Uttar Pradesh,Krishna,23.8126,81.8849,280.43,4.01,Low
+2024-03-02,Maharashtra,East Godavari,8.0251,82.9431,86.02,10.14,Moderate
+2023-08-19,Tamil Nadu,East Godavari,14.9297,76.4692,83.02,11.51,Severe
+2023-12-05,Tamil Nadu,Visakhapatnam,11.9182,84.244,70.27,5.92,Moderate
+2023-11-19,Tamil Nadu,Krishna,25.5613,86.6418,150.39,2.6,Low
+2024-05-22,Tamil Nadu,Nellore,22.6004,80.3378,343.77,8.63,High
+2024-12-28,Andhra Pradesh,Nellore,18.913,73.645,230.89,1.76,Severe
+2024-04-20,Assam,Krishna,10.9829,85.4451,312.91,2.23,Moderate
+2024-10-26,Telangana,Krishna,26.4332,89.3723,98.21,1.24,Moderate
+2023-04-16,Kerala,Kurnool,17.0537,74.526,214.04,11.86,Moderate
+2023-10-30,Assam,West Godavari,26.4508,72.5641,167.2,9.09,Moderate
+2023-08-19,Telangana,East Godavari,26.2312,77.9769,23.26,4.96,Severe
+2023-03-07,Assam,Krishna,27.8285,91.6445,302.47,10.2,Moderate
+2024-07-18,Tamil Nadu,Visakhapatnam,8.0505,86.0614,292.7,9.02,Low
+2024-12-07,Telangana,Kurnool,19.4437,83.9006,252.93,5.04,High
+2024-01-23,Maharashtra,Visakhapatnam,13.0062,72.9081,195.03,3.53,Moderate
+2023-12-04,Assam,Guntur,21.147,91.7502,61.98,8.48,Low
+2023-10-26,Uttar Pradesh,Srikakulam,10.4193,90.0732,124.88,3.62,High
+2024-01-17,Kerala,East Godavari,25.1313,89.393,198.32,7.22,Severe
+2023-02-09,Assam,Srikakulam,9.6314,80.8914,261.52,7.65,High
+2024-10-09,Uttar Pradesh,West Godavari,8.2983,82.3939,91.63,3.71,Low
+2023-03-12,Tamil Nadu,Krishna,25.8001,85.4046,20.05,5.87,Severe
+2023-01-21,Uttar Pradesh,Kurnool,23.1818,86.3749,240.44,9.46,Moderate
+2023-11-01,Andhra Pradesh,Kurnool,19.6676,90.8568,66.8,8.32,Low
+2024-01-01,Andhra Pradesh,Srikakulam,8.46,87.2317,165.37,4.68,Low
+2024-12-27,Maharashtra,Nellore,26.1923,88.3046,251.82,1.84,Low
+2024-01-13,Tamil Nadu,Srikakulam,14.8489,84.7653,299.17,2.91,Severe
+2024-11-19,Telangana,Krishna,8.6149,87.469,207.31,9.07,Moderate
+2024-06-17,Kerala,Krishna,19.8473,84.74,39.54,4.72,Severe
+2023-02-02,Andhra Pradesh,Nellore,27.2631,90.8825,179.42,8.28,Severe
+2023-03-30,Andhra Pradesh,Srikakulam,17.3613,72.9273,66.2,5.45,High
+2024-07-12,Kerala,Krishna,15.4892,76.8008,23.99,8.93,Severe
+2023-09-23,Uttar Pradesh,Visakhapatnam,24.5057,74.8571,38.95,9.55,Moderate
+2023-04-30,Kerala,Visakhapatnam,13.2846,83.5178,343.43,3.13,Moderate
+2023-05-05,Tamil Nadu,Guntur,12.9708,81.5637,312.06,11.35,Low
+2023-07-26,Andhra Pradesh,Krishna,23.5108,84.5587,270.04,7.01,Low
+2024-03-23,Andhra Pradesh,Visakhapatnam,26.427,79.6704,109.98,7.37,Moderate
+2024-03-04,Assam,East Godavari,22.0765,84.9565,81.04,9.8,High
+2023-09-19,Kerala,Guntur,26.6729,80.9054,259.72,7.56,Moderate
+2023-07-17,Kerala,West Godavari,15.0666,86.1326,186.62,1.01,Moderate
+2023-02-25,Tamil Nadu,Srikakulam,24.7585,88.079,310.24,9.43,Moderate
+2024-05-08,Bihar,Visakhapatnam,11.4055,72.3354,324.87,4.41,Moderate
+2023-12-09,Tamil Nadu,Kurnool,13.1235,73.471,169.45,8.03,High
+2023-08-29,Bihar,Kurnool,21.2979,87.6749,189.04,7.27,Severe
+2023-08-12,Uttar Pradesh,Visakhapatnam,16.9472,87.076,192.37,7.13,Moderate
+2023-06-14,Kerala,West Godavari,21.3296,82.4346,14.44,11.66,Low
+2024-05-30,Bihar,Nellore,12.8521,80.9933,169.45,9.92,Low
+2023-04-04,Assam,Nellore,16.3927,83.5932,115.33,4.65,High
+2023-05-11,Andhra Pradesh,Guntur,19.9611,90.6731,15.94,8.93,Severe
+2024-02-08,Bihar,Krishna,27.4783,87.3119,345.12,8.5,Severe
+2023-10-13,Assam,Kurnool,23.0212,77.8255,17.39,8.98,High
+2023-06-27,Telangana,East Godavari,8.392,91.3681,59.53,7.58,Severe
+2024-11-09,Andhra Pradesh,Guntur,8.3519,73.3379,47.72,4.96,Severe
+2023-06-05,Uttar Pradesh,West Godavari,17.197,88.7825,244.59,2.92,Severe
+2024-12-31,Assam,Nellore,25.7427,85.9482,151.56,11.0,Severe
+2024-07-14,Bihar,Visakhapatnam,25.711,89.6555,114.47,2.02,High
+2024-01-23,Andhra Pradesh,Srikakulam,23.0017,76.9822,243.11,11.0,Low
+2024-07-27,Tamil Nadu,Guntur,8.9804,84.9576,286.07,11.91,Moderate
+2023-02-28,Telangana,Krishna,10.6383,91.4771,200.72,5.4,Low
+2023-07-20,Andhra Pradesh,Guntur,27.8859,73.6147,54.18,4.18,High
+2024-07-08,Andhra Pradesh,Kurnool,9.0084,82.7089,25.36,7.65,Moderate
+2023-04-22,Assam,Krishna,18.0446,90.653,30.66,5.52,Low
+2023-11-24,Uttar Pradesh,West Godavari,9.4658,78.341,170.91,1.07,High
+2023-06-22,Bihar,Visakhapatnam,18.1183,80.2908,45.55,2.7,High
+2024-02-24,Kerala,East Godavari,9.3084,89.5146,156.79,10.39,Moderate
+2024-02-07,Kerala,Guntur,14.9571,77.7677,248.66,2.56,Low
+2023-05-13,Assam,Krishna,22.893,86.6009,258.9,9.74,Severe
+2024-12-22,Maharashtra,Srikakulam,17.7605,91.3291,293.73,11.69,Low
+2024-10-07,Bihar,Krishna,15.8682,75.9486,262.0,7.14,Low
+2023-03-31,Andhra Pradesh,Visakhapatnam,26.9114,81.5842,186.44,10.32,Moderate
+2024-03-14,Tamil Nadu,East Godavari,9.8581,86.2095,5.33,4.28,Severe
+2024-11-06,Kerala,Guntur,11.2095,80.9347,267.21,10.66,High
+2023-12-14,Andhra Pradesh,Visakhapatnam,10.6981,79.5607,2.69,5.81,High
+2023-09-17,Kerala,Nellore,13.8213,90.3981,246.94,8.77,Low
+2023-11-10,Maharashtra,East Godavari,20.9027,74.5513,268.69,9.49,Low
+2023-08-10,Tamil Nadu,Kurnool,22.4567,79.8007,278.06,1.15,Moderate
+2024-12-24,Tamil Nadu,Guntur,21.358,79.002,319.22,10.13,Low
+2024-07-22,Andhra Pradesh,Kurnool,9.053,82.6883,310.16,8.6,High
+2024-03-22,Andhra Pradesh,Nellore,21.4365,79.1507,109.03,2.92,Moderate
+2023-01-16,Andhra Pradesh,Nellore,11.2246,73.6553,294.94,10.33,High
+2023-07-13,Telangana,Kurnool,25.4988,89.5336,12.05,9.28,Moderate
+2023-09-21,Telangana,Guntur,25.7176,79.3592,267.18,5.82,Severe
+2023-06-23,Tamil Nadu,Nellore,24.3741,72.7179,189.31,5.19,Moderate
+2024-05-19,Bihar,East Godavari,23.6828,76.5233,324.01,11.05,Severe
+2024-08-19,Kerala,Krishna,12.0064,84.2842,261.12,9.92,Severe
+2024-03-25,Bihar,Krishna,11.7721,86.2103,335.79,8.68,High
+2023-09-09,Assam,East Godavari,10.0365,74.7769,227.96,1.17,Severe
+2024-04-03,Maharashtra,Krishna,11.8604,83.0501,32.71,3.57,High
+2023-12-12,Assam,West Godavari,26.618,88.6574,48.72,1.83,Severe
+2023-06-20,Tamil Nadu,Nellore,13.0303,85.1999,236.35,5.24,High
+2023-11-17,Uttar Pradesh,Krishna,15.4228,91.3183,106.46,9.51,Moderate
+2023-08-04,Bihar,Guntur,19.2264,84.6423,316.48,10.97,Severe
+2023-06-01,Maharashtra,Srikakulam,16.3267,75.9205,99.64,1.94,Moderate
+2024-05-01,Bihar,Srikakulam,14.5238,86.0715,265.12,5.41,Low
+2023-05-17,Bihar,Guntur,25.9856,90.8215,97.23,6.21,Severe
+2024-08-28,Maharashtra,Guntur,10.3496,82.6302,269.61,7.14,Low
+2023-02-20,Telangana,East Godavari,19.4589,81.8931,9.59,11.82,High
+2024-04-08,Kerala,East Godavari,18.1737,75.2004,0.63,2.71,High
+2024-02-21,Bihar,Krishna,9.6392,89.452,21.02,8.63,High
+2024-12-04,Assam,Guntur,23.5775,84.2485,130.54,3.43,Severe
+2023-01-06,Telangana,Kurnool,13.9147,74.5381,152.96,9.97,Low
+2023-11-11,Bihar,West Godavari,21.5463,82.9299,45.62,8.65,Severe
+2024-07-10,Kerala,Krishna,17.1132,85.0029,236.98,8.09,Low
+2024-01-23,Andhra Pradesh,Guntur,15.6871,80.3412,185.92,9.16,Severe
+2024-06-07,Assam,Visakhapatnam,27.6265,80.3603,277.75,6.29,Severe
+2023-05-03,Uttar Pradesh,Visakhapatnam,16.794,90.17,236.19,10.3,High
+2024-10-26,Kerala,Guntur,9.9388,77.2636,211.24,4.33,Moderate
+2023-08-30,Telangana,Srikakulam,21.3065,76.8341,0.86,7.78,Severe
+2024-12-23,Assam,Srikakulam,25.5303,75.3535,77.45,3.79,Moderate
+2024-09-18,Andhra Pradesh,West Godavari,12.0937,74.663,175.95,3.19,Moderate
+2024-03-05,Maharashtra,East Godavari,17.726,91.6854,264.84,2.02,Low
+2023-04-02,Kerala,Guntur,11.237,78.6757,242.67,10.68,Low
+2023-07-28,Uttar Pradesh,Krishna,17.8589,79.6065,177.97,6.15,Severe
+2023-11-17,Maharashtra,Guntur,8.458,90.2424,206.05,2.05,Moderate
+2023-06-21,Tamil Nadu,Kurnool,14.533,90.3496,145.58,10.11,Low
+2023-09-21,Maharashtra,East Godavari,18.2408,88.1789,6.59,5.28,Moderate
+2024-01-30,Tamil Nadu,Visakhapatnam,24.5076,83.2781,93.33,1.33,Low
+2024-01-25,Assam,Visakhapatnam,25.0707,91.4567,182.69,1.62,Severe
+2023-03-01,Telangana,East Godavari,25.9602,84.8341,348.95,5.2,Moderate
+2023-06-18,Andhra Pradesh,Krishna,23.799,83.0697,115.78,2.02,Moderate
+2023-09-15,Kerala,Visakhapatnam,16.1421,77.9165,54.22,11.59,Moderate
+2023-09-08,Uttar Pradesh,Kurnool,14.3864,87.7108,259.85,7.72,Low
+2023-06-26,Andhra Pradesh,Visakhapatnam,12.6415,81.7096,256.12,7.85,Low
+2023-11-06,Uttar Pradesh,Nellore,11.6337,73.914,209.9,10.11,Severe
+2024-12-17,Telangana,Srikakulam,26.8719,72.3817,302.49,8.4,Moderate
+2023-03-13,Telangana,West Godavari,20.1437,89.285,91.99,9.65,Severe
+2024-02-12,Bihar,Visakhapatnam,19.9329,91.7715,230.57,5.71,High
+2024-03-23,Andhra Pradesh,Srikakulam,21.9622,88.5364,45.41,2.85,High
+2024-06-23,Bihar,West Godavari,10.5345,91.3385,142.59,1.53,Severe
+2024-03-08,Tamil Nadu,Visakhapatnam,8.7041,74.639,23.69,8.92,High
+2024-09-18,Maharashtra,Visakhapatnam,16.3799,74.6477,155.15,9.79,Severe
+2023-03-17,Maharashtra,Kurnool,9.3209,89.3895,334.81,1.96,Moderate
+2023-06-02,Uttar Pradesh,Guntur,12.7552,73.48,340.62,2.54,High
+2024-12-14,Uttar Pradesh,Srikakulam,22.9023,80.1205,30.8,2.7,Low
+2023-06-15,Telangana,Guntur,8.1927,84.5342,41.47,5.94,Severe
+2024-05-01,Telangana,Nellore,24.7461,90.7481,194.39,4.13,Severe
+2023-07-14,Kerala,Krishna,12.2412,84.6418,339.48,1.1,High
+2024-05-22,Kerala,Kurnool,12.3512,75.1845,102.62,1.49,Low
+2023-04-02,Maharashtra,Kurnool,25.5025,91.0937,348.62,1.77,Severe
+2024-06-06,Maharashtra,West Godavari,27.8921,76.4492,139.9,10.43,Moderate
+2024-12-01,Uttar Pradesh,Guntur,23.7374,91.8914,190.81,6.77,Severe
+2023-06-01,Maharashtra,Krishna,19.1337,79.3263,241.07,7.7,Moderate
+2024-12-02,Kerala,Srikakulam,25.8861,79.8782,290.75,6.16,Severe
+2023-03-08,Bihar,Visakhapatnam,18.4055,88.4358,312.68,2.71,High
+2024-08-04,Assam,West Godavari,11.6196,85.6011,104.63,10.0,Moderate
+2024-07-08,Maharashtra,Krishna,9.6515,85.7962,188.43,8.22,High
+2024-10-09,Maharashtra,Srikakulam,20.9597,80.7055,102.12,6.36,Low
+2023-05-08,Uttar Pradesh,Nellore,26.1484,86.7925,85.85,11.71,Moderate
+2024-07-19,Bihar,Srikakulam,21.5976,87.1385,158.49,7.93,Low
+2024-06-16,Bihar,Visakhapatnam,15.6782,83.7362,134.47,8.54,High
+2024-10-09,Uttar Pradesh,West Godavari,17.1894,76.3548,80.23,1.59,High
+2024-04-15,Tamil Nadu,West Godavari,25.0172,81.1888,331.17,4.98,High
+2023-10-25,Telangana,Guntur,10.4872,75.0434,110.59,5.1,Severe
+2023-09-10,Kerala,Kurnool,16.6817,88.3811,33.45,9.47,Low
+2024-09-12,Telangana,Visakhapatnam,13.0084,76.1734,291.29,9.87,Moderate
+2023-03-31,Tamil Nadu,Guntur,25.1987,90.8015,304.54,11.28,Low
+2024-08-20,Kerala,Kurnool,9.0227,87.4375,19.18,3.09,Low
+2023-01-18,Bihar,Srikakulam,23.5375,89.7252,185.52,6.09,Low
+2024-03-17,Kerala,East Godavari,12.094,74.8705,321.8,3.9,Severe
+2024-09-04,Maharashtra,East Godavari,26.2441,77.9384,236.68,4.63,High
+2024-08-23,Assam,Kurnool,18.3545,84.9221,112.5,4.66,Severe
+2024-04-21,Andhra Pradesh,Visakhapatnam,16.2537,90.7865,264.24,11.75,Severe
+2023-09-17,Assam,Srikakulam,14.2912,79.6496,222.22,4.35,High
+2023-03-08,Assam,Srikakulam,12.276,87.1275,181.19,3.91,High
+2023-01-03,Assam,Srikakulam,23.6516,89.6436,345.69,6.87,Severe
+2024-04-27,Uttar Pradesh,Nellore,22.1323,72.9727,118.07,11.08,High
+2024-09-18,Maharashtra,Krishna,22.9165,88.6351,206.28,8.14,Low
+2024-04-24,Assam,West Godavari,27.9001,84.2374,74.16,3.32,Low
+2023-12-05,Kerala,East Godavari,11.7995,75.5051,261.21,8.24,Low
+2024-09-02,Kerala,Nellore,9.5829,84.5095,199.33,6.04,Low
+2024-11-20,Maharashtra,West Godavari,16.8509,84.103,239.06,10.29,Moderate
+2023-05-09,Telangana,Srikakulam,24.9454,91.4851,35.34,9.62,Severe
+2023-08-16,Maharashtra,East Godavari,15.7354,76.5858,24.13,10.59,Severe
+2024-02-20,Bihar,Srikakulam,23.47,77.388,161.8,3.68,Moderate
+2023-01-29,Andhra Pradesh,East Godavari,26.1144,85.6275,155.5,11.98,High
+2023-05-30,Uttar Pradesh,Kurnool,22.7977,78.5386,99.72,6.41,High
+2023-12-17,Tamil Nadu,Krishna,27.0887,77.3799,269.68,3.03,High
+2024-03-12,Kerala,Nellore,16.8388,76.6548,308.44,1.74,Moderate
+2024-05-21,Uttar Pradesh,Visakhapatnam,19.6732,77.4953,151.52,7.74,High
+2024-01-16,Telangana,Guntur,13.9176,72.1419,147.12,7.33,High
+2024-03-17,Assam,East Godavari,23.909,81.4372,94.82,8.81,Moderate
+2024-11-12,Kerala,Krishna,18.6957,77.3428,43.99,7.68,Severe
+2024-02-26,Assam,Krishna,12.7353,83.9221,313.76,11.68,Severe
+2024-11-30,Telangana,East Godavari,21.5273,84.9909,246.79,9.83,Low
+2023-10-26,Uttar Pradesh,Guntur,16.3982,84.9529,273.6,3.51,Severe
+2024-02-06,Kerala,Kurnool,23.8806,76.5887,53.6,3.69,Moderate
+2024-12-28,Maharashtra,Nellore,24.9013,74.5132,256.5,3.02,Low
+2023-09-15,Assam,Kurnool,23.2861,80.2168,9.07,2.32,High
+2024-07-09,Assam,West Godavari,11.5929,76.0853,229.6,1.93,Moderate
+2024-11-28,Tamil Nadu,Srikakulam,14.6713,84.9441,196.02,11.12,Moderate
+2024-03-21,Uttar Pradesh,Visakhapatnam,9.635,84.5915,20.7,9.09,High
+2024-07-10,Andhra Pradesh,Nellore,20.9655,80.525,146.04,5.38,Moderate
+2023-03-21,Tamil Nadu,Krishna,25.2886,82.2675,186.03,1.94,Severe
+2023-02-02,Uttar Pradesh,Guntur,16.2821,82.3379,314.78,1.13,Moderate
+2023-02-08,Bihar,West Godavari,17.4987,75.8697,97.13,8.72,Moderate
+2024-06-29,Uttar Pradesh,Guntur,16.8608,79.8026,252.45,7.41,Severe
+2023-03-27,Bihar,Kurnool,10.4769,73.5889,182.01,10.55,Severe
+2023-01-22,Uttar Pradesh,Kurnool,21.7604,73.3411,249.89,9.53,Low
+2023-01-11,Kerala,Krishna,16.8135,76.444,96.0,6.6,High
+2023-02-14,Assam,Kurnool,9.3284,84.4739,210.89,6.03,Severe
+2024-01-27,Uttar Pradesh,Kurnool,9.4455,74.7022,143.39,9.49,Low
+2024-11-29,Bihar,Kurnool,27.7433,91.4721,260.65,6.93,Severe
+2024-01-15,Andhra Pradesh,Visakhapatnam,16.9396,83.6317,217.1,7.55,High
+2024-09-06,Kerala,Visakhapatnam,27.7246,73.442,44.29,6.82,Low
+2024-08-08,Andhra Pradesh,Guntur,20.9804,85.5594,77.5,10.67,Moderate
+2024-11-28,Telangana,Kurnool,14.3643,81.9006,306.22,9.62,High
+2023-04-15,Maharashtra,Guntur,17.1634,80.6695,137.02,3.25,High
+2024-05-05,Andhra Pradesh,Nellore,27.7746,84.6783,49.0,3.98,Severe
+2024-10-09,Andhra Pradesh,Kurnool,13.1158,89.1326,294.6,6.86,Low
+2023-08-11,Kerala,Guntur,11.4079,86.8533,259.49,11.92,High
+2024-04-23,Maharashtra,East Godavari,12.9612,75.8181,196.64,9.54,Moderate
+2023-07-02,Telangana,Srikakulam,14.7327,75.3692,218.85,9.51,Moderate
+2024-12-13,Kerala,Krishna,18.8989,80.5925,38.64,8.44,High
+2023-07-14,Assam,Srikakulam,11.4455,76.8952,250.45,11.9,High
+2023-04-06,Kerala,Visakhapatnam,12.6721,87.6095,192.43,6.84,High
+2024-10-28,Telangana,Guntur,11.0096,81.32,11.62,1.65,Low
+2024-08-05,Maharashtra,Guntur,16.8078,87.2154,193.48,6.0,Moderate
+2023-11-02,Kerala,Guntur,8.43,78.8743,168.17,1.94,High
+2024-01-12,Uttar Pradesh,Srikakulam,26.1804,81.6257,114.93,2.42,Moderate
+2023-02-03,Assam,Visakhapatnam,18.0364,90.2506,108.19,8.97,Severe
+2023-08-13,Uttar Pradesh,Krishna,18.9136,89.4949,18.49,6.41,Severe
+2024-07-09,Assam,Guntur,17.2999,87.3751,34.43,7.28,Moderate
+2023-11-07,Maharashtra,Nellore,16.6485,82.7064,160.52,8.47,Severe
+2024-07-23,Bihar,Krishna,14.1735,80.7846,33.17,3.03,High
+2023-04-18,Uttar Pradesh,Kurnool,8.9373,88.6272,265.29,9.62,Moderate
+2024-09-23,Uttar Pradesh,Nellore,9.4053,74.3446,224.08,4.97,Low
+2023-12-07,Andhra Pradesh,Kurnool,8.8544,81.3286,293.26,4.3,High
+2024-10-11,Andhra Pradesh,Nellore,21.9306,74.567,27.3,4.9,Moderate
+2024-05-21,Kerala,West Godavari,26.3741,79.037,101.58,6.08,Moderate
+2023-09-28,Andhra Pradesh,Krishna,25.4333,76.0948,324.28,10.93,High
+2024-05-10,Bihar,Nellore,12.2018,85.3972,342.01,9.48,Moderate
+2023-02-23,Kerala,Kurnool,8.2148,85.7734,156.16,4.65,Moderate
+2023-08-13,Maharashtra,Visakhapatnam,27.1473,76.3148,330.07,11.3,High
+2023-06-29,Bihar,Kurnool,8.6359,84.4431,331.83,6.18,High
+2024-05-08,Maharashtra,Nellore,11.6197,78.0355,32.34,11.95,High
+2023-03-11,Maharashtra,East Godavari,11.7642,76.5354,208.52,5.36,Moderate
+2023-03-29,Uttar Pradesh,Guntur,27.1168,78.4214,129.53,11.57,Severe
+2023-03-02,Assam,East Godavari,21.7767,87.5474,14.72,9.6,Moderate
+2023-02-23,Assam,East Godavari,26.485,82.5111,171.04,2.04,Severe
+2023-04-14,Bihar,Nellore,11.0407,83.7961,91.16,9.68,Moderate
+2024-11-06,Uttar Pradesh,East Godavari,19.1133,83.5678,215.92,6.93,Moderate
+2024-01-09,Bihar,East Godavari,24.5317,82.9582,73.06,7.8,Moderate
+2024-06-01,Andhra Pradesh,Visakhapatnam,27.8507,78.4114,62.14,7.97,Severe
+2023-07-20,Bihar,Guntur,12.3393,80.6287,299.25,11.43,Severe
+2023-04-04,Kerala,Guntur,23.7659,78.421,171.99,4.48,Low
+2024-05-21,Maharashtra,Visakhapatnam,16.6565,79.802,326.0,10.76,Moderate
+2023-01-18,Kerala,Srikakulam,22.4075,73.4648,293.87,10.05,Severe
+2024-11-14,Bihar,Srikakulam,16.6227,82.1466,12.16,9.88,Moderate
+2024-02-17,Telangana,Guntur,13.1388,88.8548,32.53,11.34,High
+2023-01-02,Uttar Pradesh,Kurnool,21.8729,80.1734,73.89,8.25,Moderate
+2024-02-13,Kerala,East Godavari,20.5272,77.9987,228.1,5.78,Low
+2024-11-05,Bihar,Nellore,11.355,90.3107,85.99,9.45,Low
+2023-09-10,Assam,West Godavari,14.1567,76.3644,205.31,7.4,Moderate
+2023-01-24,Andhra Pradesh,Guntur,24.6976,91.0975,328.32,7.28,Moderate
+2023-04-05,Andhra Pradesh,West Godavari,26.4121,83.3482,38.24,2.76,Low
+2023-10-18,Maharashtra,West Godavari,15.7422,72.0883,24.52,3.86,High
+2024-05-03,Kerala,Srikakulam,21.695,78.1246,267.21,6.32,Moderate
+2023-08-07,Assam,Krishna,9.8721,73.7455,179.91,4.86,Severe
+2024-01-15,Telangana,Srikakulam,18.8641,75.5893,122.39,10.48,Low
+2023-12-08,Andhra Pradesh,West Godavari,17.2175,77.1296,268.53,5.47,High
+2024-10-16,Kerala,Krishna,10.4519,82.2811,42.64,5.7,Moderate
+2024-07-20,Tamil Nadu,Srikakulam,15.9719,78.3081,47.99,10.78,Severe
+2024-04-30,Maharashtra,East Godavari,25.8476,73.3545,70.85,7.18,High
+2023-03-08,Uttar Pradesh,Krishna,8.4882,74.5124,326.07,10.57,Severe
+2024-08-06,Andhra Pradesh,Guntur,14.7151,76.7851,114.49,9.69,Severe
+2024-04-15,Telangana,Krishna,14.1029,77.9116,259.0,10.59,Moderate
+2024-09-05,Bihar,Visakhapatnam,24.4309,89.3338,273.22,10.21,High
+2023-05-24,Kerala,Guntur,18.5843,80.1818,162.5,9.35,Moderate
+2024-11-19,Bihar,Nellore,14.478,88.0493,251.62,2.91,High
+2024-08-14,Andhra Pradesh,Srikakulam,16.3991,88.4203,176.69,6.42,High
+2024-05-05,Maharashtra,Srikakulam,13.6113,74.8395,102.34,4.67,High
+2024-04-06,Kerala,Srikakulam,9.0316,85.4375,143.91,3.94,Low
+2024-07-31,Bihar,Guntur,25.8297,89.3652,255.84,5.25,High
+2024-08-24,Tamil Nadu,Nellore,24.695,89.9629,104.48,10.08,Low
+2023-01-28,Maharashtra,Srikakulam,9.7033,86.8611,277.12,4.25,Severe
+2023-06-12,Bihar,West Godavari,13.0848,76.5601,114.66,10.83,Low
+2023-11-12,Uttar Pradesh,Srikakulam,22.631,84.8467,258.35,8.71,Low
+2023-12-29,Kerala,Visakhapatnam,26.6121,80.6521,330.09,8.35,High
+2024-02-12,Telangana,Krishna,22.5453,83.7281,204.77,5.35,Moderate
+2024-04-24,Andhra Pradesh,Krishna,14.0107,83.3354,20.88,8.91,Moderate
+2023-04-12,Maharashtra,East Godavari,11.1281,80.9407,308.65,9.07,High
+2024-04-01,Assam,Nellore,17.3188,89.81,289.92,2.86,Severe
+2023-08-20,Bihar,East Godavari,9.5762,83.3976,60.72,7.23,Moderate
+2023-04-09,Assam,Kurnool,17.2656,74.3171,343.92,3.14,High
+2023-01-05,Bihar,Krishna,10.5435,76.106,231.16,1.44,Severe
+2023-02-06,Tamil Nadu,Guntur,9.7282,78.2218,272.61,7.47,High
+2023-07-11,Bihar,Krishna,27.1842,74.9879,201.67,4.57,Moderate
+2023-05-18,Kerala,Visakhapatnam,24.8925,91.3377,316.63,11.83,Moderate
+2023-07-15,Uttar Pradesh,Visakhapatnam,9.6157,80.7204,209.95,10.15,Severe
+2024-08-15,Bihar,Nellore,16.9845,91.7856,123.78,2.76,Moderate
+2024-10-06,Andhra Pradesh,Visakhapatnam,13.459,72.5509,216.98,4.32,Moderate
+2024-05-18,Kerala,Guntur,9.4059,72.3904,165.82,5.11,Severe
+2024-11-23,Telangana,Nellore,12.2266,90.2253,160.89,7.19,Low
+2024-10-18,Kerala,Kurnool,22.3142,80.5962,231.72,11.71,Moderate
+2023-09-12,Telangana,Guntur,27.0822,75.7668,148.25,10.36,Severe
+2023-12-12,Tamil Nadu,Kurnool,16.6824,73.4958,8.88,4.64,Low
+2023-04-02,Bihar,Visakhapatnam,16.9249,88.164,330.98,10.22,Low
+2023-10-01,Telangana,West Godavari,12.6394,74.8674,316.09,10.01,Low
+2024-02-20,Uttar Pradesh,Srikakulam,8.9722,78.1054,34.33,5.18,Severe
+2024-01-05,Telangana,East Godavari,23.6512,84.2818,275.08,4.27,Low
+2023-10-08,Andhra Pradesh,Nellore,17.1363,85.9724,270.19,4.75,Low
+2023-02-16,Uttar Pradesh,Krishna,9.843,86.9584,49.24,6.47,Low
+2024-10-28,Kerala,Srikakulam,22.2022,80.4702,164.67,1.79,Low
+2023-11-01,Tamil Nadu,Srikakulam,11.9748,88.1024,215.23,2.78,High
+2024-12-18,Andhra Pradesh,Nellore,15.7068,85.5002,73.84,2.06,Moderate
+2023-05-08,Uttar Pradesh,Krishna,15.7642,81.5795,228.44,11.91,High
+2024-04-17,Bihar,Kurnool,14.9234,75.4557,288.49,9.85,Low
+2023-10-30,Uttar Pradesh,Srikakulam,8.3981,89.144,247.76,7.97,Severe
+2024-09-27,Uttar Pradesh,Visakhapatnam,14.5171,81.5611,23.43,2.48,High
+2023-08-22,Bihar,East Godavari,23.4998,83.8203,349.51,4.82,Low
+2024-01-04,Bihar,Guntur,20.684,90.3299,150.07,11.29,High
+2024-08-13,Tamil Nadu,Visakhapatnam,25.7498,83.9732,148.27,2.35,High
+2023-08-03,Kerala,West Godavari,21.3913,74.672,95.35,1.2,Moderate
+2023-05-12,Assam,Guntur,20.6869,74.0157,34.7,3.73,High
+2023-08-24,Kerala,East Godavari,18.9443,75.6105,173.33,9.39,Moderate
+2024-06-26,Bihar,Visakhapatnam,19.1324,90.7262,296.93,2.78,Low
+2024-02-15,Tamil Nadu,Nellore,10.2108,83.7124,186.86,10.63,Moderate
+2024-07-02,Andhra Pradesh,Guntur,10.7842,91.3888,80.38,1.59,Low
+2023-08-04,Telangana,Visakhapatnam,16.7373,89.0189,242.94,3.74,High
+2023-01-25,Kerala,Srikakulam,9.6773,79.8066,263.7,9.29,Severe
+2024-08-06,Telangana,Krishna,8.5416,82.1605,186.6,9.45,High
+2023-03-13,Maharashtra,Visakhapatnam,8.0408,87.0876,95.49,9.49,Severe
+2023-08-11,Uttar Pradesh,West Godavari,27.7246,84.1048,260.64,9.56,High
+2024-03-01,Assam,Nellore,9.5734,75.6141,120.0,4.06,Low
+2024-09-06,Maharashtra,Nellore,14.5283,80.5086,3.04,6.44,Low
+2023-05-19,Tamil Nadu,Nellore,24.9725,89.8315,31.64,8.89,High
+2023-01-22,Tamil Nadu,Nellore,8.8585,75.8407,246.6,7.84,High
+2023-04-11,Telangana,East Godavari,13.8814,82.006,195.55,11.74,High
+2024-08-22,Andhra Pradesh,West Godavari,9.3569,79.9745,228.54,3.94,High
+2023-08-19,Bihar,Krishna,12.0265,74.9791,267.31,4.97,High
+2023-01-05,Tamil Nadu,Nellore,27.3197,86.2382,291.42,3.3,Low
+2024-12-28,Tamil Nadu,Krishna,11.3153,82.8738,347.35,7.43,High
+2024-04-11,Assam,Srikakulam,23.2832,86.4009,327.41,4.35,High
+2024-05-19,Bihar,Visakhapatnam,24.1688,72.5864,238.07,10.77,High
+2024-02-06,Telangana,Guntur,26.7491,72.0953,69.51,11.21,High
+2024-07-27,Uttar Pradesh,Srikakulam,9.4903,85.5911,36.25,4.68,High
+2024-07-01,Maharashtra,Kurnool,14.4524,76.7705,107.44,6.53,High
+2023-05-16,Telangana,East Godavari,25.4272,80.2462,170.4,7.61,High
+2024-08-05,Tamil Nadu,Visakhapatnam,14.1267,84.3685,286.13,6.88,High
+2024-09-26,Andhra Pradesh,Guntur,25.8202,82.6869,33.73,3.17,High
+2023-07-12,Maharashtra,Guntur,9.3754,74.7848,309.84,2.68,High
+2023-04-02,Assam,Guntur,23.6318,84.8545,43.7,2.01,Low
+2024-06-30,Uttar Pradesh,Srikakulam,15.781,73.6412,330.66,2.98,Moderate
+2023-09-08,Andhra Pradesh,Kurnool,16.1551,74.0102,188.63,11.45,Severe
+2024-11-14,Telangana,West Godavari,8.6964,86.102,250.19,10.36,High
+2024-09-19,Uttar Pradesh,Guntur,8.7662,82.5918,149.06,3.63,High
+2024-12-30,Kerala,Kurnool,18.6565,76.6044,231.14,1.03,Low
+2024-07-23,Andhra Pradesh,Nellore,16.8421,82.171,2.51,9.0,Low
+2024-06-11,Tamil Nadu,Guntur,25.9913,72.5625,21.83,7.84,Severe
+2024-07-06,Kerala,Visakhapatnam,23.6747,80.3916,328.67,7.63,High
+2023-01-22,Telangana,Kurnool,19.1087,79.0895,192.98,3.84,Severe
+2023-07-25,Uttar Pradesh,Kurnool,14.4317,81.1371,171.28,2.17,High
+2024-08-10,Assam,Krishna,9.4323,83.3269,203.99,9.25,Severe
+2024-12-06,Assam,Kurnool,22.5201,86.6632,142.77,6.68,High
+2023-09-08,Maharashtra,Srikakulam,24.8427,79.2317,298.41,3.39,Low
+2024-12-09,Assam,East Godavari,25.9144,73.2244,138.81,10.39,Low
+2024-05-07,Maharashtra,Visakhapatnam,24.0753,80.9295,80.43,5.29,Moderate
+2023-11-06,Assam,Guntur,21.5082,76.6788,135.92,6.62,Moderate
+2024-01-21,Assam,Kurnool,27.5871,85.7102,16.39,5.39,Moderate
+2023-03-23,Telangana,East Godavari,23.4889,78.3737,95.15,4.83,Moderate
+2024-07-31,Bihar,Nellore,10.3824,77.7245,196.6,8.57,Severe
+2024-06-05,Bihar,Kurnool,13.8741,73.3453,147.28,7.09,Low
+2024-04-18,Telangana,Krishna,20.561,91.8988,317.61,1.74,Severe
+2024-04-14,Assam,Kurnool,21.5021,83.1923,103.08,3.89,High
+2024-06-22,Tamil Nadu,Srikakulam,17.8252,73.3603,40.42,8.53,Low
+2023-02-10,Bihar,Kurnool,8.5707,90.2359,297.93,2.6,High
+2023-09-23,Kerala,Krishna,8.0173,73.9445,3.79,2.5,Severe
+2023-07-20,Assam,Srikakulam,11.0681,86.486,16.48,9.21,High
+2024-08-21,Uttar Pradesh,Visakhapatnam,14.5207,86.517,289.81,8.73,Low
+2024-05-25,Assam,Srikakulam,18.8882,72.2817,104.18,6.64,Severe
+2023-10-26,Assam,Guntur,21.6683,86.8558,335.17,7.91,Moderate
+2023-12-07,Telangana,West Godavari,10.7192,77.9985,119.28,3.81,Low
+2023-09-23,Kerala,Visakhapatnam,18.8914,89.2957,255.26,3.73,Moderate
+2024-11-23,Assam,Guntur,25.4062,91.9475,8.92,11.06,Severe
+2023-11-02,Andhra Pradesh,Kurnool,27.9409,72.3062,103.28,7.77,Severe
+2023-09-15,Maharashtra,Srikakulam,24.6445,87.1143,106.91,6.93,High
+2023-01-22,Uttar Pradesh,East Godavari,18.5757,85.4952,271.35,7.95,Severe
+2024-01-27,Uttar Pradesh,Kurnool,26.2695,72.1656,276.37,10.05,High
+2023-01-02,Telangana,Nellore,20.2843,91.9935,219.44,1.55,High
+2024-07-21,Telangana,Visakhapatnam,23.9663,84.8046,290.03,9.98,Low
+2024-04-21,Assam,Visakhapatnam,8.5025,81.8734,37.0,7.3,Moderate
+2023-04-19,Kerala,Nellore,21.4089,80.1073,48.71,6.23,Moderate
+2024-10-18,Bihar,Nellore,8.8858,88.9351,295.8,8.81,High
+2024-09-27,Telangana,Nellore,20.3294,85.4882,249.23,7.25,Low
+2023-05-23,Tamil Nadu,East Godavari,24.6193,88.5986,65.45,10.64,Low
+2024-06-16,Maharashtra,Kurnool,18.6955,80.9231,3.54,4.47,High
+2024-04-08,Bihar,Visakhapatnam,9.1275,82.2654,306.17,6.17,Low
+2023-08-05,Bihar,Nellore,10.6995,87.8886,277.79,7.12,Severe
+2024-05-08,Maharashtra,Srikakulam,24.1989,77.1897,292.9,7.7,Moderate
+2023-12-09,Uttar Pradesh,Srikakulam,23.2813,89.1241,316.79,7.04,Moderate
+2024-08-05,Bihar,Guntur,9.5975,81.8127,174.9,10.12,Severe
+2024-05-05,Uttar Pradesh,East Godavari,17.6984,82.5777,187.6,5.93,Low
+2023-03-23,Uttar Pradesh,East Godavari,19.0756,84.622,242.8,10.03,Moderate
+2024-01-01,Kerala,Krishna,17.019,80.6871,3.95,1.76,High
+2023-08-02,Andhra Pradesh,Nellore,22.0831,89.3393,34.46,5.56,High
+2024-02-04,Uttar Pradesh,Kurnool,23.7667,76.5914,175.02,1.43,Moderate
+2023-10-28,Bihar,Visakhapatnam,21.2943,78.3923,268.01,9.84,High
+2023-02-18,Maharashtra,Visakhapatnam,26.1654,76.1525,173.14,11.72,Moderate
+2023-04-24,Assam,Nellore,9.6761,90.7572,297.98,2.39,Moderate
+2024-06-01,Tamil Nadu,Srikakulam,13.7936,79.0693,207.73,11.33,High
+2023-04-01,Kerala,Kurnool,14.6461,78.6587,303.27,7.64,Severe
+2024-06-23,Assam,Visakhapatnam,18.9,91.7653,231.26,1.5,Moderate
+2023-01-03,Kerala,Visakhapatnam,9.4939,73.8429,201.46,7.91,Severe
+2023-07-27,Tamil Nadu,Srikakulam,25.0986,81.173,203.69,3.38,High
+2023-11-03,Kerala,Krishna,14.708,80.3901,142.82,5.42,High
+2024-11-16,Assam,Visakhapatnam,14.4103,80.9004,176.4,1.2,Severe
+2024-02-02,Kerala,Kurnool,17.7716,84.6379,36.17,1.17,Moderate
+2024-05-11,Kerala,Guntur,17.7094,85.6562,146.43,4.2,Low
+2024-06-16,Uttar Pradesh,Visakhapatnam,24.8662,91.7945,23.18,6.99,Severe
+2023-04-19,Uttar Pradesh,Srikakulam,16.7349,90.0676,98.63,11.71,High
+2023-02-18,Uttar Pradesh,East Godavari,24.3168,88.2323,263.04,1.47,Low
+2023-12-06,Uttar Pradesh,Nellore,13.0292,86.3239,308.17,10.36,Low
+2023-06-18,Uttar Pradesh,East Godavari,22.3089,90.1316,346.35,6.39,Severe
+2024-10-11,Uttar Pradesh,West Godavari,20.2836,86.2381,75.95,3.84,Low
+2023-04-01,Maharashtra,Guntur,21.182,82.5638,276.64,7.7,High
+2024-11-09,Kerala,East Godavari,8.6396,83.5594,248.33,4.84,Moderate
+2023-09-27,Tamil Nadu,Nellore,21.2139,72.86,313.4,7.01,High
+2023-11-09,Maharashtra,East Godavari,9.2235,89.751,107.81,11.3,Low
+2023-03-20,Andhra Pradesh,East Godavari,12.8792,79.354,285.97,5.65,Severe
+2023-07-03,Bihar,Visakhapatnam,9.3666,89.6673,140.3,5.81,Severe
+2024-06-05,Bihar,Visakhapatnam,16.5434,91.4358,113.48,9.31,High
+2024-04-02,Tamil Nadu,Kurnool,11.4284,90.9866,331.93,10.0,Low
+2023-12-14,Maharashtra,West Godavari,23.6712,76.0633,309.45,2.17,Low
+2024-07-14,Tamil Nadu,West Godavari,19.0874,85.0279,318.93,8.65,Moderate
+2023-12-17,Kerala,Guntur,16.8815,84.0801,159.0,5.81,Low
+2023-06-29,Uttar Pradesh,Srikakulam,23.3844,73.8549,320.73,5.27,High
+2023-08-26,Telangana,Nellore,25.9982,82.7883,311.83,10.99,High
+2024-08-11,Assam,Guntur,16.9415,86.416,316.71,4.94,Moderate
+2024-11-17,Tamil Nadu,Visakhapatnam,13.9278,90.4148,240.72,7.07,Severe
+2024-04-19,Kerala,Guntur,8.8244,86.7707,67.96,6.99,Low
+2023-06-21,Telangana,Guntur,17.3168,77.9321,239.1,11.86,High
+2023-11-04,Andhra Pradesh,Kurnool,24.1871,86.2819,28.76,8.38,Moderate
+2023-12-16,Tamil Nadu,Visakhapatnam,18.6132,89.1403,23.57,10.22,Low
+2024-02-04,Andhra Pradesh,Kurnool,16.2771,85.4576,47.05,5.38,Low
+2023-08-29,Telangana,Kurnool,11.3375,78.3497,187.2,7.11,High
+2023-08-17,Bihar,East Godavari,15.5148,85.4698,276.3,10.54,Low
+2024-04-06,Maharashtra,West Godavari,15.612,78.777,26.94,3.51,High
+2023-11-07,Kerala,Srikakulam,11.3179,82.9598,223.94,7.31,Low
+2024-05-30,Assam,Nellore,16.0963,73.6752,334.09,6.24,High
+2023-12-25,Andhra Pradesh,Srikakulam,8.1269,75.3778,239.63,9.92,Severe
+2024-12-16,Telangana,Visakhapatnam,20.4897,88.7201,32.44,8.78,Moderate
+2023-04-30,Telangana,East Godavari,18.5606,91.2901,248.71,8.16,Severe
+2023-12-03,Maharashtra,Guntur,19.4324,91.593,52.65,10.11,Severe
+2023-07-13,Telangana,Guntur,21.122,86.1814,61.11,10.19,Low
+2023-06-25,Telangana,East Godavari,12.3354,74.6472,98.64,8.38,High
+2024-12-26,Tamil Nadu,Kurnool,18.3928,76.9996,110.36,11.04,Moderate
+2023-04-12,Tamil Nadu,West Godavari,19.162,74.3002,122.95,7.58,High
+2024-09-13,Tamil Nadu,Krishna,9.5323,83.1944,66.45,10.85,Low
+2024-05-02,Maharashtra,Krishna,21.8038,79.5868,74.17,5.19,Low
+2023-12-02,Telangana,West Godavari,18.4791,85.2406,231.16,7.79,High
+2024-08-09,Andhra Pradesh,Nellore,27.1053,77.6433,264.29,1.96,High
+2024-08-12,Telangana,Guntur,10.1317,89.5576,227.68,5.64,High
+2023-05-14,Kerala,Visakhapatnam,19.6402,86.4742,317.16,11.53,Moderate
+2023-11-07,Andhra Pradesh,Visakhapatnam,9.8718,82.2811,266.89,3.45,Low
+2023-04-18,Telangana,West Godavari,27.7353,90.9781,236.14,4.8,High
+2023-06-03,Maharashtra,Srikakulam,23.4446,82.1152,303.66,1.11,Moderate
+2023-02-19,Assam,Visakhapatnam,20.7524,85.1859,60.93,4.96,High
+2023-04-02,Tamil Nadu,Kurnool,21.225,81.8795,25.01,3.15,Moderate
+2024-06-02,Andhra Pradesh,Kurnool,9.1638,87.2769,241.52,9.69,Low
+2024-07-06,Telangana,Visakhapatnam,24.8428,91.7404,67.74,7.21,Low
+2024-07-29,Maharashtra,West Godavari,25.2289,74.8754,127.3,5.77,Severe
+2024-08-29,Uttar Pradesh,East Godavari,25.2578,86.925,214.2,1.01,Moderate
+2024-03-07,Andhra Pradesh,Visakhapatnam,16.2689,90.7133,164.82,3.68,Low
+2024-02-18,Bihar,Kurnool,12.7353,86.6217,168.49,11.59,Severe
+2023-11-14,Andhra Pradesh,Krishna,11.933,89.7518,34.31,10.25,High
+2024-04-13,Maharashtra,Krishna,10.8844,86.1494,334.85,8.92,High
+2023-09-13,Tamil Nadu,Visakhapatnam,9.9585,86.7353,258.01,5.63,High
+2023-10-17,Maharashtra,Nellore,20.12,91.3033,73.79,4.02,High
+2024-05-10,Assam,Srikakulam,18.8641,73.9754,268.1,5.96,Low
+2023-02-18,Bihar,Visakhapatnam,19.3892,82.3522,266.8,2.26,Low
+2024-10-23,Maharashtra,West Godavari,27.8315,76.8752,348.93,4.31,High
+2024-05-15,Andhra Pradesh,Nellore,22.4706,79.6141,246.32,2.03,Severe
+2023-05-01,Andhra Pradesh,East Godavari,14.4258,89.3727,90.47,11.21,High
+2024-12-09,Uttar Pradesh,Kurnool,18.0158,82.7735,343.11,6.49,Severe
+2023-04-07,Kerala,Visakhapatnam,18.7282,87.1879,61.31,4.45,High
+2023-06-18,Uttar Pradesh,Guntur,8.6879,91.8745,327.39,6.17,Moderate
+2023-06-05,Tamil Nadu,Visakhapatnam,22.6927,77.9772,283.99,6.82,Severe
+2024-12-06,Assam,East Godavari,15.8147,82.597,134.27,11.71,High
+2024-04-09,Uttar Pradesh,Srikakulam,27.3863,79.9979,67.78,9.29,Moderate
+2024-03-09,Andhra Pradesh,Kurnool,9.3644,80.5428,163.33,4.8,High
+2023-08-08,Assam,Nellore,23.5953,79.3606,136.52,10.05,Moderate
+2023-02-07,Maharashtra,Srikakulam,8.9979,82.2812,66.52,5.46,Low
+2023-05-22,Andhra Pradesh,Srikakulam,23.5974,81.0423,53.21,1.05,High
+2024-04-29,Kerala,Srikakulam,11.3589,74.7426,15.07,11.01,High
+2024-08-30,Telangana,Guntur,13.0532,90.35,143.67,9.92,High
+2023-02-04,Uttar Pradesh,Nellore,24.1111,78.924,96.93,5.79,Low
+2024-11-17,Telangana,Guntur,20.9845,76.4204,292.95,1.78,High
+2023-02-10,Tamil Nadu,Srikakulam,8.0465,83.0458,291.35,11.03,Low
+2023-08-21,Telangana,Kurnool,21.5426,88.8906,46.16,1.66,Severe
+2023-07-23,Tamil Nadu,East Godavari,8.594,87.9252,24.04,10.29,Moderate
+2023-02-06,Uttar Pradesh,Visakhapatnam,16.0521,85.8183,205.78,7.89,High
+2024-09-27,Bihar,Visakhapatnam,20.1576,77.7455,68.22,5.44,Low
+2023-10-20,Telangana,Guntur,27.951,80.3437,223.03,4.16,Moderate
+2024-08-20,Maharashtra,Guntur,14.0322,78.8892,193.92,5.41,High
+2024-09-23,Kerala,Nellore,8.5806,74.3194,330.59,9.68,Moderate
+2024-10-29,Tamil Nadu,Srikakulam,14.8572,75.4494,98.48,7.62,High
+2023-09-03,Uttar Pradesh,Kurnool,18.6611,77.9886,70.61,10.11,Moderate
+2024-03-08,Kerala,Srikakulam,22.3028,78.1267,47.74,7.42,Severe
+2023-03-15,Uttar Pradesh,Nellore,12.399,81.8592,86.58,11.0,High
+2023-01-26,Telangana,Srikakulam,12.3677,84.8081,344.08,7.54,Moderate
+2024-07-14,Andhra Pradesh,Krishna,10.8756,87.9336,6.66,11.36,Moderate
+2023-03-02,Telangana,Guntur,16.732,80.1012,9.37,9.19,Low
+2023-06-13,Tamil Nadu,Nellore,15.04,84.422,322.38,5.02,Low
+2023-11-13,Telangana,Nellore,20.5072,75.2404,199.05,11.5,Moderate
+2024-08-09,Andhra Pradesh,Nellore,21.7792,82.2074,244.85,7.59,High
+2023-10-30,Telangana,Srikakulam,19.1173,72.6747,198.84,11.66,Low
+2023-05-17,Maharashtra,Visakhapatnam,20.496,74.5673,289.21,10.29,Low
+2024-06-29,Bihar,Nellore,12.9611,83.7179,199.11,9.95,High
+2024-09-19,Assam,Krishna,14.2284,84.9346,102.21,1.13,Moderate
+2023-01-09,Maharashtra,East Godavari,26.0709,79.7042,166.59,2.3,Low
+2024-05-14,Assam,East Godavari,25.7125,78.9811,297.91,5.03,High
+2024-11-14,Uttar Pradesh,Nellore,25.0109,87.1658,289.3,7.33,High
+2024-08-01,Telangana,West Godavari,16.2083,79.4584,221.21,10.56,Moderate
+2024-11-05,Kerala,Krishna,21.7755,85.7746,39.16,6.32,Moderate
+2023-12-29,Uttar Pradesh,Visakhapatnam,25.5548,78.6001,268.4,8.78,High
+2023-05-16,Kerala,Srikakulam,8.5114,77.668,330.72,2.12,Low
+2024-11-11,Maharashtra,Visakhapatnam,23.7984,77.094,69.73,6.34,Moderate
+2024-10-30,Kerala,Visakhapatnam,21.7543,81.6172,6.79,2.39,High
+2023-07-26,Uttar Pradesh,West Godavari,8.2848,85.026,70.84,7.07,Low
+2024-08-21,Maharashtra,Srikakulam,8.7575,84.0406,228.65,7.31,High
+2023-04-22,Maharashtra,Kurnool,18.4609,76.2652,121.69,9.01,Low
+2023-12-07,Uttar Pradesh,Nellore,8.6383,75.0123,112.38,11.84,Low
+2024-07-09,Kerala,Guntur,21.1035,83.3367,162.67,1.02,Moderate
+2024-03-28,Bihar,Visakhapatnam,8.3997,80.1999,183.15,9.93,Severe
+2023-12-04,Assam,Kurnool,10.9979,79.4096,167.89,10.63,Moderate
+2023-09-10,Maharashtra,Kurnool,23.906,81.5053,229.66,9.07,High
+2024-02-07,Telangana,West Godavari,20.9774,81.0785,161.67,11.33,Moderate
+2023-06-27,Bihar,Visakhapatnam,20.2632,84.6002,223.09,8.34,High
+2024-03-25,Andhra Pradesh,Nellore,23.0276,83.3683,250.6,1.58,Moderate
+2023-11-13,Maharashtra,Visakhapatnam,22.5152,75.1452,144.55,11.36,Moderate
+2024-09-26,Maharashtra,East Godavari,23.0493,79.5689,285.05,7.39,Severe
+2024-07-24,Kerala,Nellore,10.028,78.306,286.01,1.29,High
+2023-08-31,Bihar,West Godavari,23.1179,77.6942,251.07,8.18,High
+2023-05-02,Uttar Pradesh,West Godavari,18.5204,79.8257,135.14,5.02,Severe
+2023-04-27,Telangana,Guntur,16.3857,84.4031,207.6,4.57,High
+2023-07-15,Uttar Pradesh,Guntur,11.1726,86.6653,202.02,5.26,High
+2023-03-01,Maharashtra,Krishna,23.5144,86.9597,163.31,5.87,Severe
+2023-03-11,Bihar,Guntur,18.9188,85.2689,201.45,9.96,Low
+2024-07-19,Andhra Pradesh,East Godavari,8.2775,88.721,26.8,2.42,Severe
+2024-01-29,Maharashtra,Guntur,14.8807,76.1829,172.48,8.87,Moderate
+2024-12-25,Andhra Pradesh,Nellore,27.4453,75.1918,266.23,8.99,High
+2024-09-13,Telangana,Kurnool,21.3341,81.4361,207.91,5.89,Low
+2023-05-26,Bihar,Nellore,26.3758,77.432,262.85,1.98,Severe
+2024-06-22,Andhra Pradesh,Kurnool,25.0568,74.3147,28.95,2.37,Low
+2023-07-04,Bihar,Visakhapatnam,16.8216,72.4912,280.63,2.38,Low
+2023-09-07,Bihar,Krishna,22.013,74.2357,116.93,2.56,Moderate
+2024-05-29,Tamil Nadu,Kurnool,22.2756,91.7557,128.57,3.04,Moderate
+2023-12-25,Tamil Nadu,East Godavari,21.4585,76.6003,192.87,7.19,Low
+2023-04-16,Andhra Pradesh,East Godavari,13.954,82.9366,73.95,9.4,Severe
+2023-07-05,Andhra Pradesh,Srikakulam,21.9445,83.0076,127.75,4.51,Severe
+2024-03-22,Bihar,Srikakulam,18.7219,78.8747,251.47,4.91,Low
+2024-10-25,Bihar,Nellore,26.042,80.4951,183.49,2.71,Moderate
+2024-07-08,Assam,Nellore,9.2137,73.7632,277.24,1.85,Severe
+2023-10-12,Maharashtra,Visakhapatnam,14.3391,73.8433,167.84,8.0,Moderate
+2023-01-30,Telangana,Nellore,9.1623,90.8488,148.75,9.52,Moderate
+2024-11-22,Tamil Nadu,Nellore,19.2528,81.6705,89.71,1.87,High
+2024-11-21,Kerala,East Godavari,22.846,90.1637,176.77,8.41,Low
+2023-08-07,Uttar Pradesh,West Godavari,13.8045,89.5005,240.72,10.16,Low
+2023-10-06,Maharashtra,Krishna,16.1336,81.3083,255.37,9.99,Severe
+2023-08-18,Assam,East Godavari,12.674,83.3714,11.03,9.48,High
+2024-09-20,Andhra Pradesh,Visakhapatnam,18.2179,89.407,276.76,8.77,Low
+2024-08-05,Assam,Visakhapatnam,8.251,72.04,61.42,2.98,Low
+2024-08-14,Bihar,West Godavari,25.218,81.3073,151.67,5.18,High
+2023-05-15,Bihar,Visakhapatnam,8.9648,79.9256,265.67,10.72,Moderate
+2024-06-16,Andhra Pradesh,Visakhapatnam,16.9905,89.4368,167.41,5.52,Moderate
+2023-03-04,Assam,Guntur,26.4454,83.7978,124.73,1.2,High
+2024-02-03,Maharashtra,Krishna,19.5376,81.9959,114.72,5.06,Severe
+2023-03-19,Kerala,West Godavari,24.8034,91.5333,77.61,1.35,Moderate
+2024-06-29,Kerala,Guntur,23.0076,73.0706,171.1,4.97,Low
+2023-10-18,Kerala,East Godavari,13.4069,77.0822,234.3,2.35,High
+2023-06-08,Telangana,Krishna,8.7634,88.0363,26.87,6.31,Moderate
+2023-10-19,Maharashtra,Kurnool,19.0438,90.8112,183.75,10.92,High
+2024-02-29,Assam,Visakhapatnam,23.8255,88.6718,339.31,2.28,Low
+2024-11-19,Uttar Pradesh,East Godavari,18.6255,72.1453,243.52,6.05,Low
+2023-02-03,Assam,East Godavari,19.9948,86.3216,338.78,7.28,Low
+2023-04-05,Andhra Pradesh,Srikakulam,9.7287,84.3956,114.8,11.92,High
+2024-12-20,Uttar Pradesh,Kurnool,27.0601,82.1388,12.99,7.27,Low
+2023-08-09,Tamil Nadu,Srikakulam,25.6018,86.0416,119.29,5.69,High
+2023-09-15,Maharashtra,West Godavari,24.1654,87.2641,340.27,1.44,Moderate
+2024-06-24,Andhra Pradesh,Krishna,14.3678,88.5207,91.17,7.57,Moderate
+2024-09-14,Telangana,East Godavari,14.9304,81.1879,22.73,8.79,Low
+2023-06-04,Tamil Nadu,Guntur,13.7867,80.924,323.66,3.22,Moderate
+2023-03-09,Assam,Guntur,21.9691,88.0478,36.11,11.77,Severe
+2023-06-04,Assam,Kurnool,10.053,72.6081,251.32,9.1,Moderate
+2024-09-09,Maharashtra,West Godavari,18.4261,78.9596,337.86,1.52,Severe
+2024-08-22,Maharashtra,Visakhapatnam,13.2249,73.4949,288.42,1.66,High
+2024-06-18,Andhra Pradesh,East Godavari,17.2392,73.6088,216.94,10.71,Severe
+2023-05-09,Bihar,Krishna,23.9099,75.3799,326.65,9.07,High
+2024-06-24,Tamil Nadu,West Godavari,12.5661,86.7985,247.85,6.88,Moderate
+2023-08-21,Assam,Krishna,25.6286,81.3992,291.8,1.18,Severe
+2023-12-12,Andhra Pradesh,Kurnool,19.4277,91.4283,0.28,10.47,Severe
+2023-09-19,Tamil Nadu,Guntur,18.2997,85.0969,69.13,6.84,Moderate
+2024-01-06,Tamil Nadu,Nellore,25.2101,83.8518,213.04,6.07,Moderate
+2023-07-28,Kerala,Guntur,27.0473,76.2776,194.07,9.6,Moderate
+2024-03-26,Andhra Pradesh,Visakhapatnam,10.0101,91.9843,166.99,10.55,Low
+2023-02-26,Andhra Pradesh,Srikakulam,25.6035,75.8547,230.41,7.87,Low
+2024-12-29,Bihar,Srikakulam,19.7254,72.4311,300.8,5.91,Severe
+2023-11-13,Maharashtra,Srikakulam,23.5503,75.3393,57.83,1.46,Low
+2023-05-21,Assam,Kurnool,17.0625,91.7047,126.93,7.07,High
+2023-02-26,Bihar,Visakhapatnam,8.4264,90.8606,342.28,8.56,Low
+2023-05-14,Assam,Nellore,18.2288,82.3315,123.24,3.07,Moderate
+2023-04-07,Maharashtra,East Godavari,9.0674,79.5779,138.04,1.11,Moderate
+2024-11-10,Bihar,Krishna,18.5399,89.1272,10.64,1.23,Severe
+2023-09-30,Tamil Nadu,West Godavari,24.092,83.5831,232.7,5.08,High
+2023-10-17,Telangana,Krishna,15.7403,87.7716,146.0,5.89,High
+2023-09-08,Assam,Nellore,9.99,85.2206,247.43,7.58,High
+2024-08-28,Telangana,Srikakulam,26.2585,83.0702,17.54,2.68,Severe
+2024-01-19,Bihar,Srikakulam,24.3828,83.8802,268.07,2.06,Moderate
+2023-07-29,Bihar,Guntur,21.8134,85.6782,183.6,4.65,Moderate
+2024-08-19,Andhra Pradesh,Guntur,12.5665,74.3856,129.45,8.95,Severe
+2023-11-29,Tamil Nadu,Kurnool,26.841,84.0588,153.78,11.0,Severe
+2023-03-18,Telangana,Kurnool,11.8697,85.0527,310.17,2.39,High
+2024-09-20,Telangana,West Godavari,16.1732,78.3463,246.88,6.06,Severe
+2024-02-04,Tamil Nadu,Kurnool,16.8645,82.2914,156.76,10.8,Low
+2023-04-17,Telangana,West Godavari,19.8748,85.3627,113.84,1.94,High
+2024-08-13,Kerala,West Godavari,9.0527,91.9156,138.71,4.77,High
+2024-02-28,Tamil Nadu,Krishna,11.0099,91.4861,49.64,10.9,Moderate
+2024-11-21,Maharashtra,Srikakulam,12.4648,87.1983,297.17,7.03,Low
+2023-08-20,Bihar,Srikakulam,19.1433,82.2421,314.72,8.23,Moderate
+2024-06-02,Bihar,West Godavari,10.6051,78.3017,164.46,11.24,Severe
+2023-09-23,Assam,Visakhapatnam,16.9711,86.3843,130.3,5.11,Low
+2024-11-28,Maharashtra,Visakhapatnam,27.6298,91.9078,21.05,2.49,High
+2024-11-10,Telangana,Srikakulam,11.1082,78.4407,224.61,7.38,High
+2023-02-12,Bihar,Srikakulam,18.362,75.3655,200.43,2.46,High
+2023-10-28,Tamil Nadu,East Godavari,17.03,90.9687,239.6,10.14,Severe
+2024-08-04,Kerala,Krishna,11.9343,89.4605,80.34,2.46,Low
+2024-10-09,Uttar Pradesh,Srikakulam,8.065,91.9235,73.32,10.55,Severe
+2023-11-05,Tamil Nadu,West Godavari,10.1681,86.492,76.46,9.73,Severe
+2024-06-11,Uttar Pradesh,West Godavari,17.3493,76.0972,273.54,9.62,Severe
+2023-05-03,Telangana,West Godavari,20.5677,88.718,123.69,3.91,Moderate
+2024-06-20,Bihar,Guntur,14.2109,79.7553,327.04,4.86,Moderate
+2023-07-12,Kerala,Guntur,9.1613,83.7551,132.77,1.89,Moderate
+2024-12-18,Bihar,Kurnool,15.4937,90.0977,92.59,2.41,Low
+2023-11-01,Assam,Visakhapatnam,16.3817,84.4198,93.93,4.31,Severe
+2024-07-24,Telangana,East Godavari,10.0974,90.6882,173.3,6.78,Low
+2024-09-05,Telangana,Nellore,15.0802,79.9616,99.86,1.26,Severe
+2023-01-26,Bihar,Kurnool,13.4677,89.5953,95.68,4.39,Moderate
+2024-02-05,Assam,Visakhapatnam,23.9119,73.9184,182.81,8.57,High
+2024-03-16,Kerala,Srikakulam,17.1854,78.6524,158.22,6.99,Moderate
+2024-06-03,Telangana,Nellore,11.5264,75.9333,222.51,5.82,Low
+2024-10-07,Kerala,Krishna,26.4487,81.1533,27.67,2.27,High
+2023-07-28,Telangana,Visakhapatnam,10.2158,72.7416,278.37,6.9,High
+2023-09-18,Assam,East Godavari,21.5424,86.2003,233.89,3.18,Moderate
+2024-09-11,Assam,East Godavari,13.9489,74.9873,256.68,10.18,Severe
+2024-10-30,Tamil Nadu,Kurnool,14.2905,86.3701,48.33,11.93,Severe
+2024-01-27,Assam,Srikakulam,27.8874,72.4146,73.04,6.64,Severe
+2023-11-02,Andhra Pradesh,West Godavari,10.0144,83.1459,196.69,11.26,Severe
+2023-11-09,Uttar Pradesh,Srikakulam,19.0559,85.9907,121.72,3.75,Low
+2024-06-21,Tamil Nadu,Kurnool,13.5497,80.4753,258.99,7.82,Low
+2024-10-26,Kerala,Visakhapatnam,12.7556,86.133,307.87,1.38,Low
+2024-06-03,Uttar Pradesh,West Godavari,18.5516,81.861,46.68,4.24,Low
+2023-05-24,Bihar,Guntur,21.2456,79.9319,70.87,6.35,High
+2023-12-01,Kerala,Visakhapatnam,20.8824,77.9281,171.72,2.15,Severe
+2023-06-08,Maharashtra,Srikakulam,21.6294,81.1201,56.12,4.72,Low
+2023-08-06,Kerala,Krishna,19.1093,74.7063,38.85,2.94,High
+2024-09-08,Tamil Nadu,Guntur,27.9466,76.7341,7.85,4.21,Severe
+2023-08-18,Maharashtra,Srikakulam,14.6172,74.1507,281.94,4.31,Severe
+2024-10-18,Andhra Pradesh,West Godavari,18.1783,89.8119,109.04,10.59,Low
+2024-05-04,Kerala,Visakhapatnam,25.8311,81.9295,9.88,6.21,Severe
+2023-07-27,Bihar,Visakhapatnam,14.5565,74.5382,337.63,10.14,Severe
+2024-02-12,Andhra Pradesh,East Godavari,10.9146,72.5482,180.36,9.52,High
+2024-09-04,Assam,West Godavari,21.7474,89.6589,91.79,3.69,Low
+2023-05-13,Tamil Nadu,Kurnool,13.2692,83.3374,247.54,3.11,High
+2024-07-02,Kerala,Kurnool,15.9219,74.5004,195.41,3.18,High
+2023-12-17,Uttar Pradesh,Kurnool,22.11,74.1041,343.85,7.47,Moderate
+2024-06-24,Kerala,Visakhapatnam,23.9427,75.6401,35.27,7.51,Severe
+2024-08-25,Uttar Pradesh,Nellore,18.595,78.86,327.92,3.75,Low
+2023-12-03,Tamil Nadu,Kurnool,26.8247,74.7533,134.09,9.13,High
+2023-08-31,Tamil Nadu,West Godavari,19.585,77.1674,96.49,6.71,High
+2024-05-05,Andhra Pradesh,Nellore,16.6044,80.2424,121.56,7.86,Moderate
+2023-01-26,Kerala,Visakhapatnam,23.8325,85.8792,33.74,5.95,Low
+2024-01-28,Tamil Nadu,Kurnool,19.9261,84.5259,234.13,1.49,Moderate
+2023-04-10,Assam,Nellore,15.6323,82.8825,326.92,8.58,Moderate
+2023-04-24,Tamil Nadu,West Godavari,22.8407,81.2665,14.56,2.56,Severe
+2023-07-06,Assam,East Godavari,11.7279,75.8423,309.41,7.44,High
+2023-02-15,Maharashtra,Srikakulam,20.35,73.5655,196.55,1.88,Severe
+2023-03-10,Uttar Pradesh,Krishna,22.2423,88.3253,78.14,2.25,Severe
+2023-08-27,Kerala,Guntur,12.8907,72.2857,61.88,2.81,Moderate
+2023-11-10,Bihar,Krishna,13.2356,73.9743,151.21,9.17,Low
+2023-06-29,Maharashtra,Visakhapatnam,15.7678,83.0674,241.45,1.32,Low
+2024-09-10,Assam,Visakhapatnam,13.4354,90.8246,227.2,11.48,Severe
+2023-11-05,Bihar,Guntur,20.3482,91.2759,161.47,9.57,Moderate
+2023-08-16,Kerala,Kurnool,14.7523,90.809,168.6,4.15,Moderate
+2024-04-11,Telangana,Kurnool,26.8189,84.0592,290.25,10.07,Moderate
+2024-03-11,Kerala,Visakhapatnam,9.0994,86.7038,333.0,5.74,Moderate
+2024-04-16,Uttar Pradesh,Nellore,10.8233,76.2564,98.59,10.69,Moderate
+2023-07-31,Bihar,Guntur,18.9241,73.4012,204.16,11.08,High
+2023-12-18,Uttar Pradesh,West Godavari,24.05,80.0794,92.62,9.41,Moderate
+2024-07-06,Tamil Nadu,Visakhapatnam,12.9275,73.2727,91.32,3.75,High
+2024-05-27,Kerala,Visakhapatnam,17.3144,75.5589,65.69,5.98,Severe
+2023-01-28,Andhra Pradesh,Nellore,17.5007,84.2305,306.36,3.04,Severe
+2023-11-07,Tamil Nadu,Krishna,11.2858,75.2428,108.7,5.41,Moderate
+2024-11-22,Maharashtra,Nellore,27.4802,88.0026,236.88,11.3,High
+2024-11-03,Andhra Pradesh,Srikakulam,12.2848,72.8822,218.73,2.96,Severe
+2023-04-06,Assam,Krishna,23.9933,72.0063,349.1,4.5,Low
+2023-09-17,Telangana,Krishna,26.3406,88.8022,301.87,6.07,Severe
+2023-11-04,Assam,Guntur,27.7613,77.8541,129.84,4.37,High
+2024-12-08,Kerala,Nellore,19.2623,77.0373,348.92,7.69,Low
+2024-04-28,Tamil Nadu,Visakhapatnam,21.844,87.6165,236.42,7.88,Low
+2024-05-07,Bihar,Nellore,24.4892,86.1384,198.15,2.31,Low
+2024-12-28,Maharashtra,Kurnool,10.9075,91.8667,229.68,10.84,Moderate
+2023-01-12,Andhra Pradesh,Guntur,23.4161,91.1959,24.01,2.84,Moderate
+2024-02-03,Assam,Kurnool,9.1926,89.1214,252.01,9.81,Moderate
+2024-09-19,Tamil Nadu,Nellore,9.5892,74.7562,270.27,1.7,High
+2023-10-06,Telangana,Nellore,14.9148,85.8794,326.74,4.03,Low
+2024-02-23,Andhra Pradesh,Kurnool,20.2046,77.7061,340.15,4.3,High
+2024-11-25,Telangana,Guntur,22.6484,85.8372,332.27,7.39,Moderate
+2023-04-08,Andhra Pradesh,Guntur,14.1248,89.1957,297.55,11.18,Moderate
+2024-07-13,Kerala,Srikakulam,19.2161,90.0792,345.67,5.42,Moderate
+2024-10-10,Kerala,West Godavari,20.5988,88.2804,15.75,7.15,Severe
+2024-07-01,Tamil Nadu,East Godavari,10.4111,87.3858,178.28,1.29,Severe
+2023-05-02,Tamil Nadu,West Godavari,26.2868,77.1165,279.98,4.19,High
+2023-05-07,Uttar Pradesh,Krishna,15.7247,91.5877,235.72,2.29,High
+2024-06-21,Bihar,Visakhapatnam,19.8293,81.7943,211.17,11.4,Moderate
+2024-03-19,Andhra Pradesh,Nellore,16.3909,72.0045,306.86,9.4,High
+2024-04-21,Telangana,Nellore,20.2239,85.4567,282.91,5.31,Moderate
+2024-06-02,Maharashtra,Srikakulam,13.3258,87.015,74.35,1.59,High
+2024-06-04,Maharashtra,West Godavari,24.4505,77.9303,237.71,3.5,Severe
+2024-08-19,Maharashtra,East Godavari,16.5641,73.6832,291.5,1.86,High
+2023-05-01,Telangana,Krishna,17.1554,87.3185,37.41,6.24,Severe
+2024-01-10,Assam,Visakhapatnam,19.4477,77.7153,13.2,5.78,Low
+2023-10-04,Assam,Kurnool,26.2607,81.4347,145.96,8.29,High
+2023-12-31,Assam,Krishna,23.6251,85.1639,290.57,2.69,High
+2023-03-15,Assam,Visakhapatnam,8.481,79.9465,278.76,9.44,Moderate
+2023-08-02,Andhra Pradesh,Guntur,22.7069,84.8474,286.07,8.54,Moderate
+2024-11-08,Assam,Nellore,23.5817,84.7083,131.68,4.42,Moderate
+2023-03-19,Maharashtra,Srikakulam,15.5709,81.6575,184.66,10.49,High
+2023-12-04,Maharashtra,Krishna,13.6108,86.2221,237.05,11.04,Severe
+2024-10-05,Uttar Pradesh,West Godavari,14.9703,76.2695,297.48,1.68,Moderate
+2024-09-06,Assam,Visakhapatnam,13.0434,91.9545,349.76,1.41,Moderate
+2024-07-31,Kerala,Nellore,10.9731,76.213,91.44,8.74,Low
+2023-08-01,Tamil Nadu,West Godavari,15.1617,80.0773,333.86,6.38,Low
+2024-01-19,Maharashtra,Nellore,22.9197,89.1074,243.11,11.02,Severe
+2023-06-10,Assam,Visakhapatnam,20.8492,82.3518,287.33,3.47,Severe
+2024-01-12,Andhra Pradesh,Srikakulam,26.4575,84.8801,103.59,10.4,Low
+2024-04-27,Maharashtra,Krishna,20.718,74.6221,123.75,2.04,High
+2023-05-18,Tamil Nadu,Kurnool,15.1674,85.6115,304.07,6.25,Moderate
+2023-01-03,Tamil Nadu,Visakhapatnam,27.8245,87.4362,239.25,8.08,Severe
+2024-01-23,Telangana,Visakhapatnam,20.2229,78.236,279.68,2.93,Severe
+2024-11-04,Maharashtra,Nellore,8.9199,72.5421,192.9,5.22,High
+2023-03-24,Telangana,Srikakulam,8.8464,81.8587,142.54,3.38,Moderate
+2024-11-26,Maharashtra,Visakhapatnam,8.2855,72.5881,89.76,2.2,Moderate
+2023-07-24,Andhra Pradesh,Srikakulam,10.2538,91.0361,52.43,3.73,Moderate
+2023-07-15,Bihar,Kurnool,10.7149,83.4822,205.51,1.21,Moderate
+2023-09-09,Bihar,Krishna,19.9072,82.9286,280.69,3.75,Severe
+2023-03-04,Uttar Pradesh,Nellore,23.6169,75.8071,129.43,10.68,Moderate
+2024-06-01,Maharashtra,West Godavari,12.9038,90.1236,24.12,4.64,Moderate
+2024-05-31,Kerala,Kurnool,17.7395,77.3393,63.68,3.51,High
+2024-02-09,Kerala,Kurnool,25.5471,79.7882,310.89,6.93,Moderate
+2024-04-05,Andhra Pradesh,Srikakulam,14.5548,84.0104,100.59,2.09,Severe
+2024-11-04,Bihar,West Godavari,25.673,83.209,192.58,4.96,High
+2024-05-15,Uttar Pradesh,East Godavari,15.2328,72.7142,111.54,9.63,Severe
+2023-09-17,Andhra Pradesh,Guntur,22.0005,72.6672,79.74,10.39,Moderate
+2024-08-12,Uttar Pradesh,Kurnool,14.6922,80.1892,61.73,4.47,Moderate
+2024-08-22,Maharashtra,East Godavari,20.4986,72.9457,119.82,4.53,High
+2024-08-23,Kerala,Guntur,16.898,87.7895,194.25,5.67,Severe
+2024-08-28,Tamil Nadu,Guntur,9.121,79.2522,254.72,4.75,Severe
+2024-01-27,Tamil Nadu,Guntur,11.6121,89.7891,283.22,3.17,Low
+2023-07-25,Assam,Krishna,18.401,88.6264,334.33,6.3,Moderate
+2024-11-29,Tamil Nadu,Nellore,11.0022,74.241,126.91,4.54,High
+2024-06-22,Bihar,Nellore,9.9678,81.9531,26.18,7.75,Severe
+2023-10-18,Andhra Pradesh,Visakhapatnam,11.7946,86.1594,322.04,4.35,Severe
+2023-07-01,Maharashtra,East Godavari,13.3469,91.9642,333.43,2.7,Severe
+2023-07-05,Tamil Nadu,Kurnool,27.4366,79.1521,343.73,8.21,Severe
+2024-07-17,Assam,Nellore,22.2867,72.1094,104.41,3.94,High
+2024-11-15,Bihar,Guntur,14.1818,81.8124,214.29,5.26,Severe
+2024-09-21,Maharashtra,Srikakulam,19.0463,90.2755,295.27,11.57,Low
+2023-04-13,Assam,Visakhapatnam,19.3063,81.0559,159.28,1.62,Moderate
+2024-12-23,Kerala,Visakhapatnam,18.0576,87.4998,105.85,10.03,Severe
+2024-10-28,Tamil Nadu,Visakhapatnam,19.2988,91.8523,339.04,2.28,High
+2023-11-19,Andhra Pradesh,West Godavari,26.0825,76.1148,240.21,6.77,Low
+2023-12-19,Bihar,Krishna,8.8233,77.2145,132.41,10.38,Low
+2023-11-13,Tamil Nadu,Srikakulam,24.8565,76.7598,278.68,10.99,Moderate
+2023-04-02,Maharashtra,Guntur,11.0776,90.7644,64.12,6.76,Severe
+2024-02-16,Andhra Pradesh,Krishna,15.1314,80.8335,2.85,8.61,Low
+2024-01-17,Assam,Visakhapatnam,27.7809,91.5323,50.07,10.68,Moderate
+2024-07-05,Andhra Pradesh,Kurnool,10.9641,74.5821,171.4,4.98,Low
+2023-06-12,Uttar Pradesh,Krishna,14.2804,91.3137,155.76,9.71,Low
+2023-02-25,Uttar Pradesh,Nellore,27.5648,85.595,204.92,9.49,High
+2023-12-11,Bihar,Krishna,25.9823,90.7235,254.1,9.86,Severe
+2023-12-28,Telangana,Guntur,14.8558,81.5325,173.0,5.5,Low
+2024-02-18,Assam,West Godavari,14.8415,75.5851,60.21,7.81,Moderate
+2023-11-12,Andhra Pradesh,Nellore,12.9478,91.4617,340.84,9.51,Severe
+2024-01-23,Telangana,Kurnool,15.7426,84.8323,116.41,9.31,High
+2024-05-25,Assam,Kurnool,12.3829,72.2122,185.14,10.32,Severe
+2024-07-07,Uttar Pradesh,Guntur,20.8145,91.5149,200.25,4.7,Low
+2024-08-18,Maharashtra,Guntur,21.4888,88.9138,157.38,2.99,Low
+2023-05-01,Maharashtra,East Godavari,20.098,82.2492,180.27,1.5,High
+2023-02-02,Bihar,Kurnool,18.7686,82.9823,13.37,8.48,High
+2024-05-29,Kerala,Nellore,12.819,82.59,94.49,1.8,Moderate
+2023-08-19,Uttar Pradesh,Guntur,13.7988,79.7741,5.92,6.42,Low
+2024-06-30,Maharashtra,Nellore,9.8522,72.5205,101.44,1.35,Low
+2023-02-02,Telangana,Guntur,26.375,78.5494,270.02,1.88,High
+2023-04-13,Maharashtra,Nellore,16.4145,72.771,342.14,6.25,Moderate
+2024-12-22,Uttar Pradesh,Visakhapatnam,16.5144,73.8103,225.39,1.71,High
+2024-09-09,Tamil Nadu,East Godavari,10.7299,87.4071,201.03,4.16,Low
+2023-02-18,Uttar Pradesh,West Godavari,9.4982,81.8414,34.19,9.12,High
+2024-12-03,Bihar,Nellore,24.9265,89.2962,210.95,2.61,High
+2023-04-10,Andhra Pradesh,Krishna,18.0914,78.5493,289.46,2.83,Severe
+2024-04-22,Telangana,Kurnool,19.2183,77.0693,313.05,11.69,Low
+2024-08-01,Bihar,Guntur,18.2115,78.2571,338.82,8.68,Low
+2024-09-10,Telangana,Visakhapatnam,19.2602,75.3604,48.69,8.44,Moderate
+2024-05-15,Telangana,East Godavari,21.2581,90.9203,141.97,3.75,High
+2023-10-09,Kerala,East Godavari,12.3676,87.5785,11.15,7.57,Low
+2023-04-06,Bihar,Guntur,23.0008,88.9255,322.89,6.54,Moderate
+2024-06-03,Andhra Pradesh,Nellore,12.6352,73.4424,11.53,7.06,Moderate
+2024-09-12,Telangana,Srikakulam,21.654,88.5463,108.34,2.79,Severe
+2023-02-15,Maharashtra,Visakhapatnam,10.2932,82.9959,211.89,6.02,Moderate
+2024-07-09,Assam,Krishna,20.1104,91.4578,8.94,9.15,Low
