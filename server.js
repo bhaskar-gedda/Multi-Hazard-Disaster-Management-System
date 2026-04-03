@@ -2374,6 +2374,11 @@ app.get('/api/blockchain/stats', (req, res) => {
 // Serve the static website
 app.use(express.static(PUBLIC_DIR));
 
+// Explicit root route for Vercel compatibility
+app.get('/', (_req, res) => {
+  res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
+});
+
 // Make /admin9392 resolve even if user types /admin9392 (without trailing slash)
 app.get('/admin9392', (_req, res) => {
   res.redirect('/admin9392/');
