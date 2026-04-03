@@ -2379,6 +2379,25 @@ app.get('/', (_req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
+// Explicit routes for all HTML pages (required for Vercel/deployment)
+const htmlPages = [
+  { route: '/login', file: 'login.html' },
+  { route: '/register', file: 'registration.html' },
+  { route: '/registration', file: 'registration.html' },
+  { route: '/dashboard', file: 'dashboard.html' },
+  { route: '/weather-dashboard', file: 'weather-dashboard.html' },
+  { route: '/weather', file: 'weather-dashboard.html' },
+  { route: '/accessibility', file: 'accessibility.html' },
+  { route: '/demo-alert-generator', file: 'demo-alert-generator.html' },
+  { route: '/demo', file: 'demo-alert-generator.html' },
+];
+
+htmlPages.forEach(({ route, file }) => {
+  app.get(route, (_req, res) => {
+    res.sendFile(path.join(PUBLIC_DIR, file));
+  });
+});
+
 // Make /admin9392 resolve even if user types /admin9392 (without trailing slash)
 app.get('/admin9392', (_req, res) => {
   res.redirect('/admin9392/');
