@@ -2451,3 +2451,8 @@ app.listen(PORT, () => {
     // ignore
   }
 });
+
+// Vercel serverless handler
+if (process.env.VERCEL) {
+  module.exports = app;
+}
