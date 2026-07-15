@@ -2382,13 +2382,20 @@ app.get('/', (_req, res) => {
 // Explicit routes for all HTML pages (required for Vercel/deployment)
 const htmlPages = [
   { route: '/login', file: 'login.html' },
+  { route: '/login.html', file: 'login.html' },
   { route: '/register', file: 'registration.html' },
+  { route: '/register.html', file: 'registration.html' },
   { route: '/registration', file: 'registration.html' },
+  { route: '/registration.html', file: 'registration.html' },
   { route: '/dashboard', file: 'dashboard.html' },
+  { route: '/dashboard.html', file: 'dashboard.html' },
   { route: '/weather-dashboard', file: 'weather-dashboard.html' },
+  { route: '/weather-dashboard.html', file: 'weather-dashboard.html' },
   { route: '/weather', file: 'weather-dashboard.html' },
   { route: '/accessibility', file: 'accessibility.html' },
+  { route: '/accessibility.html', file: 'accessibility.html' },
   { route: '/demo-alert-generator', file: 'demo-alert-generator.html' },
+  { route: '/demo-alert-generator.html', file: 'demo-alert-generator.html' },
   { route: '/demo', file: 'demo-alert-generator.html' },
 ];
 
