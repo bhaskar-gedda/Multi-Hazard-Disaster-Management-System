@@ -2372,7 +2372,13 @@ app.get('/api/blockchain/stats', (req, res) => {
 });
 
 // Serve the static website
-app.use(express.static(PUBLIC_DIR));
+app.use(express.static(PUBLIC_DIR, {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  }
+}));
 
 // Explicit root route for Vercel compatibility
 app.get('/', (_req, res) => {
@@ -2410,6 +2416,11 @@ app.get('/admin9392', (_req, res) => {
   res.redirect('/admin9392/');
 });
 
+// Serve admin9392 index.html
+app.get('/admin9392/', (_req, res) => {
+  res.sendFile(path.join(PUBLIC_DIR, 'admin9392', 'index.html'));
+});
+
 // Common mistake: user types /admin9392.html
 app.get(['/admin9392.html', '/admin9392.html/'], (_req, res) => {
   res.redirect('/admin9392/');
@@ -2427,6 +2438,8 @@ app.listen(PORT, () => {
     // ignore
   }
   console.log(`NDMS server running: http://localhost:${PORT}`);
+  console.log(`Public directory: ${PUBLIC_DIR}`);
+  console.log(`Available HTML files: ${fs.readdirSync(PUBLIC_DIR).filter(f => f.endsWith('.html')).join(', ')}`);
 
   // Auto-alert worker (real-mode demo): continuously monitor conditions and send alerts automatically.
   try {
